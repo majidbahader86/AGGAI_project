@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Forum Posts{% endblock %}
+
+{% block content %}
+<h2>Forum Posts</h2>
+<ul>
+    {% for post in posts %}
+        <li><a href="{% url 'forum_post_detail' post.pk %}">{{ post.title }}</a> by {{ post.user.username }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

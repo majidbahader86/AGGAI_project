@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Season Alert{% endblock %}
+
+{% block content %}
+<h2>{{ alert.crop }} Alert</h2>
+<p>Type: {{ alert.alert_type }}</p>
+<p>{{ alert.alert_message }}</p>
+<p>Created on: {{ alert.created_at }}</p>
+{% endblock %}

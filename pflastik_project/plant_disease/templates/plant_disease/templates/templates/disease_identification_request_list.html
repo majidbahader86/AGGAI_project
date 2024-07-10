@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Request Detail{% endblock %}
+
+{% block content %}
+<h2>Disease Identification Request</h2>
+<p>Request Time: {{ request.request_time }}</p>
+<p>AI Requested: {{ request.ai_requested }}</p>
+{% if request.image %}
+    <img src="{{ request.image.url }}" alt="Disease Identification Image">
+{% endif %}
+{% endblock %}

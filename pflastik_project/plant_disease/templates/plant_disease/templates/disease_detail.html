@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Disease Detail{% endblock %}
+
+{% block content %}
+<h2>{{ disease.name }}</h2>
+<p>{{ disease.description }}</p>
+<a href="{% url 'disease_image_list' disease.pk %}">View Images</a>
+{% endblock %}

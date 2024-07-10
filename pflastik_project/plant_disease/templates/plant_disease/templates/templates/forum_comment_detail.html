@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Comment Detail{% endblock %}
+
+{% block content %}
+<h2>Comment Detail</h2>
+<p>{{ comment.content }}</p>
+<p>Comment by {{ comment.user.username }} on {{ comment.created_at }}</p>
+{% endblock %}
