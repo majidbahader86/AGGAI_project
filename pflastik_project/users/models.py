@@ -29,3 +29,11 @@ class ForumComment(models.Model):
     def __str__(self):
         return f"Comment by {self.user.username} on {self.post.title}"
 
+class SeasonAlert(models.Model):
+    crop = models.CharField(max_length=100)
+    alert_type = models.CharField(max_length=100)
+    alert_message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.crop} Alert - {self.alert_type}"
