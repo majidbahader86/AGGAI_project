@@ -3,8 +3,7 @@ from django.db import models
 
 class Disease(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    category = models.ForeignKey('disease_detection.DiseaseCategory', on_delete=models.CASCADE)
-    description = models.TextField()
+    category = models.ForeignKey('disease_detection.DiseaseCategory', on_delete=models.CASCADE)    description = models.TextField()
     symptoms = models.TextField()
     treatment = models.TextField()
     prevention = models.TextField()
@@ -21,13 +20,6 @@ class DiseaseImage(models.Model):
     def __str__(self):
         return f"Image of {self.disease.name}"
 
-class SeasonAlert(models.Model):
-    crop = models.CharField(max_length=100)
-    alert_type = models.CharField(max_length=100)
-    alert_message = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"{self.crop} Alert - {self.alert_type}"
 
 
