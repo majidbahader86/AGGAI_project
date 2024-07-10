@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    
+    "farmers",
+    "scientists",
+    "plants",
+    "plant_disease",
+    "AI_tools",
+    "disease_detection",
 ]
 
 MIDDLEWARE = [

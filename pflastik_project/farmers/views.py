@@ -1,8 +1,9 @@
 # views.py
 
-from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login, login_required, authenticate
 from .models import DiseaseIdentificationRequest, ForumPost, ForumComment, SeasonAlert
+from .forms import FarmerSignUpForm, FarmerLoginForm
 
 # DiseaseIdentificationRequest views
 @login_required
@@ -46,3 +47,26 @@ def season_alert_list(request):
 def season_alert_detail(request, pk):
     alert = get_object_or_404(SeasonAlert, pk=pk)
     return render(request, 'season_alert_detail.html', {'alert': alert})
+
+
+def farmer_sign_up(request):
+    if request.method == 'POST':
+        form = FarmerSignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('farmer_dashboard')  # Redirect to farmer's dashboard
+    else:
+        form = FarmerSignUpForm()
+    return render(request, 'farmers/sign_up.html', {'form': form})
+
+def farmer_log_in(request):
+    if request.method == 'POST':
+        form = FarmerLoginForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('farmer_dashboard')  # Redirect to farmer's dashboard
+    else:
+        form = FarmerLoginForm()
+    return render(request, 'farmers/login.html', {'form': form})
