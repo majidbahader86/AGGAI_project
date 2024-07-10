@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Expert Database{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'expert_list' %}">Experts</a>
+            <a href="{% url 'publication_list' %}">Publications</a>
+            <a href="{% url 'tutorial_list' %}">Tutorials</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

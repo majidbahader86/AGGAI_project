@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Expert List{% endblock %}
+
+{% block content %}
+<h2>Expert List</h2>
+<ul>
+    {% for expert in experts %}
+        <li><a href="{% url 'expert_detail' expert.pk %}">{{ expert.name }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

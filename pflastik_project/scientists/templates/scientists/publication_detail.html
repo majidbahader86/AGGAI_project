@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ publication.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ publication.title }}</h2>
+<p><strong>Author:</strong> {{ publication.author }}</p>
+<p><strong>Abstract:</strong> {{ publication.abstract }}</p>
+<p><strong>Content:</strong> {{ publication.content }}</p>
+<p><strong>Published Date:</strong> {{ publication.published_date }}</p>
+<p><strong>Category:</strong> {{ publication.category }}</p>
+{% if publication.file %}
+    <a href="{{ publication.file.url }}">Download File</a>
+{% endif %}
+{% if publication.external_link %}
+    <a href="{{ publication.external_link }}">External Link</a>
+{% endif %}
+<a href="{% url 'publication_update' publication.pk %}">Edit</a>
+<form method="post" action="{% url 'publication_delete' publication.pk %}">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+{% endblock %}

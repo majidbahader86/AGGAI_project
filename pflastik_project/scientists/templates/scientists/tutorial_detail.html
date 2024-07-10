@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ tutorial.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ tutorial.title }}</h2>
+<p><strong>Content:</strong> {{ tutorial.content }}</p>
+<p><strong>Created At:</strong> {{ tutorial.created_at }}</p>
+<p><strong>Updated At:</strong> {{ tutorial.updated_at }}</p>
+<p><strong>Category:</strong> {{ tutorial.category }}</p>
+<a href="{% url 'tutorial_update' tutorial.pk %}">Edit</a>
+<form method="post" action="{% url 'tutorial_delete' tutorial.pk %}">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+{% endblock %}

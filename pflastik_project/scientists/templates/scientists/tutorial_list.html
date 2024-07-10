@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Tutorial List{% endblock %}
+
+{% block content %}
+<h2>Tutorial List</h2>
+<ul>
+    {% for tutorial in tutorials %}
+        <li><a href="{% url 'tutorial_detail' tutorial.pk %}">{{ tutorial.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
