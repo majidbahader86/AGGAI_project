@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Images of {{ plant.name }}{% endblock %}
+
+{% block content %}
+<h2>Images of {{ plant.name }}</h2>
+<a href="{% url 'plant_image_create' plant.pk %}">Add New Image</a>
+<ul>
+    {% for image in images %}
+        <li>
+            <a href="{% url 'plant_image_detail' plant.pk image.pk %}">
+                <img src="{{ image.image.url }}" alt="{{ image.description }}" width="100">
+                {{ image.description }} ({{ 'Healthy' if image.is_healthy else 'Diseased' }})
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
