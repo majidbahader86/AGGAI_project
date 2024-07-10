@@ -1,32 +1,101 @@
 # views.py
 
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from .models import DiseaseCategory, PlantPart, DiagnosticSession
+from .forms import DiseaseCategoryForm, PlantPartForm, DiagnosticSessionForm
 
 # DiseaseCategory views
-def disease_category_list(request):
-    disease_categories = DiseaseCategory.objects.all()
-    return render(request, 'disease_category_list.html', {'disease_categories': disease_categories})
+class DiseaseCategoryListView(ListView):
+    model = DiseaseCategory
+    template_name = 'disease_category_list.html'
+    context_object_name = 'disease_categories'
 
-def disease_category_detail(request, pk):
-    disease_category = get_object_or_404(DiseaseCategory, pk=pk)
-    return render(request, 'disease_category_detail.html', {'disease_category': disease_category})
+class DiseaseCategoryDetailView(DetailView):
+    model = DiseaseCategory
+    template_name = 'disease_category_detail.html'
+    context_object_name = 'disease_category'
+
+@login_required
+class DiseaseCategoryCreateView(CreateView):
+    model = DiseaseCategory
+    template_name = 'disease_category_form.html'
+    form_class = DiseaseCategoryForm
+    success_url = reverse_lazy('disease_category_list')
+
+@login_required
+class DiseaseCategoryUpdateView(UpdateView):
+    model = DiseaseCategory
+    template_name = 'disease_category_form.html'
+    form_class = DiseaseCategoryForm
+    success_url = reverse_lazy('disease_category_list')
+
+@login_required
+class DiseaseCategoryDeleteView(DeleteView):
+    model = DiseaseCategory
+    template_name = 'disease_category_confirm_delete.html'
+    success_url = reverse_lazy('disease_category_list')
 
 # PlantPart views
-def plant_part_list(request):
-    plant_parts = PlantPart.objects.all()
-    return render(request, 'plant_part_list.html', {'plant_parts': plant_parts})
+class PlantPartListView(ListView):
+    model = PlantPart
+    template_name = 'plant_part_list.html'
+    context_object_name = 'plant_parts'
 
-def plant_part_detail(request, pk):
-    plant_part = get_object_or_404(PlantPart, pk=pk)
-    return render(request, 'plant_part_detail.html', {'plant_part': plant_part})
+class PlantPartDetailView(DetailView):
+    model = PlantPart
+    template_name = 'plant_part_detail.html'
+    context_object_name = 'plant_part'
+
+@login_required
+class PlantPartCreateView(CreateView):
+    model = PlantPart
+    template_name = 'plant_part_form.html'
+    form_class = PlantPartForm
+    success_url = reverse_lazy('plant_part_list')
+
+@login_required
+class PlantPartUpdateView(UpdateView):
+    model = PlantPart
+    template_name = 'plant_part_form.html'
+    form_class = PlantPartForm
+    success_url = reverse_lazy('plant_part_list')
+
+@login_required
+class PlantPartDeleteView(DeleteView):
+    model = PlantPart
+    template_name = 'plant_part_confirm_delete.html'
+    success_url = reverse_lazy('plant_part_list')
 
 # DiagnosticSession views
-def diagnostic_session_list(request):
-    diagnostic_sessions = DiagnosticSession.objects.all()
-    return render(request, 'diagnostic_session_list.html', {'diagnostic_sessions': diagnostic_sessions})
+class DiagnosticSessionListView(ListView):
+    model = DiagnosticSession
+    template_name = 'diagnostic_session_list.html'
+    context_object_name = 'diagnostic_sessions'
 
-def diagnostic_session_detail(request, pk):
-    diagnostic_session = get_object_or_404(DiagnosticSession, pk=pk)
-    return render(request, 'diagnostic_session_detail.html', {'diagnostic_session': diagnostic_session})
+class DiagnosticSessionDetailView(DetailView):
+    model = DiagnosticSession
+    template_name = 'diagnostic_session_detail.html'
+    context_object_name = 'diagnostic_session'
+
+@login_required
+class DiagnosticSessionCreateView(CreateView):
+    model = DiagnosticSession
+    template_name = 'diagnostic_session_form.html'
+    form_class = DiagnosticSessionForm
+    success_url = reverse_lazy('diagnostic_session_list')
+
+@login_required
+class DiagnosticSessionUpdateView(UpdateView):
+    model = DiagnosticSession
+    template_name = 'diagnostic_session_form.html'
+    form_class = DiagnosticSessionForm
+    success_url = reverse_lazy('diagnostic_session_list')
+
+@login_required
+class DiagnosticSessionDeleteView(DeleteView):
+    model = DiagnosticSession
+    template_name = 'diagnostic_session_confirm_delete.html'
+    success_url = reverse_lazy('diagnostic_session_list')

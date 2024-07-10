@@ -1,0 +1,14 @@
+<!-- disease_category_confirm_delete.html -->
+{% extends 'base.html' %}
+
+{% block title %}Confirm Delete{% endblock %}
+
+{% block content %}
+  <h2>Confirm Delete</h2>
+  <p>Are you sure you want to delete '{{ disease_category.name }}'?</p>
+  <form action="{% url 'disease_category_delete' disease_category.pk %}" method="post">
+    {% csrf_token %}
+    <button type="submit" onclick="return confirm('Are you sure you want to delete {{ disease_category.name }}?')">Yes, Delete</button>
+  </form>
+  <a href="{% url 'disease_category_detail' disease_category.pk %}">Cancel</a>
+{% endblock %}

@@ -1,0 +1,15 @@
+<!-- disease_category_detail.html -->
+{% extends 'base.html' %}
+
+{% block title %}Disease Category Detail{% endblock %}
+
+{% block content %}
+  <h2>{{ disease_category.name }}</h2>
+  <p><strong>Description:</strong> {{ disease_category.description }}</p>
+  <a href="{% url 'disease_category_update' disease_category.pk %}">Edit</a>
+  <form action="{% url 'disease_category_delete' disease_category.pk %}" method="post">
+    {% csrf_token %}
+    <button type="submit" onclick="return confirm('Are you sure you want to delete {{ disease_category.name }}?')">Delete</button>
+  </form>
+  <a href="{% url 'disease_category_list' %}">Back to Disease Categories</a>
+{% endblock %}

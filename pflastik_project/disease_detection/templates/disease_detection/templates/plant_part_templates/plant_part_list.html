@@ -1,0 +1,16 @@
+<!-- plant_part_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Plant Parts{% endblock %}
+
+{% block content %}
+  <h2>Plant Parts</h2>
+  <ul>
+    {% for plant_part in plant_parts %}
+      <li><a href="{% url 'plant_part_detail' plant_part.pk %}">{{ plant_part.name }}</a></li>
+    {% empty %}
+      <li>No plant parts found.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'plant_part_create' %}">Create New Plant Part</a>
+{% endblock %}

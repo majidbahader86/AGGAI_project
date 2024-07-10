@@ -1,0 +1,14 @@
+<!-- diagnostic_session_form.html -->
+{% extends 'base.html' %}
+
+{% block title %}Create/Update Diagnostic Session{% endblock %}
+
+{% block content %}
+  <h2>Create/Update Diagnostic Session</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+  <a href="{% url 'diagnostic_session_list' %}">Cancel</a>
+{% endblock %}

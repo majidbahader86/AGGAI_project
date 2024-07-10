@@ -1,0 +1,16 @@
+<!-- diagnostic_session_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Diagnostic Sessions{% endblock %}
+
+{% block content %}
+  <h2>Diagnostic Sessions</h2>
+  <ul>
+    {% for diagnostic_session in diagnostic_sessions %}
+      <li><a href="{% url 'diagnostic_session_detail' diagnostic_session.pk %}">{{ diagnostic_session.name }}</a></li>
+    {% empty %}
+      <li>No diagnostic sessions found.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'diagnostic_session_create' %}">Create New Diagnostic Session</a>
+{% endblock %}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Django App{% endblock %}</title>
+    <!-- Add your CSS links or stylesheets here -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'disease_category_list' %}">Disease Categories</a></li>
+                <li><a href="{% url 'plant_part_list' %}">Plant Parts</a></li>
+                <li><a href="{% url 'diagnostic_session_list' %}">Diagnostic Sessions</a></li>
+                <!-- Add additional navigation links as needed -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+            <!-- Default content if not overridden by child templates -->
+            <h1>Welcome to My Django App</h1>
+            <p>Replace this with your content.</p>
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Footer content -->
+        <p>&copy; 2024 My Django App. All rights reserved.</p>
+    </footer>
+
+    <!-- Add your JavaScript files or scripts here -->
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>
