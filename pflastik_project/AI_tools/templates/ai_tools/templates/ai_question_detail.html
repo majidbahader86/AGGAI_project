@@ -1,0 +1,11 @@
+<!-- ai_question_detail.html -->
+{% extends 'base.html' %}
+
+{% block title %}Question Detail{% endblock %}
+
+{% block content %}
+<h2>Question Detail</h2>
+<p>{{ question.question }}</p>
+<p>Asked by: {{ question.user.username }}</p>
+<p>Asked at: {{ question.created_at }}</p>
+{% endblock %}

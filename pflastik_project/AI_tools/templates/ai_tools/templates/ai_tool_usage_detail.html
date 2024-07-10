@@ -1,0 +1,13 @@
+<!-- ai_tool_usage_detail.html -->
+{% extends 'base.html' %}
+
+{% block title %}Tool Usage Detail{% endblock %}
+
+{% block content %}
+<h2>Tool Usage Detail</h2>
+<p>Tool: {{ tool_usage.tool.name }}</p>
+<p>User: {{ tool_usage.user.username }}</p>
+<p>Input Data: {{ tool_usage.input_data }}</p>
+<p>Result: {{ tool_usage.result }}</p>
+<p>Usage Date: {{ tool_usage.usage_date }}</p>
+{% endblock %}

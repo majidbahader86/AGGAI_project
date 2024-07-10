@@ -1,0 +1,13 @@
+<!-- ai_tool_form.html -->
+{% extends 'base.html' %}
+
+{% block title %}{% if ai_tool %}Update AI Tool{% else %}Create AI Tool{% endif %}{% endblock %}
+
+{% block content %}
+<h2>{% if ai_tool %}Update AI Tool{% else %}Create AI Tool{% endif %}</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

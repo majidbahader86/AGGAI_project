@@ -1,0 +1,11 @@
+<!-- ai_tool_detail.html -->
+{% extends 'base.html' %}
+
+{% block title %}{{ ai_tool.name }}{% endblock %}
+
+{% block content %}
+<h2>{{ ai_tool.name }}</h2>
+<p>Description: {{ ai_tool.description }}</p>
+<p>Usage Instructions: {{ ai_tool.usage_instructions }}</p>
+<p>Model File: <a href="{{ ai_tool.model_file.url }}">{{ ai_tool.model_file.name }}</a></p>
+{% endblock %}

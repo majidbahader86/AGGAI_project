@@ -1,0 +1,24 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Django App{% endblock %}</title>
+    <!-- Include any CSS or JS files -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Django App</h1>
+        <!-- Include navigation links or menu -->
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Footer content -->
+    </footer>
+</body>
+</html>
