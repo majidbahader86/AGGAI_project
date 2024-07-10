@@ -1,0 +1,18 @@
+<!-- disease_identification_request_list.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Disease Identification Requests{% endblock %}
+
+{% block content %}
+<h2>Disease Identification Requests</h2>
+<ul>
+    {% for request in requests %}
+    <li>
+        <a href="{% url 'disease_identification_request_detail' request.pk %}">{{ request }}</a>
+    </li>
+    {% empty %}
+    <li>No requests found.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

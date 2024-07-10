@@ -1,0 +1,25 @@
+<!-- forum_post_detail.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Forum Post Detail{% endblock %}
+
+{% block content %}
+<h2>Forum Post Detail</h2>
+<h3>{{ post.title }}</h3>
+<p>Posted by: {{ post.user }}</p>
+<p>{{ post.content }}</p>
+<hr>
+<h3>Comments</h3>
+<ul>
+    {% for comment in post.comments.all %}
+    <li>
+        <p>{{ comment.content }}</p>
+        <p>Comment by: {{ comment.user }}</p>
+        <p>Commented at: {{ comment.created_at }}</p>
+    </li>
+    {% empty %}
+    <li>No comments yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

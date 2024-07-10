@@ -1,0 +1,20 @@
+<!-- season_alert_list.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Season Alerts{% endblock %}
+
+{% block content %}
+<h2>Season Alerts</h2>
+<ul>
+    {% for alert in alerts %}
+    <li>
+        <h3>{{ alert.crop }} Alert - {{ alert.alert_type }}</h3>
+        <p>{{ alert.alert_message }}</p>
+        <p>Created at: {{ alert.created_at }}</p>
+    </li>
+    {% empty %}
+    <li>No alerts found.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

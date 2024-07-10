@@ -1,0 +1,15 @@
+<!-- disease_identification_request_detail.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Disease Identification Request Detail{% endblock %}
+
+{% block content %}
+<h2>Disease Identification Request Detail</h2>
+<p>User: {{ request.user }}</p>
+<p>Requested at: {{ request.request_time }}</p>
+{% if request.image %}
+<img src="{{ request.image.url }}" alt="Requested Image">
+{% endif %}
+<p>AI Requested: {% if request.ai_requested %}Yes{% else %}No{% endif %}</p>
+{% endblock %}
