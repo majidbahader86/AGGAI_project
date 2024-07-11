@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Create Publication - Plantastic{% endblock %}
+{% block title %}Create Forum Post - Plantastic{% endblock %}
 
 {% block content %}
-    <h2>Create Publication</h2>
-    <form method="post" enctype="multipart/form-data">
+    <h2>Create Forum Post</h2>
+    <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Submit</button>

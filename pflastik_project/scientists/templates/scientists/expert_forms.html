@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}Create Publication - Plantastic{% endblock %}
+{% block title %}Add Expert - Plantastic{% endblock %}
 
 {% block content %}
-    <h2>Create Publication</h2>
+    <h2>Add Expert</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}

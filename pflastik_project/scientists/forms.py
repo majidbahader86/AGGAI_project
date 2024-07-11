@@ -1,26 +1,37 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
+from .models import Publication, AIToolUsage, ForumPost, ForumComment, Expert, DiagnosticSession, Tutorial
 
-class ScientistSignUpForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-
+class PublicationForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        model = Publication
+        fields = ['title', 'author', 'abstract', 'content', 'published_date', 'category', 'file', 'external_link']
 
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.email = self.cleaned_data['email']
-        user.is_scientist = True  # Assuming you have a boolean field is_scientist in your User model
-        if commit:
-            user.save()
-        return user
+class AIToolUsageForm(forms.ModelForm):
+    class Meta:
+        model = AIToolUsage
+        fields = ['tool', 'user', 'input_data', 'result']
 
-class ScientistLoginForm(AuthenticationForm):
-    def confirm_login_allowed(self, user):
-        if not user.is_active or not user.is_scientist:
-            raise forms.ValidationError(
-                "There was an error with your login.",
-                code='invalid_login',
-            )
+class ForumPostForm(forms.ModelForm):
+    class Meta:
+        model = ForumPost
+        fields = ['user', 'title', 'content']
+
+class ForumCommentForm(forms.ModelForm):
+    class Meta:
+        model = ForumComment
+        fields = ['post', 'user', 'content']
+
+class ExpertForm(forms.ModelForm):
+    class Meta:
+        model = Expert
+        fields = ['name', 'field_of_expertise', 'bio', 'contact_info', 'photo']
+
+class DiagnosticSessionForm(forms.ModelForm):
+    class Meta:
+        model = DiagnosticSession
+        fields = ['user', 'plant', 'symptoms', 'diagnosis']
+
+class TutorialForm(forms.ModelForm):
+    class Meta:
+        model = Tutorial
+        fields = ['title', 'content', 'category']

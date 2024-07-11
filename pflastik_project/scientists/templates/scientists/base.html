@@ -1,18 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>{% block title %}Expert Database{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Site Title{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Additional CSS or JavaScript links -->
 </head>
 <body>
     <header>
+        <!-- Header content -->
+        <h1>Your Site</h1>
         <nav>
-            <a href="{% url 'expert_list' %}">Experts</a>
-            <a href="{% url 'publication_list' %}">Publications</a>
-            <a href="{% url 'tutorial_list' %}">Tutorials</a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/contact/">Contact</a></li>
+            </ul>
         </nav>
     </header>
     <main>
-        {% block content %}{% endblock %}
+        {% block content %}
+        <!-- Content from child templates will be inserted here -->
+        {% endblock %}
     </main>
+    <footer>
+        <!-- Footer content -->
+        <p>&copy; 2024 Your Site. All rights reserved.</p>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Disease Images{% endblock %}
+
+{% block content %}
+<h2>Images of {{ disease.name }}</h2>
+<ul>
+    {% for image in images %}
+        <li><a href="{% url 'disease_image_detail' disease.pk image.pk %}"><img src="{{ image.image.url }}" alt="{{ disease.name }}"></a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
