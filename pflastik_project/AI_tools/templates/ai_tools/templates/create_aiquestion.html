@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Create AI Question{% endblock %}
+
+{% block content %}
+    <h2>Create AI Question</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
