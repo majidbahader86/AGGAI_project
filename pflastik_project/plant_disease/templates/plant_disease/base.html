@@ -1,51 +1,30 @@
-<!-- base.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Plantastic{% endblock %}</title>
-    <!-- Add your CSS links here -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Add your JavaScript links here -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>{% block title %}Disease Library{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Plantastic</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'disease_category_list' %}">Disease Categories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'plant_part_list' %}">Plant Parts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'disease_list' %}">Diseases</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'plant_list' %}">Plants</a>
-                    </li>
-                </ul>
-            </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'add_disease_category' %}">Add Disease Category</a></li>
+                <li><a href="{% url 'add_plant_part' %}">Add Plant Part</a></li>
+                <li><a href="{% url 'add_disease' %}">Add Disease</a></li>
+                <li><a href="{% url 'add_disease_image' %}">Add Disease Image</a></li>
+                <li><a href="{% url 'add_plant' %}">Add Plant</a></li>
+                <li><a href="{% url 'add_plant_image' %}">Add Plant Image</a></li>
+            </ul>
         </nav>
     </header>
-
-    <div class="container mt-4">
+    <main>
         {% block content %}
         {% endblock %}
-    </div>
-
-    <footer class="text-center mt-4">
-        <p>&copy; 2024 Plantastic. All rights reserved.</p>
+    </main>
+    <footer>
+        <p>&copy; 2024 Disease Library. All rights reserved.</p>
     </footer>
 </body>
 </html>

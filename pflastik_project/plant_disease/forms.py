@@ -1,5 +1,3 @@
-# forms.py
-
 from django import forms
 from .models import DiseaseCategory, PlantPart, Disease, DiseaseImage, Plant, PlantImage
 
@@ -17,6 +15,9 @@ class DiseaseForm(forms.ModelForm):
     class Meta:
         model = Disease
         fields = ['name', 'category', 'description', 'symptoms', 'treatment', 'prevention', 'affected_parts']
+        widgets = {
+            'affected_parts': forms.CheckboxSelectMultiple,
+        }
 
 class DiseaseImageForm(forms.ModelForm):
     class Meta:

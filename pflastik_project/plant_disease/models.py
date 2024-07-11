@@ -2,9 +2,7 @@ from django.db import models
 
 # Model representing different categories of diseases such as fungal, bacterial, etc.
 class DiseaseCategory(models.Model):
-    # Name of the disease category
     name = models.CharField(max_length=255, unique=True)
-    # Optional description of the disease category
     description = models.TextField(blank=True, null=True)
 
     def __str__(self):
@@ -13,74 +11,74 @@ class DiseaseCategory(models.Model):
     class Meta:
         verbose_name_plural = "Disease Categories"
 
+    @staticmethod
+    def prepopulate():
+        categories = [
+            {"name": "Fungal", "description": "Diseases caused by fungi"},
+            {"name": "Bacterial", "description": "Diseases caused by bacteria"},
+            {"name": "Viral", "description": "Diseases caused by viruses"},
+            {"name": "Nematode", "description": "Diseases caused by nematodes"},
+            {"name": "Physiological", "description": "Non-infectious diseases caused by environmental factors"}
+        ]
+        for category in categories:
+            DiseaseCategory.objects.get_or_create(**category)
 
 # Model representing different parts of a plant that can be affected by diseases
 class PlantPart(models.Model):
-    # Name of the plant part, e.g., leaf, stem, root
     name = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.name
 
+    @staticmethod
+    def prepopulate():
+        parts = [
+            {"name": "Stem"},
+            {"name": "Root"},
+            {"name": "Leaves"},
+            {"name": "Seeds"},
+            {"name": "Flowers"}
+        ]
+        for part in parts:
+            PlantPart.objects.get_or_create(**part)
 
 # Model representing specific diseases with detailed information
 class Disease(models.Model):
-    # Name of the disease
     name = models.CharField(max_length=255, unique=True)
-    # Category of the disease (e.g., fungal, bacterial), linked to DiseaseCategory
     category = models.ForeignKey(DiseaseCategory, on_delete=models.CASCADE)
-    # Detailed description of the disease
     description = models.TextField()
-    # Symptoms of the disease
     symptoms = models.TextField()
-    # Treatment methods for the disease
     treatment = models.TextField()
-    # Prevention methods for the disease
     prevention = models.TextField()
-    # Plant parts affected by the disease, linked to PlantPart
     affected_parts = models.ManyToManyField(PlantPart, related_name='diseases')
 
     def __str__(self):
         return self.name
 
-
 # Model representing images associated with specific diseases
 class DiseaseImage(models.Model):
-    # The disease the image is associated with, linked to Disease
     disease = models.ForeignKey(Disease, related_name='images', on_delete=models.CASCADE)
-    # Image file
     image = models.ImageField(upload_to='disease_images/')
-    # Optional description of the image
     description = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
         return f"Image of {self.disease.name}"
 
-
 # Model representing different plant species
 class Plant(models.Model):
-    # Name of the plant
     name = models.CharField(max_length=255, unique=True)
-    # Scientific name of the plant
     scientific_name = models.CharField(max_length=255)
-    # Detailed description of the plant
     description = models.TextField()
-    # Natural habitat of the plant
     habitat = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
 
-
 # Model representing images associated with specific plants
 class PlantImage(models.Model):
-    # The plant the image is associated with, linked to Plant
     plant = models.ForeignKey(Plant, related_name='images', on_delete=models.CASCADE)
-    # Image file
     image = models.ImageField(upload_to='plant_images/')
-    # Optional description of the image
     description = models.CharField(max_length=255, blank=True)
-    # Boolean indicating whether the image shows a healthy plant
     is_healthy = models.BooleanField(default=True)
 
     def __str__(self):
