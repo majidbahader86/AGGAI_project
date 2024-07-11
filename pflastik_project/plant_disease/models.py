@@ -3,7 +3,8 @@ from django.db import models
 
 class Disease(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    category = models.ForeignKey('disease_detection.DiseaseCategory', on_delete=models.CASCADE)    description = models.TextField()
+    category = models.ForeignKey('disease_detection.DiseaseCategory', on_delete=models.CASCADE)    
+    description = models.TextField()
     symptoms = models.TextField()
     treatment = models.TextField()
     prevention = models.TextField()

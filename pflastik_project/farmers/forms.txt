@@ -1,0 +1,6 @@
+
+1. UserForm: If you have custom user information or need additional fields during registration. 
+2. LoginForm and RegistrationForm: For handling user authentication and registration. 
+3. SearchForm: If your application allows searching within categories like diseases, AI tools, etc.
+4. FeedbackForm: If users can provide feedback about the application.
+5. ContactForm: If there's a need for users to contact support or administration.

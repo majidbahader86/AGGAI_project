@@ -12,7 +12,7 @@ class FarmerSignUpForm(UserCreationForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
-        user.is_farmer = True  # Assuming you have a boolean field is_farmer in your User model
+        user.is_farmer = True  
         if commit:
             user.save()
         return user

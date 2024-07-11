@@ -1,0 +1,4 @@
+Conversation table- between user and large language model
+data types, dictionaries and lists
+Primary Key
+Secondary Key
