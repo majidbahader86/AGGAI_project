@@ -2,17 +2,20 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Conversation(models.Model):
+    id = models.AutoField(primary_key=True)  # Explicitly define primary key as AutoField
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    llm_name = models.CharField(max_length=255)
     timestamp = models.DateTimeField(auto_now_add=True)
-    user_message = models.TextField()
-    llm_response = models.TextField()
-    context = models.JSONField(blank=True, null=True)
+    user_messages = models.JSONField()  # Store messages from user as JSON (list or dictionary)
+    llm_responses = models.JSONField()  # Store responses from LLM as JSON (list or dictionary)
+    context = models.JSONField(blank=True, null=True)  # Optional context data
 
     def __str__(self):
-        return f'Conversation with {self.user.username} at {self.timestamp}'
+        return f'Conversation id={self.id} with {self.llm_name} initiated by {self.user.username}'
 
     class Meta:
-        ordering = ['-timestamp']
+        ordering = ['-timestamp']  # Optional: specify default ordering
+
 
 class AITool(models.Model):
     name = models.CharField(max_length=255)
