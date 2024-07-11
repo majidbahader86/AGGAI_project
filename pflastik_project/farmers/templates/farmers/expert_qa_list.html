@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Expert Q&A{% endblock %}
+
+{% block content %}
+    <h2>Expert Q&A</h2>
+    <ul>
+        {% for qa in qas %}
+            <li>{{ qa.created_at }} - Q: {{ qa.question }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

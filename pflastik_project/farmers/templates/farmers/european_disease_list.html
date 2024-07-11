@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}European Diseases{% endblock %}
+
+{% block content %}
+    <h2>European Diseases</h2>
+    <ul>
+        {% for disease in diseases %}
+            <li>{{ disease.name }} - Symptoms: {{ disease.symptoms }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

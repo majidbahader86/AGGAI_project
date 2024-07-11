@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Environmental Conditions{% endblock %}
+
+{% block content %}
+    <h2>Environmental Conditions</h2>
+    <ul>
+        {% for condition in conditions %}
+            <li>{{ condition.timestamp }} - Temperature: {{ condition.temperature }}, Humidity: {{ condition.humidity }}, Soil Moisture: {{ condition.soil_moisture }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Community Posts{% endblock %}
+
+{% block content %}
+    <h2>Community Posts</h2>
+    <ul>
+        {% for post in posts %}
+            <li>{{ post.created_at }} - {{ post.title }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

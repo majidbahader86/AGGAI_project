@@ -1,35 +1,35 @@
 <!-- base.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Django App{% endblock %}</title>
-    <!-- Include any CSS or static files -->
+    <title>{% block title %}Your Site Title{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'disease_identification_request_list' %}">Disease Identification Requests</a></li>
-            <li><a href="{% url 'forum_post_list' %}">Forum</a></li>
-            <li><a href="{% url 'season_alert_list' %}">Season Alerts</a></li>
-            <!-- Add more navigation links as needed -->
-            {% if user.is_authenticated %}
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-            {% else %}
-            <li><a href="{% url 'farmer_log_in' %}">Login</a></li>
-            <li><a href="{% url 'farmer_sign_up' %}">Sign Up</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-    
-    <div>
+    <header>
+        <h1>Your Site</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'environmental_condition_list' %}">Environmental Conditions</a></li>
+                <li><a href="{% url 'care_tip_list' %}">Care Tips</a></li>
+                <li><a href="{% url 'community_post_list' %}">Community Posts</a></li>
+                <li><a href="{% url 'expert_qa_list' %}">Expert Q&A</a></li>
+                <li><a href="{% url 'season_alert_list' %}">Season Alerts</a></li>
+                <li><a href="{% url 'european_disease_list' %}">European Diseases</a></li>
+                <li><a href="{% url 'european_region_list' %}">European Regions</a></li>
+                <li><a href="{% url 'financial_record_list' %}">Financial Records</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
         {% block content %}
         {% endblock %}
-    </div>
-
-    <!-- Include any JavaScript or other scripts -->
+    </main>
+    <footer>
+        <p>&copy; 2024 Your Site. All rights reserved.</p>
+    </footer>
 </body>
 </html>

@@ -1,26 +1,52 @@
+# forms.py
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
+from .models import (
+    EnvironmentalCondition,
+    CareTip,
+    CommunityPost,
+    ExpertQA,
+    SeasonAlert,
+    EuropeanDisease,
+    EuropeanRegion,
+    FinancialRecord
+)
 
-class FarmerSignUpForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-
+class EnvironmentalConditionForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        model = EnvironmentalCondition
+        fields = ['temperature', 'humidity', 'soil_moisture', 'alert_message']
 
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.email = self.cleaned_data['email']
-        user.is_farmer = True  
-        if commit:
-            user.save()
-        return user
+class CareTipForm(forms.ModelForm):
+    class Meta:
+        model = CareTip
+        fields = ['crop', 'region', 'tip']
 
-class FarmerLoginForm(AuthenticationForm):
-    def confirm_login_allowed(self, user):
-        if not user.is_active or not user.is_farmer:
-            raise forms.ValidationError(
-                "There was an error with your login.",
-                code='invalid_login',
-            )
+class CommunityPostForm(forms.ModelForm):
+    class Meta:
+        model = CommunityPost
+        fields = ['title', 'content']
+
+class ExpertQAForm(forms.ModelForm):
+    class Meta:
+        model = ExpertQA
+        fields = ['expert_name', 'question', 'answer']
+
+class SeasonAlertForm(forms.ModelForm):
+    class Meta:
+        model = SeasonAlert
+        fields = ['crop', 'alert_type', 'alert_message']
+
+class EuropeanDiseaseForm(forms.ModelForm):
+    class Meta:
+        model = EuropeanDisease
+        fields = ['name', 'category', 'description', 'symptoms', 'treatment', 'prevention', 'affected_parts']
+
+class EuropeanRegionForm(forms.ModelForm):
+    class Meta:
+        model = EuropeanRegion
+        fields = ['name', 'boundary']
+
+class FinancialRecordForm(forms.ModelForm):
+    class Meta:
+        model = FinancialRecord
+        fields = ['crop', 'price', 'transaction_date']
