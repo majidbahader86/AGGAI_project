@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ disease.name }} - Plantastic{% endblock %}
+
+{% block content %}
+    <h2>{{ disease.name }}</h2>
+    <p>Category: {{ disease.category }}</p>
+    <p>Description: {{ disease.description }}</p>
+    <p>Symptoms: {{ disease.symptoms }}</p>
+    <p>Treatment: {{ disease.treatment }}</p>
+    <p>Prevention: {{ disease.prevention }}</p>
+    <!-- Add more details as needed -->
+{% endblock %}

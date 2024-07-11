@@ -1,10 +1,28 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from .models import Disease, DiseaseImage, DiseaseIdentificationRequest, ForumPost, ForumComment, SeasonAlert
-from .forms import DiseaseIdentificationRequestForm, ForumPostForm, ForumCommentForm, SeasonAlertForm, FarmerSignUpForm, FarmerLoginForm
+# views.py
 
-# Disease views
+from django.shortcuts import render, get_object_or_404, redirect
+from .forms import DiseaseCategoryForm, PlantPartForm, DiseaseForm, DiseaseImageForm, PlantForm, PlantImageForm
+from .models import DiseaseCategory, PlantPart, Disease, DiseaseImage, Plant, PlantImage
+
+# List and Detail Views for DiseaseCategory
+def disease_category_list(request):
+    categories = DiseaseCategory.objects.all()
+    return render(request, 'disease_category_list.html', {'categories': categories})
+
+def disease_category_detail(request, pk):
+    category = get_object_or_404(DiseaseCategory, pk=pk)
+    return render(request, 'disease_category_detail.html', {'category': category})
+
+# List and Detail Views for PlantPart
+def plant_part_list(request):
+    parts = PlantPart.objects.all()
+    return render(request, 'plant_part_list.html', {'parts': parts})
+
+def plant_part_detail(request, pk):
+    part = get_object_or_404(PlantPart, pk=pk)
+    return render(request, 'plant_part_detail.html', {'part': part})
+
+# List and Detail Views for Disease
 def disease_list(request):
     diseases = Disease.objects.all()
     return render(request, 'disease_list.html', {'diseases': diseases})
@@ -13,78 +31,90 @@ def disease_detail(request, pk):
     disease = get_object_or_404(Disease, pk=pk)
     return render(request, 'disease_detail.html', {'disease': disease})
 
-# DiseaseImage views
-def disease_image_list(request, disease_id):
-    disease = get_object_or_404(Disease, pk=disease_id)
-    images = disease.images.all()
-    return render(request, 'disease_image_list.html', {'disease': disease, 'images': images})
+# List and Detail Views for DiseaseImage
+def disease_image_list(request):
+    images = DiseaseImage.objects.all()
+    return render(request, 'disease_image_list.html', {'images': images})
 
-def disease_image_detail(request, disease_id, image_id):
-    image = get_object_or_404(DiseaseImage, pk=image_id)
+def disease_image_detail(request, pk):
+    image = get_object_or_404(DiseaseImage, pk=pk)
     return render(request, 'disease_image_detail.html', {'image': image})
 
-# DiseaseIdentificationRequest views
-@login_required
-def disease_identification_request_list(request):
-    requests = DiseaseIdentificationRequest.objects.filter(user=request.user)
-    return render(request, 'disease_identification_request_list.html', {'requests': requests})
+# List and Detail Views for Plant
+def plant_list(request):
+    plants = Plant.objects.all()
+    return render(request, 'plant_list.html', {'plants': plants})
 
-@login_required
-def disease_identification_request_detail(request, pk):
-    request = get_object_or_404(DiseaseIdentificationRequest, pk=pk)
-    return render(request, 'disease_identification_request_detail.html', {'request': request})
+def plant_detail(request, pk):
+    plant = get_object_or_404(Plant, pk=pk)
+    return render(request, 'plant_detail.html', {'plant': plant})
 
-# ForumPost views
-@login_required
-def forum_post_list(request):
-    posts = ForumPost.objects.all()
-    return render(request, 'forum_post_list.html', {'posts': posts})
+# List and Detail Views for PlantImage
+def plant_image_list(request):
+    images = PlantImage.objects.all()
+    return render(request, 'plant_image_list.html', {'images': images})
 
-@login_required
-def forum_post_detail(request, pk):
-    post = get_object_or_404(ForumPost, pk=pk)
-    return render(request, 'forum_post_detail.html', {'post': post})
+def plant_image_detail(request, pk):
+    image = get_object_or_404(PlantImage, pk=pk)
+    return render(request, 'plant_image_detail.html', {'image': image})
 
-# ForumComment views
-@login_required
-def forum_comment_list(request, post_id):
-    post = get_object_or_404(ForumPost, pk=post_id)
-    comments = post.comments.all()
-    return render(request, 'forum_comment_list.html', {'post': post, 'comments': comments})
-
-@login_required
-def forum_comment_detail(request, post_id, comment_id):
-    comment = get_object_or_404(ForumComment, pk=comment_id)
-    return render(request, 'forum_comment_detail.html', {'comment': comment})
-
-# SeasonAlert views
-def season_alert_list(request):
-    alerts = SeasonAlert.objects.all()
-    return render(request, 'season_alert_list.html', {'alerts': alerts})
-
-def season_alert_detail(request, pk):
-    alert = get_object_or_404(SeasonAlert, pk=pk)
-    return render(request, 'season_alert_detail.html', {'alert': alert})
-
-# Farmer sign up and log in views
-def farmer_sign_up(request):
-    if request.method == 'POST':
-        form = FarmerSignUpForm(request.POST)
+# Create Views for Forms
+def create_disease_category(request):
+    if request.method == "POST":
+        form = DiseaseCategoryForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('farmer_dashboard')
+            form.save()
+            return redirect('disease_category_list')
     else:
-        form = FarmerSignUpForm()
-    return render(request, 'farmers/sign_up.html', {'form': form})
+        form = DiseaseCategoryForm()
+    return render(request, 'form_template.html', {'form': form})
 
-def farmer_log_in(request):
-    if request.method == 'POST':
-        form = FarmerLoginForm(data=request.POST)
+def create_plant_part(request):
+    if request.method == "POST":
+        form = PlantPartForm(request.POST)
         if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('farmer_dashboard')
+            form.save()
+            return redirect('plant_part_list')
     else:
-        form = FarmerLoginForm()
-    return render(request, 'farmers/login.html', {'form': form})
+        form = PlantPartForm()
+    return render(request, 'form_template.html', {'form': form})
+
+def create_disease(request):
+    if request.method == "POST":
+        form = DiseaseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('disease_list')
+    else:
+        form = DiseaseForm()
+    return render(request, 'form_template.html', {'form': form})
+
+def create_disease_image(request):
+    if request.method == "POST":
+        form = DiseaseImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('disease_image_list')
+    else:
+        form = DiseaseImageForm()
+    return render(request, 'form_template.html', {'form': form})
+
+def create_plant(request):
+    if request.method == "POST":
+        form = PlantForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('plant_list')
+    else:
+        form = PlantForm()
+    return render(request, 'form_template.html', {'form': form})
+
+def create_plant_image(request):
+    if request.method == "POST":
+        form = PlantImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('plant_image_list')
+    else:
+        form = PlantImageForm()
+    return render(request, 'form_template.html', {'form': form})
