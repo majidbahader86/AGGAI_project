@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Create Disease Identification Request{% endblock %}
+
+{% block content %}
+<h2>Create Disease Identification Request</h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

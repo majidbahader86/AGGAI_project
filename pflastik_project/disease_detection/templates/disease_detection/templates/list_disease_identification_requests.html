@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}My Disease Identification Requests{% endblock %}
+
+{% block content %}
+<h2>My Disease Identification Requests</h2>
+<ul>
+    {% for request in disease_requests %}
+        <li>
+            {{ request.request_time }} - AI Requested: {{ request.ai_requested }}
+            <br>
+            <img src="{{ request.image.url }}" alt="Uploaded Image" width="100">
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
