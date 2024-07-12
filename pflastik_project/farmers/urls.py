@@ -1,40 +1,34 @@
-# urls.py
 from django.urls import path
-from .views import (
-    create_environmental_condition,
-    create_care_tip,
-    create_community_post,
-    create_expert_qa,
-    create_season_alert,
-    create_european_disease,
-    create_european_region,
-    create_financial_record,
-    environmental_condition_list,
-    care_tip_list,
-    community_post_list,
-    expert_qa_list,
-    season_alert_list,
-    european_disease_list,
-    european_region_list,
-    financial_record_list
-)
+from . import views
 
 urlpatterns = [
-    path('environmental_conditions/new/', create_environmental_condition, name='create_environmental_condition'),
-    path('care_tips/new/', create_care_tip, name='create_care_tip'),
-    path('community_posts/new/', create_community_post, name='create_community_post'),
-    path('expert_qas/new/', create_expert_qa, name='create_expert_qa'),
-    path('season_alerts/new/', create_season_alert, name='create_season_alert'),
-    path('european_diseases/new/', create_european_disease, name='create_european_disease'),
-    path('european_regions/new/', create_european_region, name='create_european_region'),
-    path('financial_records/new/', create_financial_record, name='create_financial_record'),
+    # Monitoring URLs
+    path('monitoring/data/create/', views.create_monitoring_data, name='create_monitoring_data'),
+    path('monitoring/alert/create/', views.create_monitoring_alert, name='create_monitoring_alert'),
+    path('monitoring/action/create/', views.create_monitoring_action, name='create_monitoring_action'),
 
-    path('environmental_conditions/', environmental_condition_list, name='environmental_condition_list'),
-    path('care_tips/', care_tip_list, name='care_tip_list'),
-    path('community_posts/', community_post_list, name='community_post_list'),
-    path('expert_qas/', expert_qa_list, name='expert_qa_list'),
-    path('season_alerts/', season_alert_list, name='season_alert_list'),
-    path('european_diseases/', european_disease_list, name='european_disease_list'),
-    path('european_regions/', european_region_list, name='european_region_list'),
-    path('financial_records/', financial_record_list, name='financial_record_list'),
+    # Forum URLs
+    path('forum/post/create/', views.create_forum_post, name='create_forum_post'),
+    path('forum/post/<int:post_id>/comment/create/', views.create_forum_comment, name='create_forum_comment'),
+
+    # Seasonal Alerts URLs
+    path('season-alert/create/', views.create_season_alert, name='create_season_alert'),
+
+    # Environmental Conditions URLs
+    path('environmental-condition/create/', views.create_environmental_condition, name='create_environmental_condition'),
+
+    # Care Tips URLs
+    path('care-tip/create/', views.create_care_tip, name='create_care_tip'),
+
+    # European Diseases URLs
+    path('european-disease/create/', views.create_european_disease, name='create_european_disease'),
+
+    # Financial Aid URLs
+    path('financial-aid/create/', views.create_financial_aid, name='create_financial_aid'),
+
+    # AI Tool URLs
+    path('ai-tool/create/', views.create_ai_tool, name='create_ai_tool'),
+    path('ai-question/create/', views.create_ai_question, name='create_ai_question'),
+    path('ai-question/<int:question_id>/answer/create/', views.create_ai_answer, name='create_ai_answer'),
+    path('ai-result/create/', views.create_ai_result, name='create_ai_result'),
 ]
