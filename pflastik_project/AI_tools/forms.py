@@ -1,5 +1,7 @@
+# forms.py
+
 from django import forms
-from .models import AITool, AIQuestion, AIAnswer, AIModel, AIResult
+from .models import AITool, AIQuestion, AIAnswer, AIToolUsage
 
 class AIToolForm(forms.ModelForm):
     class Meta:
@@ -9,19 +11,14 @@ class AIToolForm(forms.ModelForm):
 class AIQuestionForm(forms.ModelForm):
     class Meta:
         model = AIQuestion
-        fields = ['user', 'question']
+        fields = ['question']
 
 class AIAnswerForm(forms.ModelForm):
     class Meta:
         model = AIAnswer
-        fields = ['question', 'answer']
+        fields = ['answer']
 
-class AIModelForm(forms.ModelForm):
+class AIToolUsageForm(forms.ModelForm):
     class Meta:
-        model = AIModel
-        fields = ['name', 'description', 'model_file']
-
-class AIResultForm(forms.ModelForm):
-    class Meta:
-        model = AIResult
-        fields = ['model', 'result_data']
+        model = AIToolUsage
+        fields = ['input_data', 'result']
