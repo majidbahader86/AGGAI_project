@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Conversations</h2>
+<ul>
+    {% for conversation in conversations %}
+    <li>
+        <a href="{% url 'detail_conversation' conversation.id %}">
+            Conversation with {{ conversation.llm_name }} by {{ conversation.user.username }} on {{ conversation.timestamp }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+
+<h3>Start a New Conversation</h3>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Start Conversation</button>
+</form>
+{% endblock %}

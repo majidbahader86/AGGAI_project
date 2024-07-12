@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>AI Tools</h2>
+<ul>
+    {% for tool in ai_tools %}
+    <li>
+        <a href="{% url 'detail_ai_tool' tool.id %}">{{ tool.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<h3>Create a New AI Tool</h3>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create AI Tool</button>
+</form>
+{% endblock %}

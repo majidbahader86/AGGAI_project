@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Your Site Title{% endblock %}</title>
+    <title>AI Tool Application</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <header>
-        <h1>Your Site</h1>
+        <h1>AI Tool Application</h1>
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="{% url 'aitool_list' %}">AI Tools</a></li>
-                <li><a href="{% url 'aiquestion_list' %}">AI Questions</a></li>
-                <li><a href="{% url 'aianswer_list' %}">AI Answers</a></li>
-                <li><a href="{% url 'aimodel_list' %}">AI Models</a></li>
-                <li><a href="{% url 'airesult_list' %}">AI Results</a></li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'list_conversations' %}">Conversations</a></li>
+                <li><a href="{% url 'list_ai_tools' %}">AI Tools</a></li>
+                <li><a href="{% url 'list_ai_questions' %}">AI Questions</a></li>
+                <li><a href="{% url 'list_ai_tool_usages' %}">AI Tool Usages</a></li>
             </ul>
         </nav>
     </header>
@@ -25,7 +24,7 @@
         {% endblock %}
     </main>
     <footer>
-        <p>&copy; 2024 Your Site. All rights reserved.</p>
+        <p>&copy; 2024 AI Tool Application</p>
     </footer>
 </body>
 </html>

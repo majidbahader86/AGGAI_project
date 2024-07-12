@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Conversation Details</h2>
+<p><strong>LLM Name:</strong> {{ conversation.llm_name }}</p>
+<p><strong>User:</strong> {{ conversation.user.username }}</p>
+<p><strong>Timestamp:</strong> {{ conversation.timestamp }}</p>
+<h3>Messages</h3>
+<ul>
+    {% for message in conversation.user_messages %}
+    <li><strong>User:</strong> {{ message }}</li>
+    {% endfor %}
+</ul>
+<h3>Responses</h3>
+<ul>
+    {% for response in conversation.llm_responses %}
+    <li><strong>LLM:</strong> {{ response }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
