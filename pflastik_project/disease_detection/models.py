@@ -12,12 +12,38 @@ class DiseaseCategory(models.Model):
 
     class Meta:
         verbose_name_plural = "Disease Categories"
+        
+    @staticmethod
+    def prepopulate():
+        categories = [
+            {"name": "Fungal", "description": "Diseases caused by fungi"},
+            {"name": "Bacterial", "description": "Diseases caused by bacteria"},
+            {"name": "Viral", "description": "Diseases caused by viruses"},
+            {"name": "Nematode", "description": "Diseases caused by nematodes"},
+            {"name": "Physiological", "description": "Non-infectious diseases caused by environmental factors"}
+        ]
+        for category in categories:
+            DiseaseCategory.objects.get_or_create(**category)
 
+# Model representing different parts of a plant that can be affected by diseases
 class PlantPart(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
     def __str__(self):
         return self.name
+    @staticmethod
+    def prepopulate():
+        parts = [
+            {"name": "Stem"},
+            {"name": "Root"},
+            {"name": "Leaves"},
+            {"name": "Seeds"},
+            {"name": "Flowers"}
+        ]
+        for part in parts:
+            PlantPart.objects.get_or_create(**part)
+
+# Model representing specific diseases with detailed information
 
 class DiagnosticSession(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'scientists.apps.ScientistsConfig', 
     # "farmers",
     # "scientists",
-    "plants",
     "plant_disease",
     "AI_tools",
     "disease_detection",

@@ -1,72 +1,125 @@
-# views.py
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from .forms import (
+    
+    MonitoringDataForm, MonitoringAlertForm, MonitoringActionForm, 
+    ForumPostForm, ForumCommentForm, SeasonAlertForm, EnvironmentalConditionForm, 
+    CareTipForm, FinancialAidForm,
+)
+from .models import (
+    MonitoringData, MonitoringAlert, MonitoringAction, ForumPost, ForumComment, 
+    SeasonAlert, EnvironmentalCondition, CareTip, FinancialAid, 
+    
+)
 
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login, login_required, authenticate
-from .models import DiseaseIdentificationRequest, ForumPost, ForumComment, SeasonAlert
-from .forms import FarmerSignUpForm, FarmerLoginForm
-
-# DiseaseIdentificationRequest views
+# Monitoring Views
 @login_required
-def disease_identification_request_list(request):
-    requests = DiseaseIdentificationRequest.objects.filter(user=request.user)
-    return render(request, 'disease_identification_request_list.html', {'requests': requests})
-
-@login_required
-def disease_identification_request_detail(request, pk):
-    request = get_object_or_404(DiseaseIdentificationRequest, pk=pk)
-    return render(request, 'disease_identification_request_detail.html', {'request': request})
-
-# ForumPost views
-@login_required
-def forum_post_list(request):
-    posts = ForumPost.objects.all()
-    return render(request, 'forum_post_list.html', {'posts': posts})
-
-@login_required
-def forum_post_detail(request, pk):
-    post = get_object_or_404(ForumPost, pk=pk)
-    return render(request, 'forum_post_detail.html', {'post': post})
-
-# ForumComment views
-@login_required
-def forum_comment_list(request, post_id):
-    post = get_object_or_404(ForumPost, pk=post_id)
-    comments = post.comments.all()
-    return render(request, 'forum_comment_list.html', {'post': post, 'comments': comments})
-
-@login_required
-def forum_comment_detail(request, post_id, comment_id):
-    comment = get_object_or_404(ForumComment, pk=comment_id)
-    return render(request, 'forum_comment_detail.html', {'comment': comment})
-
-# SeasonAlert views
-def season_alert_list(request):
-    alerts = SeasonAlert.objects.all()
-    return render(request, 'season_alert_list.html', {'alerts': alerts})
-
-def season_alert_detail(request, pk):
-    alert = get_object_or_404(SeasonAlert, pk=pk)
-    return render(request, 'season_alert_detail.html', {'alert': alert})
-
-
-def farmer_sign_up(request):
+def create_monitoring_data(request):
     if request.method == 'POST':
-        form = FarmerSignUpForm(request.POST)
+        form = MonitoringDataForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('farmer_dashboard')  # Redirect to farmer's dashboard
+            form.save()
+            return redirect('monitoring_data_list')
     else:
-        form = FarmerSignUpForm()
-    return render(request, 'farmers/sign_up.html', {'form': form})
+        form = MonitoringDataForm()
+    return render(request, 'create_monitoring_data.html', {'form': form})
 
-def farmer_log_in(request):
+@login_required
+def create_monitoring_alert(request):
     if request.method == 'POST':
-        form = FarmerLoginForm(data=request.POST)
+        form = MonitoringAlertForm(request.POST)
         if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('farmer_dashboard')  # Redirect to farmer's dashboard
+            form.save()
+            return redirect('monitoring_alert_list')
     else:
-        form = FarmerLoginForm()
-    return render(request, 'farmers/login.html', {'form': form})
+        form = MonitoringAlertForm()
+    return render(request, 'create_monitoring_alert.html', {'form': form})
+
+@login_required
+def create_monitoring_action(request):
+    if request.method == 'POST':
+        form = MonitoringActionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('monitoring_action_list')
+    else:
+        form = MonitoringActionForm()
+    return render(request, 'create_monitoring_action.html', {'form': form})
+
+# Forum Views
+@login_required
+def create_forum_post(request):
+    if request.method == 'POST':
+        form = ForumPostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+            return redirect('forum_post_list')
+    else:
+        form = ForumPostForm()
+    return render(request, 'create_forum_post.html', {'form': form})
+
+@login_required
+def create_forum_comment(request, post_id):
+    post = get_object_or_404(ForumPost, id=post_id)
+    if request.method == 'POST':
+        form = ForumCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.post = post
+            comment.save()
+            return redirect('forum_post_detail', post_id=post.id)
+    else:
+        form = ForumCommentForm()
+    return render(request, 'create_forum_comment.html', {'form': form, 'post': post})
+
+# Seasonal Alerts Views
+@login_required
+def create_season_alert(request):
+    if request.method == 'POST':
+        form = SeasonAlertForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('season_alert_list')
+    else:
+        form = SeasonAlertForm()
+    return render(request, 'create_season_alert.html', {'form': form})
+
+# Environmental Conditions Views
+@login_required
+def create_environmental_condition(request):
+    if request.method == 'POST':
+        form = EnvironmentalConditionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('environmental_condition_list')
+    else:
+        form = EnvironmentalConditionForm()
+    return render(request, 'create_environmental_condition.html', {'form': form})
+
+# Care Tips Views
+@login_required
+def create_care_tip(request):
+    if request.method == 'POST':
+        form = CareTipForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('care_tip_list')
+    else:
+        form = CareTipForm()
+    return render(request, 'create_care_tip.html', {'form': form})
+
+
+# Financial Aid Views
+@login_required
+def create_financial_aid(request):
+    if request.method == 'POST':
+        form = FinancialAidForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('financial_aid_list')
+    else:
+        form = FinancialAidForm()
+    return render(request, 'create_financial_aid.html', {'form': form})

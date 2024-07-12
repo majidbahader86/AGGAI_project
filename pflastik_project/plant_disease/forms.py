@@ -1,34 +1,47 @@
+
 from django import forms
-from .models import DiseaseIdentificationRequest, ForumPost, ForumComment, SeasonAlert
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
+from .models import DiseaseCategory, PlantPart, Disease, EuropeanDisease, DiseaseImage, Plant, PlantImage
 
-class DiseaseIdentificationRequestForm(forms.ModelForm):
+class DiseaseCategoryForm(forms.ModelForm):
     class Meta:
-        model = DiseaseIdentificationRequest
-        fields = ['image', 'ai_requested']
+        model = DiseaseCategory
+        fields = ['name', 'description']
 
-class ForumPostForm(forms.ModelForm):
+class PlantPartForm(forms.ModelForm):
     class Meta:
-        model = ForumPost
-        fields = ['title', 'content']
+        model = PlantPart
+        fields = ['name']
 
-class ForumCommentForm(forms.ModelForm):
+class DiseaseForm(forms.ModelForm):
     class Meta:
-        model = ForumComment
-        fields = ['content']
+        model = Disease
+        fields = ['name', 'category', 'description', 'symptoms', 'treatment', 'prevention', 'affected_parts']
+        widgets = {
+            'affected_parts': forms.CheckboxSelectMultiple,
+        }
+        
+# Form for European Disease
+class EuropeanDiseaseForm(forms.ModelForm):
+    class Meta:
+        model = EuropeanDisease
+        fields = ['name', 'category', 'description', 'symptoms', 'treatment', 'prevention', 'affected_parts']
+        widgets = {
+            'affected_parts': forms.CheckboxSelectMultiple,
+        }
 
-class SeasonAlertForm(forms.ModelForm):
+class DiseaseImageForm(forms.ModelForm):
     class Meta:
-        model = SeasonAlert
-        fields = ['crop', 'alert_type', 'alert_message']
+        model = DiseaseImage
+        fields = ['disease', 'image', 'description']
 
-class FarmerSignUpForm(UserCreationForm):
+class PlantForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ['username', 'password1', 'password2']
+        model = Plant
+        fields = ['name', 'scientific_name', 'description', 'habitat']
 
-class FarmerLoginForm(AuthenticationForm):
+class PlantImageForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ['username', 'password']
+        model = PlantImage
+        fields = ['plant', 'image', 'description', 'is_healthy']
+        
+

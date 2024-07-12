@@ -1,0 +1,29 @@
+[33m9eff52d[m[33m ([m[1;36mHEAD -> [m[1;32mdevelopment[m[33m, [m[1;31morigin/development[m[33m)[m views added
+[33m79df961[m views added
+[33ma20727c[m views added
+[33m2015fa4[m views added
+[33m7996555[m views added
+[33m0cde8cd[m added views
+[33m94591d8[m Updated models.py with changes
+[33m9d189c7[m Updated models.py with changes
+[33m7c90e94[m new_models_in_apps
+[33m6b8494a[m apps
+[33m16ea7a5[m models_nina
+[33mbc84b3f[m Merge pull request #8 from Pflastik-Team/modelMajid
+[33mb39fa95[m[33m ([m[1;31morigin/modelMajid[m[33m)[m Merge branch 'staging' of https://github.com/Pflastik-Team/demo-repository into modelMajid
+[33mf305504[m Add modelsMajid folder to staging branch
+[33md56b90b[m models_list
+[33m2eca7f6[m example_files
+[33m892ec5e[m Moved raw_images folder to data folder in development branch
+[33m27d5f7d[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Add raw_images folder with .gitkeep
+[33m9bb5968[m Merge branch 'staging' of https://github.com/Pflastik-Team/demo-repository into staging
+[33mc3c80a8[m migrations1
+[33m4a6523e[m Merge pull request #5 from Pflastik-Team/development
+[33madd8ee6[m initial creation
+[33m8c85a05[m Merge pull request #4 from Pflastik-Team/staging
+[33med90e09[m Merge pull request #3 from Pflastik-Team/development
+[33me4866a2[m Merge pull request #2 from Pflastik-Team/development
+[33ma324408[m Merge pull request #1 from Pflastik-Team/models.nina
+[33m101b746[m[33m ([m[1;31morigin/models.nina[m[33m)[m adding a test file
+[33md6cee96[m Add workflow badges to README
+[33m2f7c7f5[m Initial commit

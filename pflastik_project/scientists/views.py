@@ -1,55 +1,65 @@
-# views.py
+from django.shortcuts import render, redirect
+from .models import Publication, ForumPost, ForumComment, Expert, DiagnosticSession, Tutorial
+from plant_disease.models import Plant
+from .forms import PublicationForm, ForumPostForm, ForumCommentForm, ExpertForm, DiagnosticSessionForm, TutorialForm
 
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth import login, login_required, authenticate
-from .models import Expert, Publication, Tutorial
-from .forms import ScientistSignUpForm, ScientistLoginForm
-
-# Expert views
-def expert_list(request):
-    experts = Expert.objects.all()
-    return render(request, 'expert_list.html', {'experts': experts})
-
-def expert_detail(request, pk):
-    expert = get_object_or_404(Expert, pk=pk)
-    return render(request, 'expert_detail.html', {'expert': expert})
-
-# Publication views
-def publication_list(request):
-    publications = Publication.objects.all()
-    return render(request, 'publication_list.html', {'publications': publications})
-
-def publication_detail(request, pk):
-    publication = get_object_or_404(Publication, pk=pk)
-    return render(request, 'publication_detail.html', {'publication': publication})
-
-# Tutorial views
-def tutorial_list(request):
-    tutorials = Tutorial.objects.all()
-    return render(request, 'tutorial_list.html', {'tutorials': tutorials})
-
-def tutorial_detail(request, pk):
-    tutorial = get_object_or_404(Tutorial, pk=pk)
-    return render(request, 'tutorial_detail.html', {'tutorial': tutorial})
-
-def scientist_sign_up(request):
+def publication_create(request):
     if request.method == 'POST':
-        form = ScientistSignUpForm(request.POST)
+        form = PublicationForm(request.POST, request.FILES)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('scientist_dashboard')  # Redirect to scientist's dashboard
+            form.save()
+            return redirect('publication_list')
     else:
-        form = ScientistSignUpForm()
-    return render(request, 'scientists/sign_up.html', {'form': form})
+        form = PublicationForm()
+    return render(request, 'publication_form.html', {'form': form})
 
-def scientist_log_in(request):
+def forum_post_create(request):
     if request.method == 'POST':
-        form = ScientistLoginForm(data=request.POST)
+        form = ForumPostForm(request.POST)
         if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('scientist_dashboard')  # Redirect to scientist's dashboard
+            form.save()
+            return redirect('forum_post_list')
     else:
-        form = ScientistLoginForm()
-    return render(request, 'scientists/login.html', {'form': form})
+        form = ForumPostForm()
+    return render(request, 'forum_post_form.html', {'form': form})
+
+def forum_comment_create(request, post_id):
+    post = ForumPost.objects.get(id=post_id)
+    if request.method == 'POST':
+        form = ForumCommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('forum_post_detail', post_id)
+    else:
+        form = ForumCommentForm(initial={'post': post})
+    return render(request, 'forum_comment_form.html', {'form': form, 'post': post})
+
+def expert_create(request):
+    if request.method == 'POST':
+        form = ExpertForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('expert_list')
+    else:
+        form = ExpertForm()
+    return render(request, 'expert_form.html', {'form': form})
+
+def diagnostic_session_create(request):
+    if request.method == 'POST':
+        form = DiagnosticSessionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('diagnostic_session_list')
+    else:
+        form = DiagnosticSessionForm()
+    return render(request, 'diagnostic_session_form.html', {'form': form})
+
+def tutorial_create(request):
+    if request.method == 'POST':
+        form = TutorialForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('tutorial_list')
+    else:
+        form = TutorialForm()
+    return render(request, 'tutorial_form.html', {'form': form})
