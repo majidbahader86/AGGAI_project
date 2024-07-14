@@ -1,15 +1,12 @@
 from django import forms
-from .models import Publication, AIToolUsage, ForumPost, ForumComment, Expert, DiagnosticSession, Tutorial
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.models import User
+from .models import Publication, ForumPost, ForumComment, Expert, DiagnosticSession, Tutorial
 
 class PublicationForm(forms.ModelForm):
     class Meta:
         model = Publication
         fields = ['title', 'author', 'abstract', 'content', 'published_date', 'category', 'file', 'external_link']
-
-class AIToolUsageForm(forms.ModelForm):
-    class Meta:
-        model = AIToolUsage
-        fields = ['tool', 'user', 'input_data', 'result']
 
 class ForumPostForm(forms.ModelForm):
     class Meta:
@@ -35,3 +32,16 @@ class TutorialForm(forms.ModelForm):
     class Meta:
         model = Tutorial
         fields = ['title', 'content', 'category']
+
+class ScientistSignInForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Username'})
+        self.fields['password'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Password'})
+
+class ScientistSignUpForm(UserCreationForm):
+    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
