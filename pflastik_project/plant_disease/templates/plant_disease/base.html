@@ -2,29 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Disease Library{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>{% block title %}Plant Disease App{% endblock %}</title>
 </head>
 <body>
     <header>
+        <h1>Plant Disease App</h1>
         <nav>
             <ul>
-                <li><a href="{% url 'add_disease_category' %}">Add Disease Category</a></li>
-                <li><a href="{% url 'add_plant_part' %}">Add Plant Part</a></li>
-                <li><a href="{% url 'add_disease' %}">Add Disease</a></li>
-                <li><a href="{% url 'add_disease_image' %}">Add Disease Image</a></li>
-                <li><a href="{% url 'add_plant' %}">Add Plant</a></li>
-                <li><a href="{% url 'add_plant_image' %}">Add Plant Image</a></li>
+                <li><a href="{% url 'disease_category_list' %}">Disease Categories</a></li>
+                <li><a href="{% url 'plant_part_list' %}">Plant Parts</a></li>
+                <li><a href="{% url 'disease_list' %}">Diseases</a></li>
+                <li><a href="{% url 'european_disease_list' %}">European Diseases</a></li>
+                <li><a href="{% url 'plant_list' %}">Plants</a></li>
+                <!-- Add more navigation links as needed -->
             </ul>
         </nav>
     </header>
+    
     <main>
         {% block content %}
         {% endblock %}
     </main>
+    
     <footer>
-        <p>&copy; 2024 Disease Library. All rights reserved.</p>
+        <p>&copy; 2024 Plant Disease App. All rights reserved.</p>
     </footer>
 </body>
 </html>

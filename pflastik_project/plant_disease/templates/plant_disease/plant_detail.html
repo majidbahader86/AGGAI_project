@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ plant.name }}{% endblock %}
+
+{% block content %}
+    <h2>{{ plant.name }}</h2>
+    <p><strong>Scientific Name:</strong> {{ plant.scientific_name }}</p>
+    <p><strong>Description:</strong> {{ plant.description }}</p>
+    <p><strong>Habitat:</strong> {{ plant.habitat }}</p>
+    
+    <h3>Images:</h3>
+    {% for image in plant.images.all %}
+        <img src="{{ image.image.url }}" alt="{{ image.description }}">
+        <p>{{ image.description }}</p>
+    {% empty %}
+        <p>No images available.</p>
+    {% endfor %}
+{% endblock %}

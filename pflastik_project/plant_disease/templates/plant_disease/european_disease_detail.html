@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ european_disease.name }}{% endblock %}
+
+{% block content %}
+    <h2>{{ european_disease.name }}</h2>
+    <p><strong>Category:</strong> {{ european_disease.category }}</p>
+    <p><strong>Description:</strong> {{ european_disease.description }}</p>
+    <p><strong>Symptoms:</strong> {{ european_disease.symptoms }}</p>
+    <p><strong>Treatment:</strong> {{ european_disease.treatment }}</p>
+    <p><strong>Prevention:</strong> {{ european_disease.prevention }}</p>
+    
+    <h3>Affected Parts:</h3>
+    <ul>
+        {% for part in european_disease.affected_parts.all %}
+            <li>{{ part.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

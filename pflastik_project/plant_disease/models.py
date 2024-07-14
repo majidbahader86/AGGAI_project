@@ -64,6 +64,19 @@ class DiseaseImage(models.Model):
     def __str__(self):
         return f"Image of {self.disease.name}"
 
+# European Diseases Model
+class EuropeanDisease(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    category = models.ForeignKey(DiseaseCategory, on_delete=models.CASCADE)
+    description = models.TextField()
+    symptoms = models.TextField()
+    treatment = models.TextField()
+    prevention = models.TextField()
+    affected_parts = models.ManyToManyField(PlantPart, related_name='european_diseases')
+
+    def __str__(self):
+        return self.name
+    
 # Model representing different plant species
 class Plant(models.Model):
     name = models.CharField(max_length=255, unique=True)
@@ -86,3 +99,4 @@ class PlantImage(models.Model):
             return f"Healthy Image of {self.plant.name}"
         else:
             return f"Diseased Image of {self.plant.name}"
+    

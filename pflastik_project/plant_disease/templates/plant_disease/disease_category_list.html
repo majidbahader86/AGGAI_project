@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Disease Categories{% endblock %}
+
+{% block content %}
+    <h2>Disease Categories</h2>
+    <ul>
+        {% for category in categories %}
+            <li><a href="{% url 'disease_category_detail' category.id %}">{{ category.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

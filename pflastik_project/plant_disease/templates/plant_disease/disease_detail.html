@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ disease.name }}{% endblock %}
+
+{% block content %}
+    <h2>{{ disease.name }}</h2>
+    <p><strong>Category:</strong> {{ disease.category }}</p>
+    <p><strong>Description:</strong> {{ disease.description }}</p>
+    <p><strong>Symptoms:</strong> {{ disease.symptoms }}</p>
+    <p><strong>Treatment:</strong> {{ disease.treatment }}</p>
+    <p><strong>Prevention:</strong> {{ disease.prevention }}</p>
+    
+    <h3>Affected Parts:</h3>
+    <ul>
+        {% for part in disease.affected_parts.all %}
+            <li>{{ part.name }}</li>
+        {% endfor %}
+    </ul>
+    
+    <h3>Images:</h3>
+    {% for image in disease.images.all %}
+        <img src="{{ image.image.url }}" alt="{{ image.description }}">
+        <p>{{ image.description }}</p>
+    {% empty %}
+        <p>No images available.</p>
+    {% endfor %}
+{% endblock %}

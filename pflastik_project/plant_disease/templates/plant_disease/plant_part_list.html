@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}Plant Parts - Plantastic{% endblock %}
+{% block title %}Plant Parts{% endblock %}
 
 {% block content %}
     <h2>Plant Parts</h2>
     <ul>
-    {% for part in parts %}
-        <li><a href="{% url 'plant_part_detail' part.pk %}">{{ part.name }}</a></li>
-    {% endfor %}
+        {% for part in plant_parts %}
+            <li>{{ part.name }}</li>
+        {% endfor %}
     </ul>
 {% endblock %}
