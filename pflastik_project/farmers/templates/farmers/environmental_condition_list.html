@@ -1,12 +1,26 @@
-{% extends 'base.html' %}
+<!-- templates/app_name/environmental_condition_list.html -->
 
-{% block title %}Environmental Conditions{% endblock %}
+{% extends 'app_name/base.html' %}
+
+{% block title %}Environmental Condition List{% endblock %}
 
 {% block content %}
-    <h2>Environmental Conditions</h2>
-    <ul>
-        {% for condition in conditions %}
-            <li>{{ condition.timestamp }} - Temperature: {{ condition.temperature }}, Humidity: {{ condition.humidity }}, Soil Moisture: {{ condition.soil_moisture }}</li>
-        {% endfor %}
-    </ul>
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <h2>Environmental Condition List</h2>
+        <ul class="list-group">
+            {% for condition in environmental_conditions %}
+            <li class="list-group-item">
+                <h4>Timestamp: {{ condition.timestamp }}</h4>
+                <p>Temperature: {{ condition.temperature }}, Humidity: {{ condition.humidity }}, Soil Moisture: {{ condition.soil_moisture }}</p>
+                {% if condition.alert_message %}
+                <p><strong>Alert:</strong> {{ condition.alert_message }}</p>
+                {% endif %}
+            </li>
+            {% empty %}
+            <li class="list-group-item">No environmental conditions available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}

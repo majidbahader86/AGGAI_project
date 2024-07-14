@@ -1,12 +1,23 @@
-{% extends 'base.html' %}
+<!-- templates/app_name/care_tip_list.html -->
 
-{% block title %}Care Tips{% endblock %}
+{% extends 'app_name/base.html' %}
+
+{% block title %}Care Tip List{% endblock %}
 
 {% block content %}
-    <h2>Care Tips</h2>
-    <ul>
-        {% for tip in tips %}
-            <li>{{ tip.crop }} in {{ tip.region }}: {{ tip.tip }}</li>
-        {% endfor %}
-    </ul>
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <h2>Care Tip List</h2>
+        <ul class="list-group">
+            {% for tip in care_tips %}
+            <li class="list-group-item">
+                <h4>{{ tip.crop }} - {{ tip.region }}</h4>
+                <p>{{ tip.tip }}</p>
+            </li>
+            {% empty %}
+            <li class="list-group-item">No care tips available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}

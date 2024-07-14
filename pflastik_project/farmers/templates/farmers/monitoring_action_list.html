@@ -1,0 +1,20 @@
+<!-- templates/app_name/monitoring_action_list.html -->
+
+{% extends 'app_name/base.html' %}
+
+{% block title %}Monitoring Action List{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <h2>Monitoring Action List</h2>
+        <ul class="list-group">
+            {% for action in monitoring_actions %}
+            <li class="list-group-item">{{ action.name }}</li>
+            {% empty %}
+            <li class="list-group-item">No monitoring actions available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

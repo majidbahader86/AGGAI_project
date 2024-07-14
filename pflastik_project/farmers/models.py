@@ -74,18 +74,6 @@ class CareTip(models.Model):
     def __str__(self):
         return f"Care Tip for {self.crop} in {self.region}"
 
-# European Diseases Model
-class EuropeanDisease(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    category = models.ForeignKey(DiseaseCategory, on_delete=models.CASCADE)
-    description = models.TextField()
-    symptoms = models.TextField()
-    treatment = models.TextField()
-    prevention = models.TextField()
-    affected_parts = models.ManyToManyField(PlantPart, related_name='european_diseases')
-
-    def __str__(self):
-        return self.name
 
 # Financial Aid Model
 class FinancialAid(models.Model):
@@ -95,36 +83,3 @@ class FinancialAid(models.Model):
 
     def __str__(self):
         return f"{self.crop} - {self.transaction_date}"
-
-# AI Tool Models
-
-class AITool(models.Model):
-    name = models.CharField(max_length=255)
-    description = models.TextField()
-    model_file = models.FileField(upload_to='ai_models/')
-    usage_instructions = models.TextField()
-
-    def __str__(self):
-        return self.name
-
-class AIQuestion(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    question = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"Question by {self.user.username} on {self.created_at}"
-
-class AIAnswer(models.Model):
-    question = models.OneToOneField(AIQuestion, on_delete=models.CASCADE)
-    answer = models.TextField()
-
-    def __str__(self):
-        return f"Answer to {self.question}"
-
-class AIResult(models.Model):
-    model = models.ForeignKey(AITool, on_delete=models.CASCADE)
-    result_data = models.JSONField()  # Example; adjust as per your data structure
-
-    def __str__(self):
-        return f"Result from {self.model.name}"

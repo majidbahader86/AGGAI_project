@@ -1,0 +1,18 @@
+<!-- templates/app_name/forum_comment_form.html -->
+
+{% extends 'app_name/base.html' %}
+
+{% block title %}Add Forum Comment{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2>Add Forum Comment</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Comment</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,35 +1,59 @@
-<!-- base.html -->
+<!-- templates/app_name/base.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Your Site Title{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>{% block title %}Your Site{% endblock %}</title>
+    <!-- Add your CSS links, meta tags, etc. -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Example: Bootstrap CSS CDN -->
 </head>
 <body>
     <header>
-        <h1>Your Site</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="{% url 'environmental_condition_list' %}">Environmental Conditions</a></li>
-                <li><a href="{% url 'care_tip_list' %}">Care Tips</a></li>
-                <li><a href="{% url 'community_post_list' %}">Community Posts</a></li>
-                <li><a href="{% url 'expert_qa_list' %}">Expert Q&A</a></li>
-                <li><a href="{% url 'season_alert_list' %}">Season Alerts</a></li>
-                <li><a href="{% url 'european_disease_list' %}">European Diseases</a></li>
-                <li><a href="{% url 'european_region_list' %}">European Regions</a></li>
-                <li><a href="{% url 'financial_record_list' %}">Financial Records</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Your Site</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <!-- Add navigation links here -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                    </li>
+                    <!-- Add more links as needed -->
+                </ul>
+                <!-- Add login/logout or user profile info -->
+                {% if user.is_authenticated %}
+                    <span class="navbar-text">
+                        Welcome, {{ user.username }}!
+                    </span>
+                    <form class="form-inline my-2 my-lg-0" action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+                    </form>
+                {% else %}
+                    <form class="form-inline my-2 my-lg-0" action="{% url 'farmer_login' %}" method="post">
+                        {% csrf_token %}
+                        <input class="form-control mr-sm-2" type="text" name="username" placeholder="Username" aria-label="Username" required>
+                        <input class="form-control mr-sm-2" type="password" name="password" placeholder="Password" aria-label="Password" required>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+                    </form>
+                {% endif %}
+            </div>
         </nav>
     </header>
-    <main>
+    
+    <main role="main" class="container mt-4">
         {% block content %}
         {% endblock %}
     </main>
-    <footer>
-        <p>&copy; 2024 Your Site. All rights reserved.</p>
-    </footer>
+    
+    <!-- Add your JavaScript files or CDN links here -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Example: Bootstrap JS CDN -->
 </body>
 </html>

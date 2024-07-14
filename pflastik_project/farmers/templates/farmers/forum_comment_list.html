@@ -1,0 +1,23 @@
+<!-- templates/app_name/forum_comment_list.html -->
+
+{% extends 'app_name/base.html' %}
+
+{% block title %}Forum Comment List{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        <h2>Forum Comment List</h2>
+        <ul class="list-group">
+            {% for comment in forum_comments %}
+            <li class="list-group-item">
+                <p>{{ comment.content }}</p>
+                <small>Comment by {{ comment.user.username }} on {{ comment.post.title }}, {{ comment.created_at }}</small>
+            </li>
+            {% empty %}
+            <li class="list-group-item">No forum comments available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
