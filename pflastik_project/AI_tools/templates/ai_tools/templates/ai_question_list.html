@@ -1,0 +1,13 @@
+<!-- ai_question_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}AI Questions{% endblock %}
+
+{% block content %}
+<h2>AI Questions</h2>
+<ul>
+    {% for question in questions %}
+    <li><a href="{% url 'ai_question_detail' question.pk %}">{{ question.question }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

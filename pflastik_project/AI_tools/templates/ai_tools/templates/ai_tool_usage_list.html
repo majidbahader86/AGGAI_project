@@ -1,0 +1,13 @@
+<!-- ai_tool_usage_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Tool Usages{% endblock %}
+
+{% block content %}
+<h2>Tool Usages</h2>
+<ul>
+    {% for tool_usage in tool_usages %}
+    <li><a href="{% url 'ai_tool_usage_detail' tool_usage.pk %}">{{ tool_usage.tool.name }} - {{ tool_usage.usage_date }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,13 @@
+<!-- ai_answer_form.html -->
+{% extends 'base.html' %}
+
+{% block title %}Answer Question{% endblock %}
+
+{% block content %}
+<h2>Answer Question</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

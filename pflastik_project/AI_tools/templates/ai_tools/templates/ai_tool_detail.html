@@ -1,21 +1,11 @@
+<!-- ai_tool_detail.html -->
 {% extends 'base.html' %}
 
-{% block content %}
-<h2>AI Questions</h2>
-<ul>
-    {% for question in ai_questions %}
-    <li>
-        <a href="{% url 'detail_ai_question' question.id %}">
-            Question by {{ question.user.username }} on {{ question.created_at }}
-        </a>
-    </li>
-    {% endfor %}
-</ul>
+{% block title %}{{ ai_tool.name }}{% endblock %}
 
-<h3>Ask a New AI Question</h3>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Ask Question</button>
-</form>
+{% block content %}
+<h2>{{ ai_tool.name }}</h2>
+<p>Description: {{ ai_tool.description }}</p>
+<p>Usage Instructions: {{ ai_tool.usage_instructions }}</p>
+<p>Model File: <a href="{{ ai_tool.model_file.url }}">{{ ai_tool.model_file.name }}</a></p>
 {% endblock %}

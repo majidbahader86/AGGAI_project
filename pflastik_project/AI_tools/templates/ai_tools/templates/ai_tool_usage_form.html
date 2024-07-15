@@ -1,0 +1,13 @@
+<!-- ai_tool_usage_form.html -->
+{% extends 'base.html' %}
+
+{% block title %}Create Tool Usage{% endblock %}
+
+{% block content %}
+<h2>Create Tool Usage</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+{% endblock %}
