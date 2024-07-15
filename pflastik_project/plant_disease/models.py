@@ -76,7 +76,7 @@ class EuropeanDisease(models.Model):
 
     def __str__(self):
         return self.name
-    
+
 # Model representing different plant species
 class Plant(models.Model):
     name = models.CharField(max_length=255, unique=True)
@@ -99,6 +99,3 @@ class PlantImage(models.Model):
             return f"Healthy Image of {self.plant.name}"
         else:
             return f"Diseased Image of {self.plant.name}"
-    
-
-

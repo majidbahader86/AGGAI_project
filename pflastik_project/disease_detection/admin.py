@@ -1,6 +1,4 @@
 from django.contrib import admin
-from .models import DiseaseCategory, PlantPart, DiagnosticSession
+from .models import DiseaseIdentificationRequest
 
-admin.site.register(DiseaseCategory)
-admin.site.register(PlantPart)
-admin.site.register(DiagnosticSession)
+admin.site.register(DiseaseIdentificationRequest)

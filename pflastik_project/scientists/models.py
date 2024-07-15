@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User as DjangoUser
 
 
 # Publications Model- Manages research papers and articles with fields for title, author, abstract, content, published date, category, and file upload.
@@ -28,34 +28,24 @@ class Publication(models.Model):
     
 
 # Community Forum Models
-# ForumPost: Represents a forum post with a user reference, title, content, and creation date.
 class ForumPost(models.Model):
-    # Reference to the user who created the post
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # Title of the forum post
+    user = models.ForeignKey(DjangoUser, on_delete=models.CASCADE, related_name='scientists_forum_posts')
     title = models.CharField(max_length=255)
-    # Content of the forum post
     content = models.TextField()
-    # Date and time when the post was created
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
-    
-    
-# ForumComment: Represents comments on forum posts with a user reference, post reference, content, and creation date.
+
 class ForumComment(models.Model):
-    # Reference to the forum post being commented on
     post = models.ForeignKey(ForumPost, related_name='comments', on_delete=models.CASCADE)
-    # Reference to the user who made the comment
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # Content of the comment
+    user = models.ForeignKey(DjangoUser, on_delete=models.CASCADE, related_name='scientists_forum_comments')
     content = models.TextField()
-    # Date and time when the comment was created
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Comment by {self.user.username} on {self.post.title}"
+
     
 
 # Expert: Directory of experts with fields for name, field of expertise, bio, contact info, and photo.
@@ -76,23 +66,22 @@ class Expert(models.Model):
         return self.name
 
 
-
 # Diagnostic Tools Model- Records diagnostic sessions with user and plant references, symptoms, diagnosis result, and creation date.
+# scientists/models.py
+
+from django.contrib.auth.models import User  # Import User model from django.contrib.auth
+from plant_disease.models import PlantPart 
+
 class DiagnosticSession(models.Model):
-    # Reference to the user who created the diagnostic session
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # Reference to the plant being diagnosed
-    plant = models.ForeignKey(Plant, on_delete=models.CASCADE)
-    # Symptoms provided by the user for diagnosis
+    plant = models.ForeignKey(PlantPart, on_delete=models.CASCADE)  # Adjust based on your actual Plant model
     symptoms = models.TextField()
-    # Diagnosis result
     diagnosis = models.TextField()
-    # Date and time when the diagnostic session was created
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Diagnostic Session for {self.plant.name} by {self.user.username}"
-    
+
     
 
 # Tutorials and Guides Model- Manages tutorials and guides with fields for title, content, creation date, last updated date, and category.

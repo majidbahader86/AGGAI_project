@@ -2,18 +2,38 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.disease_list, name='disease_list'),
-    path('disease/<int:pk>/', views.disease_detail, name='disease_detail'),
-    path('disease/<int:disease_id>/images/', views.disease_image_list, name='disease_image_list'),
-    path('disease/<int:disease_id>/images/<int:image_id>/', views.disease_image_detail, name='disease_image_detail'),
-    path('requests/', views.disease_identification_request_list, name='disease_identification_request_list'),
-    path('requests/<int:pk>/', views.disease_identification_request_detail, name='disease_identification_request_detail'),
-    path('forum/', views.forum_post_list, name='forum_post_list'),
-    path('forum/<int:pk>/', views.forum_post_detail, name='forum_post_detail'),
-    path('forum/<int:post_id>/comments/', views.forum_comment_list, name='forum_comment_list'),
-    path('forum/<int:post_id>/comments/<int:comment_id>/', views.forum_comment_detail, name='forum_comment_detail'),
-    path('alerts/', views.season_alert_list, name='season_alert_list'),
-    path('alerts/<int:pk>/', views.season_alert_detail, name='season_alert_detail'),
-    path('signup/', views.farmer_sign_up, name='farmer_sign_up'),
-    path('login/', views.farmer_log_in, name='farmer_log_in'),
+    # Plant URLs
+    path('plants/', views.plant_list, name='plant_list'),
+    path('plants/<int:pk>/', views.plant_detail, name='plant_detail'),
+    path('plants/create/', views.plant_create, name='plant_create'),
+    path('plants/<int:pk>/update/', views.plant_update, name='plant_update'),
+    path('plants/<int:pk>/delete/', views.plant_delete, name='plant_delete'),
+
+    # Plant Image URLs
+    path('plants/<int:plant_id>/images/', views.plant_image_list, name='plant_image_list'),
+    path('plants/<int:plant_id>/images/<int:image_id>/', views.plant_image_detail, name='plant_image_detail'),
+    path('plants/<int:plant_id>/images/create/', views.plant_image_create, name='plant_image_create'),
+    path('plants/<int:plant_id>/images/<int:image_id>/update/', views.plant_image_update, name='plant_image_update'),
+    path('plants/<int:plant_id>/images/<int:image_id>/delete/', views.plant_image_delete, name='plant_image_delete'),
+
+    # Disease Category URLs
+    path('disease_category/add/', views.add_disease_category, name='add_disease_category'),
+
+    # Plant Part URLs
+    path('plant_part/add/', views.add_plant_part, name='add_plant_part'),
+
+    # Disease URLs
+    path('disease/add/', views.add_disease, name='add_disease'),
+
+    # European Disease URLs
+    path('european_disease/create/', views.create_european_disease, name='create_european_disease'),
+
+    # Disease Image URLs
+    path('disease_image/add/', views.add_disease_image, name='add_disease_image'),
+
+    # Plant URLs (general)
+    path('plant/add/', views.add_plant, name='add_plant'),
+
+    # Plant Image URLs (general)
+    path('plant_image/add/', views.add_plant_image, name='add_plant_image'),
 ]
