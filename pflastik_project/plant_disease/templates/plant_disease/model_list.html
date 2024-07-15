@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ model_name|title }} List{% endblock %}
+
+{% block content %}
+    <h2>{{ model_name|title }} List</h2>
+    <ul>
+        {% for item in items %}
+            <li><a href="{% url model_detail_url item.pk %}">{{ item }}</a></li>
+        {% empty %}
+            <li>No {{ model_name|title }} available.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url model_create_url %}">Create New {{ model_name|title }}</a>
+{% endblock %}

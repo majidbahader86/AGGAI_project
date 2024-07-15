@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ model_instance }} Detail{% endblock %}
+
+{% block content %}
+    <h2>{{ model_instance }} Detail</h2>
+    <p><strong>ID:</strong> {{ model_instance.pk }}</p>
+    <p><strong>Name:</strong> {{ model_instance.name }}</p>
+    <p><strong>Description:</strong> {{ model_instance.description }}</p>
+    <!-- Add more fields as per your model -->
+    <a href="{% url model_update_url model_instance.pk %}">Update</a>
+    <form action="{% url model_delete_url model_instance.pk %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete">
+    </form>
+    <a href="{% url model_list_url %}">Back to List</a>
+{% endblock %}

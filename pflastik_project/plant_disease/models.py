@@ -1,6 +1,6 @@
 from django.db import models
 
-# Model representing different categories of diseases such as fungal, bacterial, etc.
+
 class DiseaseCategory(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True, null=True)
@@ -23,7 +23,6 @@ class DiseaseCategory(models.Model):
         for category in categories:
             DiseaseCategory.objects.get_or_create(**category)
 
-# Model representing different parts of a plant that can be affected by diseases
 class PlantPart(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
@@ -42,7 +41,6 @@ class PlantPart(models.Model):
         for part in parts:
             PlantPart.objects.get_or_create(**part)
 
-# Model representing specific diseases with detailed information
 class Disease(models.Model):
     name = models.CharField(max_length=255, unique=True)
     category = models.ForeignKey(DiseaseCategory, on_delete=models.CASCADE)
@@ -55,7 +53,6 @@ class Disease(models.Model):
     def __str__(self):
         return self.name
 
-# Model representing images associated with specific diseases
 class DiseaseImage(models.Model):
     disease = models.ForeignKey(Disease, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='disease_images/')
@@ -64,7 +61,6 @@ class DiseaseImage(models.Model):
     def __str__(self):
         return f"Image of {self.disease.name}"
 
-# European Diseases Model
 class EuropeanDisease(models.Model):
     name = models.CharField(max_length=255, unique=True)
     category = models.ForeignKey(DiseaseCategory, on_delete=models.CASCADE)
@@ -76,8 +72,7 @@ class EuropeanDisease(models.Model):
 
     def __str__(self):
         return self.name
-    
-# Model representing different plant species
+
 class Plant(models.Model):
     name = models.CharField(max_length=255, unique=True)
     scientific_name = models.CharField(max_length=255)
@@ -87,7 +82,6 @@ class Plant(models.Model):
     def __str__(self):
         return self.name
 
-# Model representing images associated with specific plants
 class PlantImage(models.Model):
     plant = models.ForeignKey(Plant, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='plant_images/')
@@ -99,4 +93,3 @@ class PlantImage(models.Model):
             return f"Healthy Image of {self.plant.name}"
         else:
             return f"Diseased Image of {self.plant.name}"
-    
