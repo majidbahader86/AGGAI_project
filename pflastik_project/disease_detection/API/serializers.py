@@ -1,7 +1,7 @@
 # disease_detection/serializers.py
 
 from rest_framework import serializers
-from .models import DiseaseIdentificationRequest
+from ..models import DiseaseIdentificationRequest
 
 class DiseaseIdentificationRequestSerializer(serializers.ModelSerializer):
     class Meta:
