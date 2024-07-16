@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Publication, ForumPost, ForumComment, Expert, DiagnosticSession, Tutorial
+from ..models import Publication, ForumPost, ForumComment, Expert, DiagnosticSession, Tutorial
 
 
 class PublicationSerializer(serializers.ModelSerializer):
