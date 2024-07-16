@@ -59,3 +59,8 @@ class UserProfileForm(forms.ModelForm):
             profile.user.save()
             profile.save()
         return profile
+    
+class FooForm(forms.ModelForm):
+    class Meta:
+        model = Foo
+        fields = ['user'] 

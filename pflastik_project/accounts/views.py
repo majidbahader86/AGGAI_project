@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth import login, authenticate
 from django.views.generic import View, UpdateView
-from .forms import UserRegistrationForm, ProfileForm, UserUpdateForm, UserProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from .forms import UserRegistrationForm, ProfileForm, UserUpdateForm, UserProfileForm, FooForm
 from .models import Profile, Foo
 
 class RegisterView(View):
@@ -55,3 +55,6 @@ class UpdateUserProfileView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         profile = form.save(commit=False)
         profile.user.username = form
+        
+ 
+ 
