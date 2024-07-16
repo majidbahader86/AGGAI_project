@@ -1,9 +1,10 @@
-from django.urls import path
-from .views import RegisterView, UpdateUserView, UpdateProfileView, UpdateUserProfileView
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from . import views
 
 urlpatterns = [
-    path('register/', RegisterView.as_view(), name='register'),
-    path('profile/update_user/', UpdateUserView.as_view(), name='update_user'),
-    path('profile/update_profile/', UpdateProfileView.as_view(), name='update_profile'),
-    path('profile/update_user_profile/', UpdateUserProfileView.as_view(), name='update_user_profile'),
+    path('register/', views.register, name='register'),
+    path('profile/', views.update_user_profile, name='profile'),
+    path('profile/update_profile/', views.update_profile, name='update_profile'),
+    path('profile/update_user/', views.update_user, name='update_user'),
 ]
