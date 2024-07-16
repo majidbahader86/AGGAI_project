@@ -1,26 +1,30 @@
-# urls.py
-
 from django.urls import path
 from . import views
 
 urlpatterns = [
-    # DiseaseIdentificationRequest URLs
-    path('disease-identification/requests/', views.disease_identification_request_list, name='disease_identification_request_list'),
-    path('disease-identification/request/<int:pk>/', views.disease_identification_request_detail, name='disease_identification_request_detail'),
-
-    # ForumPost URLs
-    path('forum/posts/', views.forum_post_list, name='forum_post_list'),
-    path('forum/post/<int:pk>/', views.forum_post_detail, name='forum_post_detail'),
-
-    # ForumComment URLs
-    path('forum/post/<int:post_id>/comments/', views.forum_comment_list, name='forum_comment_list'),
-    path('forum/post/<int:post_id>/comment/<int:comment_id>/', views.forum_comment_detail, name='forum_comment_detail'),
-
-    # SeasonAlert URLs
-    path('season-alerts/', views.season_alert_list, name='season_alert_list'),
-    path('season-alert/<int:pk>/', views.season_alert_detail, name='season_alert_detail'),
-
-    # Authentication URLs
-    path('accounts/signup/', views.farmer_sign_up, name='farmer_sign_up'),
-    path('accounts/login/', views.farmer_log_in, name='farmer_log_in'),
+    # Authentication views
+    path('register/', views.RegisterView.as_view(), name='register'),
+    path('login/', views.LoginView.as_view(), name='login'),
+    
+    # Monitoring views
+    path('monitoring_data/', views.create_monitoring_data, name='create_monitoring_data'),
+    path('monitoring_alert/', views.create_monitoring_alert, name='create_monitoring_alert'),
+    path('monitoring_action/', views.create_monitoring_action, name='create_monitoring_action'),
+    
+    # Forum views
+    path('forum_post/', views.create_forum_post, name='create_forum_post'),
+    path('forum_comment/<int:post_id>/', views.create_forum_comment, name='create_forum_comment'),
+    
+    # Seasonal Alerts views
+    path('season_alert/', views.create_season_alert, name='create_season_alert'),
+    
+    # Environmental Conditions views
+    path('environmental_condition/', views.create_environmental_condition, name='create_environmental_condition'),
+    
+    # Care Tips views
+    path('care_tip/', views.create_care_tip, name='create_care_tip'),
+    
+    # Financial Aid views
+    path('financial_aid/', views.create_financial_aid, name='create_financial_aid'),
 ]
+

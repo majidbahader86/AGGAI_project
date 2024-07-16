@@ -5,8 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import PublicationForm, ForumPostForm, ForumCommentForm, ExpertForm, DiagnosticSessionForm, TutorialForm, ScientistSignInForm, ScientistSignUpForm
 from .models import Publication, ForumPost, ForumComment, Expert, DiagnosticSession, Tutorial
-from .forms import ScientistSignInForm, ScientistSignUpForm
-from farmers.models import Plant
+from plant_disease.models import Plant
 
 
 
