@@ -1,19 +1,11 @@
 # forms.py
-
 from django import forms
-from .models import DiseaseCategory, PlantPart, DiagnosticSession
+from .models import DiseaseIdentificationRequest
 
-class DiseaseCategoryForm(forms.ModelForm):
+class DiseaseIdentificationRequestForm(forms.ModelForm):
     class Meta:
-        model = DiseaseCategory
-        fields = ['name', 'description']
-
-class PlantPartForm(forms.ModelForm):
-    class Meta:
-        model = PlantPart
-        fields = ['name', 'description']
-
-class DiagnosticSessionForm(forms.ModelForm):
-    class Meta:
-        model = DiagnosticSession
-        fields = ['name', 'description', 'start_date', 'end_date']
+        model = DiseaseIdentificationRequest
+        fields = ['image', 'ai_requested']
+        widgets = {
+            'ai_requested': forms.CheckboxInput(),
+        }

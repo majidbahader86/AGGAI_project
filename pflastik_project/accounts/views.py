@@ -5,7 +5,7 @@ from django.views.generic import View, UpdateView
 from .forms import UserRegistrationForm, ProfileForm, UserUpdateForm, UserProfileForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Foo
 
 class RegisterView(View):
     template_name = 'register.html'
