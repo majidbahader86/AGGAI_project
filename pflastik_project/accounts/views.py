@@ -1,51 +1,40 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
-from .forms import UserRegistrationForm, ProfileForm, UserUpdateForm, UserProfileForm
+from .forms import UserForm, ProfileForm, FooForm
+from .models import Profile, Foo
 
-def register(request):
+def update_user(request, user_id):
+    user = user.objects.get(pk=user_id)
     if request.method == 'POST':
-        form = UserRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('profile')  # Redirect to profile after successful registration and login
-    else:
-        form = UserRegistrationForm()
-    return render(request, 'register.html', {'form': form})
-
-@login_required
-def update_profile(request):
-    if request.method == 'POST':
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
-        if profile_form.is_valid():
-            profile_form.save()
-            return redirect('profile')  # Redirect to profile after successful update
-    else:
-        profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'update_profile.html', {'profile_form': profile_form})
-
-@login_required
-def update_user(request):
-    if request.method == 'POST':
-        user_form = UserUpdateForm(request.POST, instance=request.user)
+        user_form = UserForm(request.POST, instance=user)
         if user_form.is_valid():
             user_form.save()
-            return redirect('profile')  # Redirect to profile after successful update
+            return redirect('profile_detail', user_id=user.id)  # Replace with the appropriate URL name for profile detail view
     else:
-        user_form = UserUpdateForm(instance=request.user)
+        user_form = UserForm(instance=user)
     return render(request, 'update_user.html', {'user_form': user_form})
 
-@login_required
-def update_user_profile(request):
+def update_profile(request, profile_id):
+    profile = Profile.objects.get(pk=profile_id)
     if request.method == 'POST':
-        user_profile_form = UserProfileForm(request.POST, instance=request.user.profile)
-        if user_profile_form.is_valid():
-            user_profile_form.save()
-            return redirect('profile')  # Redirect to profile after successful update
+        profile_form = ProfileForm(request.POST, instance=profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect('profile_detail', user_id=profile.user.id)  # Replace with the appropriate URL name for profile detail view
     else:
-        user_profile_form = UserProfileForm(instance=request.user.profile)
-    return render(request, 'update_user_profile.html', {'user_profile_form': user_profile_form})
+        profile_form = ProfileForm(instance=profile)
+    return render(request, 'update_profile.html', {'profile_form': profile_form})
+
+def update_foo(request, foo_id=None):
+    if foo_id:
+        foo = Foo.objects.get(pk=foo_id)
+    else:
+        foo = None
+
+    if request.method == 'POST':
+        foo_form = FooForm(request.POST, instance=foo)
+        if foo_form.is_valid():
+            foo_form.save()
+            return redirect('foo_list')  # Replace with the appropriate URL name for foo list view
+    else:
+        foo_form = FooForm(instance=foo)
+    return render(request, 'update_foo.html', {'foo_form': foo_form})
