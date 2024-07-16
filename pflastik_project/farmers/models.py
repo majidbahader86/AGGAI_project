@@ -84,4 +84,3 @@ class FinancialAid(models.Model):
     def __str__(self):
         return f"{self.crop} - {self.transaction_date}"
 
-
