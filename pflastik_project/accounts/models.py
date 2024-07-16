@@ -8,6 +8,13 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_farmer = models.BooleanField(default=False)
     is_scientist = models.BooleanField(default=False)
+    
+class Foo(models.Model):
+    USER_CHOICES = (
+        ('S', 'Scientist'),
+        ('F', 'Farmer'),
+    )
+    user = models.CharField(max_length=1, choices=USER_CHOICES)
 
     def __str__(self):
         return self.user.username

@@ -68,7 +68,6 @@ class Expert(models.Model):
 
 # Diagnostic Tools Model- Records diagnostic sessions with user and plant references, symptoms, diagnosis result, and creation date.
 # scientists/models.py
-
 from django.contrib.auth.models import User  # Import User model from django.contrib.auth
 from plant_disease.models import PlantPart 
 
@@ -81,8 +80,6 @@ class DiagnosticSession(models.Model):
 
     def __str__(self):
         return f"Diagnostic Session for {self.plant.name} by {self.user.username}"
-
-    
 
 # Tutorials and Guides Model- Manages tutorials and guides with fields for title, content, creation date, last updated date, and category.
 class Tutorial(models.Model):
