@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'AI_tools',  
     'disease_detection',  
     'accounts',
+    'rest_framework',
 ]
 
 
