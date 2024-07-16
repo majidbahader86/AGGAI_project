@@ -57,7 +57,7 @@ class Expert(models.Model):
     field_of_expertise = models.CharField(max_length=255)
     # Bio or profile of the expert
     bio = models.TextField()
-    # Contact information of the expert
+    # Contact information ofuser = models.CharField(max) the expert
     contact_info = models.EmailField()
     # Photo of the expert
     photo = models.ImageField(upload_to='expert_photos/', blank=True, null=True)
