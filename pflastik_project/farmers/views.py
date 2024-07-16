@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.views.generic import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import (
-    
+    UserRegistrationForm, UserLoginForm,
     MonitoringDataForm, MonitoringAlertForm, MonitoringActionForm, 
     ForumPostForm, ForumCommentForm, SeasonAlertForm, EnvironmentalConditionForm, 
     CareTipForm, FinancialAidForm,
@@ -9,8 +12,41 @@ from .forms import (
 from .models import (
     MonitoringData, MonitoringAlert, MonitoringAction, ForumPost, ForumComment, 
     SeasonAlert, EnvironmentalCondition, CareTip, FinancialAid, 
-    
 )
+
+# User Authentication Views
+class RegisterView(View):
+    template_name = 'register.html'
+
+    def get(self, request):
+        form = UserRegistrationForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+        return render(request, self.template_name, {'form': form})
+
+class LoginView(View):
+    template_name = 'login.html'
+
+    def get(self, request):
+        form = UserLoginForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = UserLoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+        return render(request, self.template_name, {'form': form})
 
 # Monitoring Views
 @login_required
@@ -111,7 +147,6 @@ def create_care_tip(request):
         form = CareTipForm()
     return render(request, 'create_care_tip.html', {'form': form})
 
-
 # Financial Aid Views
 @login_required
 def create_financial_aid(request):
@@ -123,3 +158,4 @@ def create_financial_aid(request):
     else:
         form = FinancialAidForm()
     return render(request, 'create_financial_aid.html', {'form': form})
+
