@@ -1,12 +1,20 @@
-from django.shortcuts import render
-
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 from django.contrib.auth import login, authenticate
+from django.views.generic import View, UpdateView
 from .forms import UserRegistrationForm, ProfileForm, UserUpdateForm, UserProfileForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from .models import Profile
 
-def register(request):
-    if request.method == 'POST':
+class RegisterView(View):
+    template_name = 'register.html'
+
+    def get(self, request):
+        form = UserRegistrationForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
@@ -14,40 +22,36 @@ def register(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('profile')  # Redirect to profile after successful registration and login
-    else:
-        form = UserRegistrationForm()
-    return render(request, 'register.html', {'form': form})
+            return redirect('profile')
+        return render(request, self.template_name, {'form': form})
 
-@login_required
-def update_profile(request):
-    if request.method == 'POST':
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
-        if profile_form.is_valid():
-            profile_form.save()
-            return redirect('profile')  # Redirect to profile after successful update
-    else:
-        profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'update_profile.html', {'profile_form': profile_form})
+class UpdateUserView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = UserUpdateForm
+    template_name = 'update_user.html'
+    success_url = reverse_lazy('profile')
 
-@login_required
-def update_user(request):
-    if request.method == 'POST':
-        user_form = UserUpdateForm(request.POST, instance=request.user)
-        if user_form.is_valid():
-            user_form.save()
-            return redirect('profile')  # Redirect to profile after successful update
-    else:
-        user_form = UserUpdateForm(instance=request.user)
-    return render(request, 'update_user.html', {'user_form': user_form})
+    def get_object(self):
+        return self.request.user
 
-@login_required
-def update_user_profile(request):
-    if request.method == 'POST':
-        user_profile_form = UserProfileForm(request.POST, instance=request.user.profile)
-        if user_profile_form.is_valid():
-            user_profile_form.save()
-            return redirect('profile')  # Redirect to profile after successful update
-    else:
-        user_profile_form = UserProfileForm(instance=request.user.profile)
-    return render(request, 'update_user_profile.html', {'user_profile_form': user_profile_form})
+class UpdateProfileView(LoginRequiredMixin, UpdateView):
+    model = Profile
+    form_class = ProfileForm
+    template_name = 'update_profile.html'
+    success_url = reverse_lazy('profile')
+
+    def get_object(self):
+        return self.request.user.profile
+
+class UpdateUserProfileView(LoginRequiredMixin, UpdateView):
+    model = Profile
+    form_class = UserProfileForm
+    template_name = 'update_user_profile.html'
+    success_url = reverse_lazy('profile')
+
+    def get_object(self):
+        return self.request.user.profile
+
+    def form_valid(self, form):
+        profile = form.save(commit=False)
+        profile.user.username = form
