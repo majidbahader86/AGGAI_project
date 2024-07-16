@@ -1,7 +1,7 @@
 # farmers/serializers.py
 
 from rest_framework import serializers
-from .models import MonitoringData, MonitoringAlert, MonitoringAction, ForumPost, ForumComment, SeasonAlert, EnvironmentalCondition, CareTip, FinancialAid
+from ..models import MonitoringData, MonitoringAlert, MonitoringAction, ForumPost, ForumComment, SeasonAlert, EnvironmentalCondition, CareTip, FinancialAid
 from django.contrib.auth.models import User as DjangoUser
 
 class MonitoringDataSerializer(serializers.ModelSerializer):

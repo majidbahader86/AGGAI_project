@@ -1,5 +1,3 @@
-# views.py
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -54,7 +52,7 @@ def create_monitoring_data(request):
             return redirect('monitoring_data_list')
     else:
         form = MonitoringDataForm()
-    return render(request, 'farmers/create_monitoring_data.html', {'form': form})
+    return render(request, 'create_monitoring_data.html', {'form': form})
 
 @login_required
 def create_monitoring_alert(request):
@@ -77,6 +75,21 @@ def create_monitoring_action(request):
     else:
         form = MonitoringActionForm()
     return render(request, 'farmers/create_monitoring_action.html', {'form': form})
+
+@login_required
+def monitoring_data_list_view(request):
+    monitoring_data = MonitoringData.objects.all()
+    return render(request, 'farmers/monitoring_data_list.html', {'monitoring_data': monitoring_data})
+
+@login_required
+def monitoring_alert_list_view(request):
+    monitoring_alerts = MonitoringAlert.objects.all()
+    return render(request, 'farmers/monitoring_alert_list.html', {'monitoring_alerts': monitoring_alerts})
+
+@login_required
+def monitoring_action_list_view(request):
+    monitoring_actions = MonitoringAction.objects.all()
+    return render(request, 'farmers/monitoring_action_list.html', {'monitoring_actions': monitoring_actions})
 
 # Forum Views
 
@@ -108,6 +121,17 @@ def create_forum_comment(request, post_id):
         form = ForumCommentForm()
     return render(request, 'farmers/create_forum_comment.html', {'form': form, 'post': post})
 
+@login_required
+def forum_post_list_view(request):
+    forum_posts = ForumPost.objects.all()
+    return render(request, 'farmers/forum_post_list.html', {'forum_posts': forum_posts})
+
+@login_required
+def forum_post_detail_view(request, post_id):
+    post = get_object_or_404(ForumPost, id=post_id)
+    comments = ForumComment.objects.filter(post=post)
+    return render(request, 'farmers/forum_post_detail.html', {'post': post, 'comments': comments})
+
 # Seasonal Alerts Views
 
 @login_required
@@ -120,6 +144,11 @@ def create_season_alert(request):
     else:
         form = SeasonAlertForm()
     return render(request, 'farmers/create_season_alert.html', {'form': form})
+
+@login_required
+def season_alert_list_view(request):
+    season_alerts = SeasonAlert.objects.all()
+    return render(request, 'farmers/season_alert_list.html', {'season_alerts': season_alerts})
 
 # Environmental Conditions Views
 
@@ -134,6 +163,11 @@ def create_environmental_condition(request):
         form = EnvironmentalConditionForm()
     return render(request, 'farmers/create_environmental_condition.html', {'form': form})
 
+@login_required
+def environmental_condition_list_view(request):
+    environmental_conditions = EnvironmentalCondition.objects.all()
+    return render(request, 'farmers/environmental_condition_list.html', {'environmental_conditions': environmental_conditions})
+
 # Care Tips Views
 
 @login_required
@@ -146,6 +180,11 @@ def create_care_tip(request):
     else:
         form = CareTipForm()
     return render(request, 'farmers/create_care_tip.html', {'form': form})
+
+@login_required
+def care_tip_list_view(request):
+    care_tips = CareTip.objects.all()
+    return render(request, 'farmers/care_tip_list.html', {'care_tips': care_tips})
 
 # Financial Aid Views
 
@@ -160,9 +199,13 @@ def create_financial_aid(request):
         form = FinancialAidForm()
     return render(request, 'farmers/create_financial_aid.html', {'form': form})
 
+@login_required
+def financial_aid_list_view(request):
+    financial_aids = FinancialAid.objects.all()
+    return render(request, 'farmers/financial_aid_list.html', {'financial_aids': financial_aids})
+
 # Dashboard View
 
 @login_required
 def dashboard_view(request):
-    # Example view for dashboard after login
     return render(request, 'farmers/dashboard.html')

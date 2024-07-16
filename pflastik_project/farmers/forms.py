@@ -1,15 +1,22 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from .models import Profile, MonitoringData, MonitoringAction, ForumPost, ForumComment, \
+from accounts.models import Profile
+from .models import MonitoringData, MonitoringAction, MonitoringAlert, ForumPost, ForumComment, \
     SeasonAlert, EnvironmentalCondition, CareTip, FinancialAid
+from django import forms
 
-# Existing Forms for Monitoring and Forum Models (from previous response)
 
 class MonitoringDataForm(forms.ModelForm):
     class Meta:
         model = MonitoringData
-        fields = ['timestamp', 'temperature', 'humidity', 'soil_moisture']
+        exclude = ['timestamp'] 
+
+class MonitoringAlertForm(forms.ModelForm):
+    class Meta:
+        model = MonitoringAlert
+        fields = ['alert_type', 'alert_message']
+
 
 class MonitoringActionForm(forms.ModelForm):
     class Meta:
@@ -30,11 +37,11 @@ class SeasonAlertForm(forms.ModelForm):
     class Meta:
         model = SeasonAlert
         fields = ['crop', 'alert_type', 'alert_message']
-
 class EnvironmentalConditionForm(forms.ModelForm):
     class Meta:
         model = EnvironmentalCondition
-        fields = ['timestamp', 'temperature', 'humidity', 'soil_moisture', 'alert_message']
+        exclude = ['timestamp']  # Exclude the auto-generated timestamp field
+
 
 class CareTipForm(forms.ModelForm):
     class Meta:
