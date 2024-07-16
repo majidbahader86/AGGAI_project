@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User as DjangoUser
 
 # Monitoring Models
 class MonitoringData(models.Model):
@@ -25,9 +25,8 @@ class MonitoringAction(models.Model):
     def __str__(self):
         return self.name
 
-# Forum Models
 class ForumPost(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(DjangoUser, on_delete=models.CASCADE, related_name='farmers_forum_posts')
     title = models.CharField(max_length=255)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -37,12 +36,13 @@ class ForumPost(models.Model):
 
 class ForumComment(models.Model):
     post = models.ForeignKey(ForumPost, related_name='comments', on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(DjangoUser, on_delete=models.CASCADE, related_name='farmers_forum_comments')
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Comment by {self.user.username} on {self.post.title}"
+
 
 # Seasonal Alerts Model
 class SeasonAlert(models.Model):

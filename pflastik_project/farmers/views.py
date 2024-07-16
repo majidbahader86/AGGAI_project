@@ -7,6 +7,9 @@ from .forms import MonitoringDataForm, MonitoringActionForm, ForumPostForm, Foru
     SeasonAlertForm, EnvironmentalConditionForm, CareTipForm, FinancialAidForm, FarmerSignupForm
 from .models import Profile, MonitoringData, MonitoringAction, ForumPost, ForumComment, \
     SeasonAlert, EnvironmentalCondition, CareTip, FinancialAid
+from disease_detection.models import DiseaseIdentificationRequest
+from django.contrib.auth.models import User
+
 
 # Farmer Signup and Login Views
 
