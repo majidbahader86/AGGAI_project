@@ -18,7 +18,7 @@ class DiseaseCategory(models.Model):
             {"name": "Bacterial", "description": "Diseases caused by bacteria"},
             {"name": "Viral", "description": "Diseases caused by viruses"},
             {"name": "Nematode", "description": "Diseases caused by nematodes"},
-            {"name": "Physiological", "description": "Non-infectious diseases caused by environmental factors"}
+            {"name": "Physiological disorders", "description": "Non-infectious diseases caused by environmental factors"}
         ]
         for category in categories:
             DiseaseCategory.objects.get_or_create(**category)

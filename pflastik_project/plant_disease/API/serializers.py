@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import DiseaseCategory, PlantPart, Disease, DiseaseImage, EuropeanDisease, Plant, PlantImage
+from ..models import DiseaseCategory, PlantPart, Disease, DiseaseImage, EuropeanDisease, Plant, PlantImage
 
 
 class DiseaseCategorySerializer(serializers.ModelSerializer):
