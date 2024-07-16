@@ -2,9 +2,6 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
 
-from django.urls import path
-from . import views
-
 urlpatterns = [
     path('register/', views.register, name='register'),
     path('profile/', views.update_user_profile, name='profile'),
