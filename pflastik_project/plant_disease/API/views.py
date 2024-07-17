@@ -1,6 +1,6 @@
 # api/views.py
 from rest_framework import generics
-from .models import DiseaseCategory, PlantPart, Disease, DiseaseImage, EuropeanDisease, Plant
+from ..models import DiseaseCategory, PlantPart, Disease, DiseaseImage, EuropeanDisease, Plant
 from .serializers import (
     DiseaseCategorySerializer, PlantPartSerializer, DiseaseSerializer,
     DiseaseImageSerializer, EuropeanDiseaseSerializer, PlantSerializer,
