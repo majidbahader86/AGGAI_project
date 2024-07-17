@@ -1,9 +1,40 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .forms import UserForm, ProfileForm, FooForm
 from .models import Profile, Foo
 
+
+def index(request):
+    context = {
+        'welcome_message': 'Welcome to Plantastic!',
+        'profiles': Profile.objects.all(),
+        'foos': Foo.objects.all(),  
+    }
+    return render(request, 'index.html', context)
+    pass
+
+@login_required
+def profile_view(request):
+    profile = Profile.objects.get(user=request.user)
+    
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, instance=profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect('profile_view')
+    else:
+        profile_form = ProfileForm(instance=profile)
+    
+    context = {
+        'profile': profile,
+        'profile_form': profile_form,
+    }
+    return render(request, 'profile_view.html', context)
+
+# Your views
 def update_user(request, user_id):
-    user = user.objects.get(pk=user_id)
+    user = User.objects.get(pk=user_id)  # Assuming User is imported correctly
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=user)
         if user_form.is_valid():
