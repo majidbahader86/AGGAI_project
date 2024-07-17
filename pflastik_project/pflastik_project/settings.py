@@ -1,7 +1,8 @@
 # Import necessary modules
+import environ
 import os
 from pathlib import Path
-import environ
+
 
 # Initialise django-environ
 env = environ.Env()
