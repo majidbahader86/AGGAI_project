@@ -16,6 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse
+def home(request):
+    html = """
+    <h1>Welcome to Plantastic</h1>
+    <ul>
+        <li><a href="/admin/">Admin</a></li>
+        <li><a href="/accounts/">Accounts</a></li>
+        <li><a href="/AI_tools/">AI Tools</a></li>
+        <li><a href="/scientists/">Scientists</a></li>
+        <li><a href="/plant_disease/">Plant Disease</a></li>
+        <li><a href="/farmers/">Farmers</a></li>
+    </ul>
+    """
+    return HttpResponse(html)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
