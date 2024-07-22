@@ -5,7 +5,8 @@ from pathlib import Path
 
 
 # Initialise django-environ
-env = environ.Env()
+env = environ.Env(DEBUG=(bool, False)
+)
 
 # Reading .env file
 environ.Env.read_env()
@@ -17,9 +18,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY', default='your_secret_key_here')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG', default=False)
+DEBUG = env('DEBUG', default=True)
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1'])
 
 # Application definition
 INSTALLED_APPS = [
