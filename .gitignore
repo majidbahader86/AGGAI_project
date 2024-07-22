@@ -18,7 +18,7 @@ __pycache__/
 *.db
 *.sqlite3
 # media/
-staticfiles/
+# staticfiles/
 
 # Virtualenv
 env/
