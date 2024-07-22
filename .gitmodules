@@ -1,0 +1,3 @@
+[submodule "pflastik_project/PlantChain"]
+	path = pflastik_project/PlantChain
+	url = https://github.com/AElnamaki/PlantChain.git
