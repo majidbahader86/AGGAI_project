@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework.test import APITestCase
 from rest_framework import serializers
 from disease_detection.models import DiseaseIdentificationRequest
-from disease_detection.serializers import DiseaseIdentificationRequestSerializer
+from ..serializers import DiseaseIdentificationRequestSerializer
 
 class DiseaseIdentificationRequestSerializerTest(APITestCase):
 
