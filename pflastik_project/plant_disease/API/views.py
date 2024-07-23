@@ -1,55 +1,35 @@
-# api/views.py
-from rest_framework import generics
-from ..models import DiseaseCategory, PlantPart, Disease, DiseaseImage, EuropeanDisease, Plant
+# views.py
+from rest_framework import viewsets
+from ..models import DiseaseCategory, PlantPart, Disease, DiseaseImage, EuropeanDisease, Plant, PlantImage
 from .serializers import (
-    DiseaseCategorySerializer, PlantPartSerializer, DiseaseSerializer,
-    DiseaseImageSerializer, EuropeanDiseaseSerializer, PlantSerializer,
+    DiseaseCategorySerializer, PlantPartSerializer, DiseaseSerializer, 
+    DiseaseImageSerializer, EuropeanDiseaseSerializer, PlantSerializer, PlantImageSerializer
 )
 
-class DiseaseCategoryListCreateAPIView(generics.ListCreateAPIView):
+class DiseaseCategoryViewSet(viewsets.ModelViewSet):
     queryset = DiseaseCategory.objects.all()
     serializer_class = DiseaseCategorySerializer
 
-class DiseaseCategoryRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = DiseaseCategory.objects.all()
-    serializer_class = DiseaseCategorySerializer
-
-class PlantPartListCreateAPIView(generics.ListCreateAPIView):
+class PlantPartViewSet(viewsets.ModelViewSet):
     queryset = PlantPart.objects.all()
     serializer_class = PlantPartSerializer
 
-class PlantPartRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = PlantPart.objects.all()
-    serializer_class = PlantPartSerializer
-
-class DiseaseListCreateAPIView(generics.ListCreateAPIView):
+class DiseaseViewSet(viewsets.ModelViewSet):
     queryset = Disease.objects.all()
     serializer_class = DiseaseSerializer
 
-class DiseaseRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Disease.objects.all()
-    serializer_class = DiseaseSerializer
-
-class DiseaseImageListCreateAPIView(generics.ListCreateAPIView):
+class DiseaseImageViewSet(viewsets.ModelViewSet):
     queryset = DiseaseImage.objects.all()
     serializer_class = DiseaseImageSerializer
 
-class DiseaseImageRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = DiseaseImage.objects.all()
-    serializer_class = DiseaseImageSerializer
-
-class EuropeanDiseaseListCreateAPIView(generics.ListCreateAPIView):
+class EuropeanDiseaseViewSet(viewsets.ModelViewSet):
     queryset = EuropeanDisease.objects.all()
     serializer_class = EuropeanDiseaseSerializer
 
-class EuropeanDiseaseRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = EuropeanDisease.objects.all()
-    serializer_class = EuropeanDiseaseSerializer
-
-class PlantListCreateAPIView(generics.ListCreateAPIView):
+class PlantViewSet(viewsets.ModelViewSet):
     queryset = Plant.objects.all()
     serializer_class = PlantSerializer
 
-class PlantRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Plant.objects.all()
-    serializer_class = PlantSerializer
+class PlantImageViewSet(viewsets.ModelViewSet):
+    queryset = PlantImage.objects.all()
+    serializer_class = PlantImageSerializer
