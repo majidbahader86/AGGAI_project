@@ -1,0 +1,64 @@
+Name,Description,Image
+Stem,The main structural support of a plant,stem_image.jpg
+Root,The part of the plant that absorbs water and nutrients,root_image.jpg
+Leaves,The part of the plant where photosynthesis occurs,leaves_image.jpg
+Seeds,The reproductive part of the plant that can grow into a new plant,seeds_image.jpg
+Flowers,The reproductive structure of flowering plants,flowers_image.jpg
+
+Plant Name,Scientific Name,Stem Image,Root Image,Leaves Image,Seeds Image,Flowers Image
+Lavender,Lavandula,lavender_stem_image.jpg,lavender_root_image.jpg,lavender_leaves_image.jpg,lavender_seeds_image.jpg,lavender_flowers_image.jpg
+Rosemary,Rosmarinus officinalis,rosemary_stem_image.jpg,rosemary_root_image.jpg,rosemary_leaves_image.jpg,rosemary_seeds_image.jpg,rosemary_flowers_image.jpg
+Thyme,Thymus vulgaris,thyme_stem_image.jpg,thyme_root_image.jpg,thyme_leaves_image.jpg,thyme_seeds_image.jpg,thyme_flowers_image.jpg
+Chamomile,Matricaria chamomilla,chamomile_stem_image.jpg,chamomile_root_image.jpg,chamomile_leaves_image.jpg,chamomile_seeds_image.jpg,chamomile_flowers_image.jpg
+Sage,Salvia officinalis,sage_stem_image.jpg,sage_root_image.jpg,sage_leaves_image.jpg,sage_seeds_image.jpg,sage_flowers_image.jpg
+Mint,Mentha,mint_stem_image.jpg,mint_root_image.jpg,mint_leaves_image.jpg,mint_seeds_image.jpg,mint_flowers_image.jpg
+Basil,Ocimum basilicum,basil_stem_image.jpg,basil_root_image.jpg,basil_leaves_image.jpg,basil_seeds_image.jpg,basil_flowers_image.jpg
+Oregano,Origanum vulgare,oregano_stem_image.jpg,oregano_root_image.jpg,oregano_leaves_image.jpg,oregano_seeds_image.jpg,oregano_flowers_image.jpg
+Parsley,Petroselinum crispum,parsley_stem_image.jpg,parsley_root_image.jpg,parsley_leaves_image.jpg,parsley_seeds_image.jpg,parsley_flowers_image.jpg
+Bay Laurel,Laurus nobilis,bay_laurel_stem_image.jpg,bay_laurel_root_image.jpg,bay_laurel_leaves_image.jpg,bay_laurel_seeds_image.jpg,bay_laurel_flowers_image.jpg
+Tomato,Solanum lycopersicum,tomato_stem_image.jpg,tomato_root_image.jpg,tomato_leaves_image.jpg,tomato_seeds_image.jpg,tomato_flowers_image.jpg
+Cucumber,Cucumis sativus,cucumber_stem_image.jpg,cucumber_root_image.jpg,cucumber_leaves_image.jpg,cucumber_seeds_image.jpg,cucumber_flowers_image.jpg
+Potato,Solanum tuberosum,potato_stem_image.jpg,potato_root_image.jpg,potato_leaves_image.jpg,potato_seeds_image.jpg,potato_flowers_image.jpg
+Wheat,Triticum aestivum,wheat_stem_image.jpg,wheat_root_image.jpg,wheat_leaves_image.jpg,wheat_seeds_image.jpg,wheat_flowers_image.jpg
+Carrot,Daucus carota,carrot_stem_image.jpg,carrot_root_image.jpg,carrot_leaves_image.jpg,carrot_seeds_image.jpg,carrot_flowers_image.jpg
+Spinach,Spinacia oleracea,spinach_stem_image.jpg,spinach_root_image.jpg,spinach_leaves_image.jpg,spinach_seeds_image.jpg,spinach_flowers_image.jpg
+Lettuce,Lactuca sativa,lettuce_stem_image.jpg,lettuce_root_image.jpg,lettuce_leaves_image.jpg,lettuce_seeds_image.jpg,lettuce_flowers_image.jpg
+Onion,Allium cepa,onion_stem_image.jpg,onion_root_image.jpg,onion_leaves_image.jpg,onion_seeds_image.jpg,onion_flowers_image.jpg
+Pea,Pisum sativum,pea_stem_image.jpg,pea_root_image.jpg,pea_leaves_image.jpg,pea_seeds_image.jpg,pea_flowers_image.jpg
+Bean,Phaseolus vulgaris,bean_stem_image.jpg,bean_root_image.jpg,bean_leaves_image.jpg,bean_seeds_image.jpg,bean_flowers_image.jpg
+Apple,Malus domestica,apple_stem_image.jpg,apple_root_image.jpg,apple_leaves_image.jpg,apple_seeds_image.jpg,apple_flowers_image.jpg
+Pear,Pyrus communis,pear_stem_image.jpg,pear_root_image.jpg,pear_leaves_image.jpg,pear_seeds_image.jpg,pear_flowers_image.jpg
+Cherry,Prunus avium,cherry_stem_image.jpg,cherry_root_image.jpg,cherry_leaves_image.jpg,cherry_seeds_image.jpg,cherry_flowers_image.jpg
+Grapevine,Vitis vinifera,grapevine_stem_image.jpg,grapevine_root_image.jpg,grapevine_leaves_image.jpg,grapevine_seeds_image.jpg,grapevine_flowers_image.jpg
+Strawberry,Fragaria × ananassa,strawberry_stem_image.jpg,strawberry_root_image.jpg,strawberry_leaves_image.jpg,strawberry_seeds_image.jpg,strawberry_flowers_image.jpg
+Pumpkin,Cucurbita pepo,pumpkin_stem_image.jpg,pumpkin_root_image.jpg,pumpkin_leaves_image.jpg,pumpkin_seeds_image.jpg,pumpkin_flowers_image.jpg
+Zucchini,Cucurbita pepo,zucchini_stem_image.jpg,zucchini_root_image.jpg,zucchini_leaves_image.jpg,zucchini_seeds_image.jpg,zucchini_flowers_image.jpg
+Radish,Raphanus sativus,radish_stem_image.jpg,radish_root_image.jpg,radish_leaves_image.jpg,radish_seeds_image.jpg,radish_flowers_image.jpg
+Beet,Beta vulgaris,beet_stem_image.jpg,beet_root_image.jpg,beet_leaves_image.jpg,beet_seeds_image.jpg,beet_flowers_image.jpg
+Kale,Brassica oleracea,kale_stem_image.jpg,kale_root_image.jpg,kale_leaves_image.jpg,kale_seeds_image.jpg,kale_flowers_image.jpg
+Broccoli,Brassica oleracea,broccoli_stem_image.jpg,broccoli_root_image.jpg,broccoli_leaves_image.jpg,broccoli_seeds_image.jpg,broccoli_flowers_image.jpg
+Cauliflower,Brassica oleracea,cauliflower_stem_image.jpg,cauliflower_root_image.jpg,cauliflower_leaves_image.jpg,cauliflower_seeds_image.jpg,cauliflower_flowers_image.jpg
+Sweet Corn,Zea mays,sweet_corn_stem_image.jpg,sweet_corn_root_image.jpg,sweet_corn_leaves_image.jpg,sweet_corn_seeds_image.jpg,sweet_corn_flowers_image.jpg
+Asparagus,Asparagus officinalis,asparagus_stem_image.jpg,asparagus_root_image.jpg,asparagus_leaves_image.jpg,asparagus_seeds_image.jpg,asparagus_flowers_image.jpg
+Leek,Allium porrum,leek_stem_image.jpg,leek_root_image.jpg,leek_leaves_image.jpg,leek_seeds_image.jpg,leek_flowers_image.jpg
+Chard,Spinacia oleracea,chard_stem_image.jpg,chard_root_image.jpg,chard_leaves_image.jpg,chard_seeds_image.jpg,chard_flowers_image.jpg
+Raspberry,Rubus idaeus,raspberry_stem_image.jpg,raspberry_root_image.jpg,raspberry_leaves_image.jpg,raspberry_seeds_image.jpg,raspberry_flowers_image.jpg
+Blackberry,Rubus fruticosus,blackberry_stem_image.jpg,blackberry_root_image.jpg,blackberry_leaves_image.jpg,blackberry_seeds_image.jpg,blackberry_flowers_image.jpg
+Cabbage,Brassica oleracea,cabbage_stem_image.jpg,cabbage_root_image.jpg,cabbage_leaves_image.jpg,cabbage_seeds_image.jpg,cabbage_flowers_image.jpg
+Coriander,Coriandrum sativum,coriander_stem_image.jpg,coriander_root_image.jpg,coriander_leaves_image.jpg,coriander_seeds_image.jpg,coriander_flowers_image.jpg
+Fennel,Foeniculum vulgare,fennel_stem_image.jpg,fennel_root_image.jpg,fennel_leaves_image.jpg,fennel_seeds_image.jpg,fennel_flowers_image.jpg
+Chicory,Cichorium intybus,chicory_stem_image.jpg,chicory_root_image.jpg,chicory_leaves_image.jpg,chicory_seeds_image.jpg,chicory_flowers_image.jpg
+Beetroot,Beta vulgaris,beetroot_stem_image.jpg,beetroot_root_image.jpg,beetroot_leaves_image.jpg,beetroot_seeds_image.jpg,beetroot_flowers_image.jpg
+Celery,Apium graveolens,celery_stem_image.jpg,celery_root_image.jpg,celery_leaves_image.jpg,celery_seeds_image.jpg,celery_flowers_image.jpg
+Dill,Anethum graveolens,dill_stem_image.jpg,dill_root_image.jpg,dill_leaves_image.jpg,dill_seeds_image.jpg,dill_flowers_image.jpg
+Mustard,Brassica juncea,mustard_stem_image.jpg,mustard_root_image.jpg,mustard_leaves_image.jpg,mustard_seeds_image.jpg,mustard_flowers_image.jpg
+Sunflower,Helianthus annuus,sunflower_stem_image.jpg,sunflower_root_image.jpg,sunflower_leaves_image.jpg,sunflower_seeds_image.jpg,sunflower
+Plant Name,Scientific Name,Stem Image,Root Image,Leaves Image,Seeds Image,Flowers Image
+Arugula,Eruca sativa,arugula_stem_image.jpg,arugula_root_image.jpg,arugula_leaves_image.jpg,arugula_seeds_image.jpg,arugula_flowers_image.jpg
+Horseradish,Armoracia rusticana,horseradish_stem_image.jpg,horseradish_root_image.jpg,horseradish_leaves_image.jpg,horseradish_seeds_image.jpg,horseradish_flowers_image.jpg
+Lovage,Levisticum officinale,lovage_stem_image.jpg,lovage_root_image.jpg,lovage_leaves_image.jpg,lovage_seeds_image.jpg,lovage_flowers_image.jpg
+Purslane,Portulaca oleracea,purslane_stem_image.jpg,purslane_root_image.jpg,purslane_leaves_image.jpg,purslane_seeds_image.jpg,purslane_flowers_image.jpg
+Sorrel,Rumex acetosa,sorrel_stem_image.jpg,sorrel_root_image.jpg,sorrel_leaves_image.jpg,sorrel_seeds_image.jpg,sorrel_flowers_image.jpg
+Radicchio,Cichorium intybus,radicchio_stem_image.jpg,radicchio_root_image.jpg,radicchio_leaves_image.jpg,radicchio_seeds_image.jpg,radicchio_flowers_image.jpg
+Winter Squash,Cucurbita maxima,winter_squash_stem_image.jpg,winter_squash_root_image.jpg,winter_squash_leaves_image.jpg,winter_squash_seeds_image.jpg,winter_squash_flowers_image.jpg
+Chervil,Anthriscus cerefolium,chervil_stem_image.jpg,chervil_root_image.jpg,chervil_leaves_image.jpg,chervil_seeds_image.jpg,chervil_flowers_image.jpg

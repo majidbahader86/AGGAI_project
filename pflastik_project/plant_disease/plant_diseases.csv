@@ -1,0 +1,48 @@
+Plant Name,Scientific Name,Disease Name,Disease Type,Disease Description,Image
+Lavender,Lavandula,Fungal Disease,Fungal,Disease caused by fungi,fungal_disease_image.jpg
+Rosemary,Rosmarinus officinalis,Bacterial Disease,Bacterial,Disease caused by bacteria,bacterial_disease_image.jpg
+Thyme,Thymus vulgaris,Viral Disease,Viral,Disease caused by viruses,viral_disease_image.jpg
+Chamomile,Matricaria chamomilla,Nematode Disease,Nematode,Disease caused by nematodes,nematode_disease_image.jpg
+Sage,Salvia officinalis,Physiological Disease,Physiological,Non-infectious disease caused by environmental factors,physiological_disease_image.jpg
+Mint,Mentha,Fungal Disease,Fungal,Disease caused by fungi,fungal_disease_image.jpg
+Basil,Ocimum basilicum,Bacterial Disease,Bacterial,Disease caused by bacteria,bacterial_disease_image.jpg
+Oregano,Origanum vulgare,Viral Disease,Viral,Disease caused by viruses,viral_disease_image.jpg
+Parsley,Petroselinum crispum,Nematode Disease,Nematode,Disease caused by nematodes,nematode_disease_image.jpg
+Bay Laurel,Laurus nobilis,Physiological Disease,Physiological,Non-infectious disease caused by environmental factors,physiological_disease_image.jpg
+Tomato,Solanum lycopersicum,Blight,Fungal,Wilting,Throughout Europe,High,tomato_image.jpg
+Cucumber,Cucumis sativus,Downy Mildew,Fungal,Yellowing Leaves,Western Europe,Medium,cucumber_image.jpg
+Potato,Solanum tuberosum,Late Blight,Fungal,Dark Spots on Leaves,Central Europe,High,potato_image.jpg
+Wheat,Triticum aestivum,Rust,Fungal,Red Pustules on Leaves,Eastern Europe,High,wheat_image.jpg
+Carrot,Daucus carota,Carrot Fly,Insect,Root Damage,Throughout Europe,Medium,carrot_image.jpg
+Spinach,Spinacia oleracea,Downy Mildew,Fungal,White Mold on Leaves,Western Europe,Low,spinach_image.jpg
+Lettuce,Lactuca sativa,Downy Mildew,Fungal,Leaf Spots,Throughout Europe,Medium,lettuce_image.jpg
+Onion,Allium cepa,Neck Rot,Fungal,Softening of Neck,Central Europe,Medium,onion_image.jpg
+Pea,Pisum sativum,Pea Weevil,Insect,Infested Pods,Throughout Europe,Low,pea_image.jpg
+Bean,Phaseolus vulgaris,Bacterial Blight,Bacterial,Leaf Spots,Throughout Europe,Medium,bean_image.jpg
+Apple,Malus domestica,Apple Scab,Fungal,Olive-green lesions on leaves and fruit,Western Europe,High,apple_image.jpg
+Pear,Pyrus communis,Fire Blight,Bacterial,Blackened and withered branches,Central Europe,High,pear_image.jpg
+Cherry,Prunus avium,Leaf Spot,Fungal,Dark spots with yellow halos,Throughout Europe,Medium,cherry_image.jpg
+Grapevine,Vitis vinifera,Downy Mildew,Fungal,Yellowing and necrotic spots on leaves,Southern Europe,High,grapevine_image.jpg
+Strawberry,Fragaria × ananassa,Red Stele,Fungal,Red discoloration of roots and poor growth,Throughout Europe,Medium,strawberry_image.jpg
+Pumpkin,Cucurbita pepo,Powdery Mildew,Fungal,White powdery substance on leaves,Central Europe,Medium,pumpkin_image.jpg
+Zucchini,Cucurbita pepo,Blossom End Rot,Nutritional,Sunken, dark spots on the fruit,Throughout Europe,Medium,zucchini_image.jpg
+Radish,Raphanus sativus,Root Rot,Fungal,Soft, water-soaked roots,Throughout Europe,Medium,radish_image.jpg
+Beet,Beta vulgaris,Leaf Spot,Fungal,Red and brown spots on leaves,Central Europe,Medium,beet_image.jpg
+Kale,Brassica oleracea,Downy Mildew,Fungal,Yellow spots and mold on leaves,Western Europe,Medium,kale_image.jpg
+Broccoli,Brassica oleracea,Club Root,Nematode,Swollen, distorted roots,Central Europe,High,broccoli_image.jpg
+Cauliflower,Brassica oleracea,White Rust,Fungal,White pustules on leaves,Central Europe,Medium,cauliflower_image.jpg
+Sweet Corn,Zea mays,Corn Smut,Fungal,Grayish galls on ears and kernels,Throughout Europe,Low,sweetcorn_image.jpg
+Asparagus,Asparagus officinalis,Asparagus Beetle,Insect,Chewed foliage and spears,Throughout Europe,Medium,asparagus_image.jpg
+Leek,Allium porrum,Downy Mildew,Fungal,Yellowing of leaves and white mold,Central Europe,Medium,leek_image.jpg
+Chard,Spinacia oleracea,Leaf Miner,Insect,Tunnels and blotches in leaves,Throughout Europe,Medium,chard_image.jpg
+Raspberry,Rubus idaeus,Red Berry Mite,Insect,Distorted and deformed berries,Central Europe,Low,raspberry_image.jpg
+Blackberry,Rubus fruticosus,Botrytis Blight,Fungal,Gray mold on berries,Western Europe,Medium,blackberry_image.jpg
+Cabbage,Brassica oleracea,White Rust,Fungal,White pustules on leaves,Throughout Europe,Medium,cabbage_image.jpg
+Coriander,Coriandrum sativum,Leaf Spot,Fungal,Dark spots on leaves,Throughout Europe,Medium,coriander_image.jpg
+Fennel,Foeniculum vulgare,Smut,Fungal,Dark, powdery growths on foliage,Central Europe,Low,fennel_image.jpg
+Chicory,Cichorium intybus,Root Rot,Fungal,Soft and discolored roots,Central Europe,Medium,chicory_image.jpg
+Beetroot,Beta vulgaris,Leaf Blight,Fungal,Angular, brown lesions on leaves,Throughout Europe,Medium,beetroot_image.jpg
+Celery,Apium graveolens,Septoria Leaf Spot,Fungal,Water-soaked spots on leaves,Throughout Europe,Medium,celery_image.jpg
+Dill,Anethum graveolens,Dill Rust,Fungal,Orange pustules on leaves,Throughout Europe,Low,dill_image.jpg
+Mustard,Brassica juncea,Downy Mildew,Fungal,Yellowish patches and downy mold,Throughout Europe,Medium,mustard_image.jpg
+Sunflower,Helianthus annuus,Gray Mold,Fungal,Gray mold on flowers and seeds,Western Europe,Medium,sunflower_image.jpg
