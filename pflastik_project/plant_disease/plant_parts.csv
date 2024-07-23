@@ -53,4 +53,13 @@ Celery,Apium graveolens,celery_stem_image.jpg,celery_root_image.jpg,celery_leave
 Dill,Anethum graveolens,dill_stem_image.jpg,dill_root_image.jpg,dill_leaves_image.jpg,dill_seeds_image.jpg,dill_flowers_image.jpg
 Mustard,Brassica juncea,mustard_stem_image.jpg,mustard_root_image.jpg,mustard_leaves_image.jpg,mustard_seeds_image.jpg,mustard_flowers_image.jpg
 Sunflower,Helianthus annuus,sunflower_stem_image.jpg,sunflower_root_image.jpg,sunflower_leaves_image.jpg,sunflower_seeds_image.jpg,sunflower
+Plant Name,Scientific Name,Stem Image,Root Image,Leaves Image,Seeds Image,Flowers Image
+Arugula,Eruca sativa,arugula_stem_image.jpg,arugula_root_image.jpg,arugula_leaves_image.jpg,arugula_seeds_image.jpg,arugula_flowers_image.jpg
+Horseradish,Armoracia rusticana,horseradish_stem_image.jpg,horseradish_root_image.jpg,horseradish_leaves_image.jpg,horseradish_seeds_image.jpg,horseradish_flowers_image.jpg
+Lovage,Levisticum officinale,lovage_stem_image.jpg,lovage_root_image.jpg,lovage_leaves_image.jpg,lovage_seeds_image.jpg,lovage_flowers_image.jpg
+Purslane,Portulaca oleracea,purslane_stem_image.jpg,purslane_root_image.jpg,purslane_leaves_image.jpg,purslane_seeds_image.jpg,purslane_flowers_image.jpg
+Sorrel,Rumex acetosa,sorrel_stem_image.jpg,sorrel_root_image.jpg,sorrel_leaves_image.jpg,sorrel_seeds_image.jpg,sorrel_flowers_image.jpg
+Radicchio,Cichorium intybus,radicchio_stem_image.jpg,radicchio_root_image.jpg,radicchio_leaves_image.jpg,radicchio_seeds_image.jpg,radicchio_flowers_image.jpg
+Winter Squash,Cucurbita maxima,winter_squash_stem_image.jpg,winter_squash_root_image.jpg,winter_squash_leaves_image.jpg,winter_squash_seeds_image.jpg,winter_squash_flowers_image.jpg
+Chervil,Anthriscus cerefolium,chervil_stem_image.jpg,chervil_root_image.jpg,chervil_leaves_image.jpg,chervil_seeds_image.jpg,chervil_flowers_image.jpg
 
