@@ -1,76 +1,67 @@
-# disease_detection/tests/test_serializers.py
-
-import pytest
+from django.test import TestCase
 from django.contrib.auth.models import User
-from rest_framework.exceptions import ValidationError
+from rest_framework.test import APITestCase
+from rest_framework import serializers
 from disease_detection.models import DiseaseIdentificationRequest
 from disease_detection.serializers import DiseaseIdentificationRequestSerializer
-from django.utils import timezone
 
-@pytest.mark.django_db
-def test_serializer_serialization():
-    user = User.objects.create_user(username='testuser', password='12345')
-    request_instance = DiseaseIdentificationRequest.objects.create(
-        user=user,
-        request_time=timezone.now(),
-        ai_requested=True
-    )
+class DiseaseIdentificationRequestSerializerTest(APITestCase):
 
-    serializer = DiseaseIdentificationRequestSerializer(request_instance)
-    data = serializer.data
+    def setUp(self):
+        # Create a user for testing
+        self.user = User.objects.create_user(username='testuser', password='testpass')
 
-    assert data['user'] == user.id
-    assert data['ai_requested'] is True
-    assert 'id' in data
-    assert 'request_time' in data
-    assert 'image' in data
+        # Create a DiseaseIdentificationRequest instance for testing
+        self.disease_request = DiseaseIdentificationRequest.objects.create(
+            user=self.user,
+            ai_requested=True
+        )
 
-@pytest.mark.django_db
-def test_serializer_deserialization():
-    user = User.objects.create_user(username='testuser', password='12345')
-    data = {
-        'user': user.id,
-        'request_time': timezone.now(),
-        'ai_requested': True,
-        'image': None
-    }
+    def test_serializer_contains_expected_fields(self):
+        serializer = DiseaseIdentificationRequestSerializer(instance=self.disease_request)
+        data = serializer.data
+        self.assertEqual(set(data.keys()), set(['id', 'user', 'request_time', 'image', 'ai_requested']))
 
-    serializer = DiseaseIdentificationRequestSerializer(data=data)
-    assert serializer.is_valid(), serializer.errors
-    request_instance = serializer.save()
+    def test_serializer_data(self):
+        serializer = DiseaseIdentificationRequestSerializer(instance=self.disease_request)
+        data = serializer.data
+        self.assertEqual(data['user'], self.user.id)
+        self.assertEqual(data['ai_requested'], True)
+        self.assertIsNone(data['image'])  # Assuming no image was provided
 
-    assert request_instance.user == user
-    assert request_instance.ai_requested is True
-    assert request_instance.image is None
+    def test_serializer_create(self):
+        data = {
+            'user': self.user.id,
+            'ai_requested': False
+        }
+        serializer = DiseaseIdentificationRequestSerializer(data=data)
+        self.assertTrue(serializer.is_valid())
+        disease_request = serializer.save()
 
-@pytest.mark.django_db
-def test_serializer_update():
-    user = User.objects.create_user(username='testuser', password='12345')
-    request_instance = DiseaseIdentificationRequest.objects.create(
-        user=user,
-        request_time=timezone.now(),
-        ai_requested=False
-    )
+        self.assertEqual(disease_request.user, self.user)
+        self.assertEqual(disease_request.ai_requested, False)
+        self.assertIsNotNone(disease_request.request_time)
 
-    new_data = {
-        'user': user.id,
-        'ai_requested': True
-    }
+    def test_serializer_update(self):
+        data = {
+            'user': self.user.id,
+            'ai_requested': False
+        }
+        serializer = DiseaseIdentificationRequestSerializer(instance=self.disease_request, data=data)
+        self.assertTrue(serializer.is_valid())
+        disease_request = serializer.save()
 
-    serializer = DiseaseIdentificationRequestSerializer(request_instance, data=new_data, partial=True)
-    assert serializer.is_valid(), serializer.errors
-    updated_instance = serializer.save()
+        self.assertEqual(disease_request.user, self.user)
+        self.assertEqual(disease_request.ai_requested, False)
 
-    assert updated_instance.user == user
-    assert updated_instance.ai_requested is True
+    def test_invalid_serializer(self):
+        # Missing required fields
+        data = {}
+        serializer = DiseaseIdentificationRequestSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertIn('user', serializer.errors)
+        self.assertIn('ai_requested', serializer.errors)
 
-@pytest.mark.django_db
-def test_serializer_validation_error():
-    data = {
-        'request_time': timezone.now(),
-        'ai_requested': True
-    }
-
-    serializer = DiseaseIdentificationRequestSerializer(data=data)
-    assert not serializer.is_valid()
-    assert 'user' in serializer.errors
+# The below lines ensure the tests are executed as part of the test suite
+if __name__ == "__main__":
+    TestCase.main()

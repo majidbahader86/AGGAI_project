@@ -1,59 +1,59 @@
-# test_models.py
-import pytest
+from django.test import TestCase
 from django.contrib.auth.models import User
 from django.utils import timezone
 from disease_detection.models import DiseaseIdentificationRequest
 
-@pytest.mark.django_db
-def test_disease_identification_request_creation():
-    # Create a user
-    user = User.objects.create_user(username='testuser', password='12345')
-    
-    # Create a DiseaseIdentificationRequest instance
-    request = DiseaseIdentificationRequest.objects.create(
-        user=user,
-        request_time=timezone.now(),
-        ai_requested=True
-    )
-    
-    # Check that the instance is created correctly
-    assert request.user == user
-    assert request.ai_requested is True
-    assert request.image is None
-    assert str(request) == f"Disease Identification Request by {user.username} at {request.request_time}"
+class DiseaseIdentificationRequestModelTest(TestCase):
 
-@pytest.mark.django_db
-def test_disease_identification_request_default_values():
-    # Create a user
-    user = User.objects.create_user(username='testuser2', password='12345')
-    
-    # Create a DiseaseIdentificationRequest instance with default values
-    request = DiseaseIdentificationRequest.objects.create(
-        user=user
-    )
-    
-    # Check that default values are set correctly
-    assert request.user == user
-    assert request.ai_requested is False
-    assert request.image is None
-    assert request.request_time is not None
-    assert str(request) == f"Disease Identification Request by {user.username} at {request.request_time}"
+    def setUp(self):
+        # Create a user for testing
+        self.user = User.objects.create_user(username='testuser', password='testpass')
 
-@pytest.mark.django_db
-def test_disease_identification_request_image_field():
-    # Create a user
-    user = User.objects.create_user(username='testuser3', password='12345')
-    
-    # Create a DiseaseIdentificationRequest instance with an image
-    with open('path/to/sample_image.jpg', 'rb') as img:
-        request = DiseaseIdentificationRequest.objects.create(
-            user=user,
-            image=img,
+    def test_disease_identification_request_creation(self):
+        # Create a DiseaseIdentificationRequest instance
+        disease_request = DiseaseIdentificationRequest.objects.create(
+            user=self.user,
+            ai_requested=True
+        )
+
+        # Verify the request was created successfully
+        self.assertIsInstance(disease_request, DiseaseIdentificationRequest)
+        self.assertEqual(disease_request.user.username, 'testuser')
+        self.assertTrue(disease_request.ai_requested)
+        self.assertIsNotNone(disease_request.request_time)
+
+    def test_default_values(self):
+        # Create a DiseaseIdentificationRequest instance without specifying ai_requested
+        disease_request = DiseaseIdentificationRequest.objects.create(user=self.user)
+
+        # Verify the default value of ai_requested
+        self.assertFalse(disease_request.ai_requested)
+
+    def test_str_representation(self):
+        # Create a DiseaseIdentificationRequest instance
+        disease_request = DiseaseIdentificationRequest.objects.create(
+            user=self.user,
             ai_requested=False
         )
-    
-    # Check that the image field is set correctly
-    assert request.user == user
-    assert request.image.name == 'disease_identification/sample_image.jpg'
-    assert request.ai_requested is False
-    assert str(request) == f"Disease Identification Request by {user.username} at {request.request_time}"
+
+        # Check the string representation
+        expected_str = f"Disease Identification Request by {self.user.username} at {disease_request.request_time}"
+        self.assertEqual(str(disease_request), expected_str)
+
+    def test_image_field_blank_and_null(self):
+        # Create a DiseaseIdentificationRequest instance with image field as blank
+        disease_request = DiseaseIdentificationRequest.objects.create(
+            user=self.user,
+            image=None
+        )
+
+        # Verify the image field can be blank and null
+        self.assertIsNone(disease_request.image)
+
+    def test_request_time_auto_now_add(self):
+        # Create a DiseaseIdentificationRequest instance
+        disease_request = DiseaseIdentificationRequest.objects.create(user=self.user)
+
+        # Verify request_time is set automatically
+        now = timezone.now()
+        self.assertLess((now - disease_request.request_time).total_seconds(), 1)

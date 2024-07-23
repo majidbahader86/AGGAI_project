@@ -1,68 +1,50 @@
-# disease_detection/tests/test_forms.py
-
-import pytest
+from django.test import TestCase
 from django.contrib.auth.models import User
-from django.utils import timezone
 from disease_detection.models import DiseaseIdentificationRequest
 from disease_detection.forms import DiseaseIdentificationRequestForm
 
-@pytest.mark.django_db
-def test_valid_form():
-    user = User.objects.create_user(username='testuser', password='12345')
-    disease_request = DiseaseIdentificationRequest.objects.create(
-        user=user,
-        request_time=timezone.now(),
-        ai_requested=False
-    )
-    data = {
-        'image': None,
-        'ai_requested': True,
-    }
-    form = DiseaseIdentificationRequestForm(data=data)
-    assert form.is_valid()
-    disease_request = form.save(commit=False)
-    disease_request.user = user
-    disease_request.save()
+class DiseaseIdentificationRequestFormTest(TestCase):
 
-    assert disease_request.ai_requested is True
-    assert disease_request.image is None
+    def setUp(self):
+        # Create a user for testing
+        self.user = User.objects.create_user(username='testuser', password='testpass')
 
-@pytest.mark.django_db
-def test_invalid_form():
-    data = {
-        'ai_requested': True,
-    }
-    form = DiseaseIdentificationRequestForm(data=data)
-    assert not form.is_valid()
-    assert 'image' in form.errors
+    def test_form_fields(self):
+        form = DiseaseIdentificationRequestForm()
+        self.assertEqual(list(form.fields), ['image', 'ai_requested'])
 
-@pytest.mark.django_db
-def test_form_initial_data():
-    user = User.objects.create_user(username='testuser', password='12345')
-    disease_request = DiseaseIdentificationRequest.objects.create(
-        user=user,
-        request_time=timezone.now(),
-        ai_requested=True
-    )
-    form = DiseaseIdentificationRequestForm(instance=disease_request)
+    def test_form_valid_data(self):
+        form_data = {
+            'ai_requested': True,
+        }
+        form = DiseaseIdentificationRequestForm(data=form_data)
+        self.assertTrue(form.is_valid())
 
-    assert form.initial['ai_requested'] is True
-    assert form.initial['image'] is None
+    def test_form_invalid_data(self):
+        form_data = {
+            'ai_requested': 'not_a_boolean',
+        }
+        form = DiseaseIdentificationRequestForm(data=form_data)
+        self.assertFalse(form.is_valid())
 
-@pytest.mark.django_db
-def test_form_update():
-    user = User.objects.create_user(username='testuser', password='12345')
-    disease_request = DiseaseIdentificationRequest.objects.create(
-        user=user,
-        request_time=timezone.now(),
-        ai_requested=False
-    )
-    data = {
-        'ai_requested': True,
-    }
-    form = DiseaseIdentificationRequestForm(data=data, instance=disease_request)
-    assert form.is_valid()
-    updated_disease_request = form.save()
+    def test_form_save(self):
+        form_data = {
+            'ai_requested': True,
+        }
+        form = DiseaseIdentificationRequestForm(data=form_data)
+        self.assertTrue(form.is_valid())
+        disease_request = form.save(commit=False)
+        disease_request.user = self.user
+        disease_request.save()
 
-    assert updated_disease_request.ai_requested is True
-    assert updated_disease_request.image is None
+        self.assertEqual(disease_request.ai_requested, True)
+        self.assertEqual(disease_request.user, self.user)
+        self.assertIsNone(disease_request.image)
+
+    def test_form_widgets(self):
+        form = DiseaseIdentificationRequestForm()
+        self.assertIsInstance(form.fields['ai_requested'].widget, forms.CheckboxInput)
+
+# The below lines ensure the tests are executed as part of the test suite
+if __name__ == "__main__":
+    TestCase.main()

@@ -9,3 +9,47 @@ Basil,Ocimum basilicum,Bacterial Disease,Bacterial,Disease caused by bacteria,ba
 Oregano,Origanum vulgare,Viral Disease,Viral,Disease caused by viruses,viral_disease_image.jpg
 Parsley,Petroselinum crispum,Nematode Disease,Nematode,Disease caused by nematodes,nematode_disease_image.jpg
 Bay Laurel,Laurus nobilis,Physiological Disease,Physiological,Non-infectious disease caused by environmental factors,physiological_disease_image.jpg
+Plant_Name,Scientific_Name,Disease_Name,Disease_Type,Symptoms,Region,Impact
+Tomato,Solanum lycopersicum,Blight,Fungal,Wilting,Throughout Europe,High
+Cucumber,Cucumis sativus,Downy Mildew,Fungal,Yellowing Leaves,Western Europe,Medium
+Potato,Solanum tuberosum,Late Blight,Fungal,Dark Spots on Leaves,Central Europe,High
+Wheat,Triticum aestivum,Rust,Fungal,Red Pustules on Leaves,Eastern Europe,High
+Carrot,Daucus carota,Carrot Fly,Insect,Root Damage,Throughout Europe,Medium
+Spinach,Spinacia oleracea,Downy Mildew,Fungal,White Mold on Leaves,Western Europe,Low
+Lettuce,Lactuca sativa,Downy Mildew,Fungal,Leaf Spots,Throughout Europe,Medium
+Onion,Allium cepa,Neck Rot,Fungal,Softening of Neck,Central Europe,Medium
+Pea,Pisum sativum,Pea Weevil,Insect,Infested Pods,Throughout Europe,Low
+Bean,Phaseolus vulgaris,Bacterial Blight,Bacterial,Leaf Spots,Throughout Europe,Medium
+Plant_Name,Scientific_Name,Disease_Name,Disease_Type,Symptoms,Region,Impact
+Tomato,Solanum lycopersicum,Blight,Fungal,Wilting,Throughout Europe,High
+Cucumber,Cucumis sativus,Downy Mildew,Fungal,Yellowing Leaves,Western Europe,Medium
+Potato,Solanum tuberosum,Late Blight,Fungal,Dark Spots on Leaves,Central Europe,High
+Wheat,Triticum aestivum,Rust,Fungal,Red Pustules on Leaves,Eastern Europe,High
+Carrot,Daucus carota,Carrot Fly,Insect,Root Damage,Throughout Europe,Medium
+Spinach,Spinacia oleracea,Downy Mildew,Fungal,White Mold on Leaves,Western Europe,Low
+Lettuce,Lactuca sativa,Downy Mildew,Fungal,Leaf Spots,Throughout Europe,Medium
+Onion,Allium cepa,Neck Rot,Fungal,Softening of Neck,Central Europe,Medium
+Pea,Pisum sativum,Pea Weevil,Insect,Infested Pods,Throughout Europe,Low
+Bean,Phaseolus vulgaris,Bacterial Blight,Bacterial,Leaf Spots,Throughout Europe,Medium
+Apple,Malus domestica,Apple Scab,Fungal,Olive-green lesions on leaves and fruit,Western Europe,High
+Pear,Pyrus communis,Fire Blight,Bacterial,Blackened and withered branches,Central Europe,High
+Cherry,Prunus avium,Leaf Spot,Fungal,Dark spots with yellow halos,Throughout Europe,Medium
+Grapevine,Vitis vinifera,Downy Mildew,Fungal,Yellowing and necrotic spots on leaves,Southern Europe,High
+Strawberry,Fragaria × ananassa,Red Stele,Fungal,Red discoloration of roots and poor growth,Throughout Europe,Medium
+Pumpkin,Cucurbita pepo,Powdery Mildew,Fungal,White powdery substance on leaves,Central Europe,Medium
+Zucchini,Cucurbita pepo,Blossom End Rot,Nutritional,Sunken, dark spots on the fruit,Throughout Europe,Medium
+Radish,Raphanus sativus,Root Rot,Fungal,Soft, water-soaked roots,Throughout Europe,Medium
+Beet Beta vulgaris,Leaf Spot,Fungal,Red and brown spots on leaves,Central Europe,Medium
+Plant_Name,Scientific_Name,Disease_Name,Disease_Type,Symptoms,Region,Impact
+Kale,Brassica oleracea,Downy Mildew,Fungal,Yellow spots and mold on leaves,Western Europe,Medium
+Broccoli,Brassica oleracea,Club Root,Nematode,Swollen, distorted roots,Central Europe,High
+Cauliflower,Brassica oleracea,White Rust,Fungal,White pustules on leaves,Central Europe,Medium
+Sweet Corn,Zea mays,Corn Smut,Fungal,Grayish galls on ears and kernels,Throughout Europe,Low
+Asparagus,Asparagus officinalis,Asparagus Beetle,Insect,Chewed foliage and spears,Throughout Europe,Medium
+Leek,Allium porrum,Downy Mildew,Fungal,Yellowing of leaves and white mold,Central Europe,Medium
+Chard,Spinacia oleracea,Leaf Miner,Insect,Tunnels and blotches in leaves,Throughout Europe,Medium
+Raspberry,Rubus idaeus,Red Berry Mite,Insect,Distorted and deformed berries,Central Europe,Low
+Blackberry,Rubus fruticosus,Botrytis Blight,Fungal,Gray mold on berries,Western Europe,Medium
+Cabbage,Brassica oleracea,White Rust,Fungal,White pustules on leaves,Throughout Europe,Medium
+
+
