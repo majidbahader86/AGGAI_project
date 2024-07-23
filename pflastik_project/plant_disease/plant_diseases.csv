@@ -1,0 +1,11 @@
+Plant Name,Scientific Name,Disease Name,Disease Type,Disease Description,Image
+Lavender,Lavandula,Fungal Disease,Fungal,Disease caused by fungi,fungal_disease_image.jpg
+Rosemary,Rosmarinus officinalis,Bacterial Disease,Bacterial,Disease caused by bacteria,bacterial_disease_image.jpg
+Thyme,Thymus vulgaris,Viral Disease,Viral,Disease caused by viruses,viral_disease_image.jpg
+Chamomile,Matricaria chamomilla,Nematode Disease,Nematode,Disease caused by nematodes,nematode_disease_image.jpg
+Sage,Salvia officinalis,Physiological Disease,Physiological,Non-infectious disease caused by environmental factors,physiological_disease_image.jpg
+Mint,Mentha,Fungal Disease,Fungal,Disease caused by fungi,fungal_disease_image.jpg
+Basil,Ocimum basilicum,Bacterial Disease,Bacterial,Disease caused by bacteria,bacterial_disease_image.jpg
+Oregano,Origanum vulgare,Viral Disease,Viral,Disease caused by viruses,viral_disease_image.jpg
+Parsley,Petroselinum crispum,Nematode Disease,Nematode,Disease caused by nematodes,nematode_disease_image.jpg
+Bay Laurel,Laurus nobilis,Physiological Disease,Physiological,Non-infectious disease caused by environmental factors,physiological_disease_image.jpg
