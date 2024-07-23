@@ -5,8 +5,6 @@ from .models import (
     EnvironmentalCondition, CareTip, FinancialAid,
 )
 
-
-
 @admin.register(MonitoringData)
 class MonitoringDataAdmin(admin.ModelAdmin):
     list_display = ('timestamp', 'temperature', 'humidity', 'soil_moisture')

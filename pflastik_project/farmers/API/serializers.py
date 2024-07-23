@@ -1,4 +1,4 @@
-# farmers/serializers.py
+# farmers/API/serializers.py
 
 from rest_framework import serializers
 from ..models import MonitoringData, MonitoringAlert, MonitoringAction, ForumPost, ForumComment, SeasonAlert, EnvironmentalCondition, CareTip, FinancialAid

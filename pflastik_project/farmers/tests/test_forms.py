@@ -1,6 +1,7 @@
 # farmers/tests/test_forms.py
 
-import pytest
+import unittest
+from django.test import TestCase 
 from django.contrib.auth.models import User
 from farmers.models import MonitoringData, MonitoringAction, MonitoringAlert, ForumPost, ForumComment, \
     SeasonAlert, EnvironmentalCondition, CareTip, FinancialAid
@@ -9,7 +10,7 @@ from farmers.forms import MonitoringDataForm, MonitoringAlertForm, MonitoringAct
     FarmerSignupForm, FarmerLoginForm
 from django.utils import timezone
 
-@pytest.mark.django_db
+
 def test_valid_monitoring_data_form():
     data = {
         'temperature': 25.5,
@@ -23,7 +24,6 @@ def test_valid_monitoring_data_form():
     assert monitoring_data.humidity == 55.0
     assert monitoring_data.soil_moisture == 30.0
 
-@pytest.mark.django_db
 def test_invalid_monitoring_data_form():
     data = {
         'temperature': 'invalid',  # Invalid data type
@@ -34,7 +34,7 @@ def test_invalid_monitoring_data_form():
     assert not form.is_valid()
     assert 'temperature' in form.errors
 
-@pytest.mark.django_db
+
 def test_valid_monitoring_alert_form():
     data = {
         'alert_type': 'Temperature Alert',
@@ -46,7 +46,6 @@ def test_valid_monitoring_alert_form():
     assert monitoring_alert.alert_type == 'Temperature Alert'
     assert monitoring_alert.alert_message == 'High temperature detected.'
 
-@pytest.mark.django_db
 def test_valid_monitoring_action_form():
     data = {
         'name': 'Watering'
@@ -56,7 +55,7 @@ def test_valid_monitoring_action_form():
     monitoring_action = form.save()
     assert monitoring_action.name == 'Watering'
 
-@pytest.mark.django_db
+
 def test_valid_forum_post_form():
     user = User.objects.create_user(username='testuser', password='12345')
     data = {
@@ -70,7 +69,7 @@ def test_valid_forum_post_form():
     assert forum_post.user == user
     assert forum_post.title == 'Test Post'
 
-@pytest.mark.django_db
+
 def test_valid_forum_comment_form():
     user = User.objects.create_user(username='testuser', password='12345')
     forum_post = ForumPost.objects.create(user=user, title='Test Post', content='Test post content')
@@ -86,7 +85,7 @@ def test_valid_forum_comment_form():
     assert forum_comment.user == user
     assert forum_comment.content == 'This is a test comment.'
 
-@pytest.mark.django_db
+
 def test_valid_season_alert_form():
     data = {
         'crop': 'Rice',
@@ -99,7 +98,7 @@ def test_valid_season_alert_form():
     assert season_alert.crop == 'Rice'
     assert season_alert.alert_type == 'Pest Infestation'
 
-@pytest.mark.django_db
+
 def test_valid_environmental_condition_form():
     data = {
         'temperature': 28.5,
@@ -113,7 +112,7 @@ def test_valid_environmental_condition_form():
     assert environmental_condition.temperature == 28.5
     assert environmental_condition.humidity == 60.0
 
-@pytest.mark.django_db
+
 def test_valid_care_tip_form():
     data = {
         'crop': 'Tomato',
@@ -126,7 +125,7 @@ def test_valid_care_tip_form():
     assert care_tip.crop == 'Tomato'
     assert care_tip.region == 'North America'
 
-@pytest.mark.django_db
+
 def test_valid_financial_aid_form():
     data = {
         'crop': 'Corn',

@@ -9,7 +9,7 @@ from accounts.forms import UserForm, ProfileForm, FooForm
 class ViewsTestCase(TestCase):
 
     def setUp(self):
-        # Create necessary objects for testing
+       
         self.user = User.objects.create_user(username='testuser', password='testpass')
         self.profile = Profile.objects.create(user=self.user, is_farmer=True, is_scientist=False)
         self.foo = Foo.objects.create(user='F')

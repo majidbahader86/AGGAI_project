@@ -32,6 +32,7 @@ def home(request):
     return HttpResponse(html)
 
 urlpatterns = [
+    # path('', include('pflastik_project.urls')), 
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),  
     path('AI_tools/', include('AI_tools.urls')),  

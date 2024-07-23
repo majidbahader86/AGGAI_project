@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import DiseaseCategory, PlantPart, Disease, DiseaseImage, EuropeanDisease, Plant, PlantImage
-
+from .forms import DiseaseCategoryForm, PlantPartForm, DiseaseForm, DiseaseImageForm, EuropeanDiseaseForm, PlantForm, PlantImageForm
 
 class DiseaseCategorySerializer(serializers.ModelSerializer):
     class Meta:

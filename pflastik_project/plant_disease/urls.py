@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     # Plant URLs
-    path('plants/', views.plant_list, name='plant_list'),
+    path('', views.plant_list, name='plant_list'),
     path('plants/<int:pk>/', views.plant_detail, name='plant_detail'),
     path('plants/create/', views.plant_create, name='plant_create'),
     path('plants/<int:pk>/update/', views.plant_update, name='plant_update'),
