@@ -17,8 +17,6 @@ class Conversation(models.Model):
         ordering = ['-timestamp']
 
 
-
-
 class AITool(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
