@@ -7,7 +7,10 @@ class PublicationForm(forms.ModelForm):
     class Meta:
         model = Publication
         fields = ['title', 'author', 'abstract', 'content', 'published_date', 'category', 'file', 'external_link']
-
+        widgets = {
+            'published_date': forms.DateInput(attrs={'type': 'date'})
+        }
+        
 class ForumPostForm(forms.ModelForm):
     class Meta:
         model = ForumPost

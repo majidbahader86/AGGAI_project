@@ -1,18 +1,16 @@
-# scientists/api/urls.py
-from django.urls import path
+# scientists/api_urls.py
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from . import views
 
+router = DefaultRouter()
+router.register(r'publications', views.PublicationViewSet)
+router.register(r'forum-posts', views.ForumPostViewSet)
+router.register(r'forum-comments', views.ForumCommentViewSet)
+router.register(r'experts', views.ExpertViewSet)
+router.register(r'diagnostic-sessions', views.DiagnosticSessionViewSet)
+router.register(r'tutorials', views.TutorialViewSet)
+
 urlpatterns = [
-    path('publications/', views.PublicationListCreateAPIView.as_view(), name='publication-list'),
-    path('publications/<int:pk>/', views.PublicationRetrieveUpdateDestroyAPIView.as_view(), name='publication-detail'),
-    path('forum-posts/', views.ForumPostListCreateAPIView.as_view(), name='forum-post-list'),
-    path('forum-posts/<int:pk>/', views.ForumPostRetrieveUpdateDestroyAPIView.as_view(), name='forum-post-detail'),
-    path('forum-comments/', views.ForumCommentListCreateAPIView.as_view(), name='forum-comment-list'),
-    path('forum-comments/<int:pk>/', views.ForumCommentRetrieveUpdateDestroyAPIView.as_view(), name='forum-comment-detail'),
-    path('experts/', views.ExpertListCreateAPIView.as_view(), name='expert-list'),
-    path('experts/<int:pk>/', views.ExpertRetrieveUpdateDestroyAPIView.as_view(), name='expert-detail'),
-    path('diagnostic-sessions/', views.DiagnosticSessionListCreateAPIView.as_view(), name='diagnostic-session-list'),
-    path('diagnostic-sessions/<int:pk>/', views.DiagnosticSessionRetrieveUpdateDestroyAPIView.as_view(), name='diagnostic-session-detail'),
-    path('tutorials/', views.TutorialListCreateAPIView.as_view(), name='tutorial-list'),
-    path('tutorials/<int:pk>/', views.TutorialRetrieveUpdateDestroyAPIView.as_view(), name='tutorial-detail'),
+    path('', include(router.urls)),
 ]
