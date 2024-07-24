@@ -110,7 +110,7 @@ class GenChain:
         return f"GenChain(name={self.name}, description={self.description}, chain_length={len(self.chain)})"
 
 class Blockchain:
-    def __init__(self, name: str, description: str = "", version: float = 1.00, gen_chain: bool = False) -> None:
+    def __init__(self, name: str, description: str = "", version: float = 1.00, gen_chain: bool = True) -> None:
         self.name: str = name
         self.description: str = description
         self.chain: List[Block] = []
