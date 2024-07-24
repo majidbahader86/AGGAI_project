@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     'disease_detection',
     'accounts',
     'rest_framework',
+    'django_extensions',
+    'myapp',
+    'PlantChain',
+    'media',
+    'locale'
+    
+    
 ]
 
 
