@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Conversation, AITool, AIQuestion, AIAnswer, AIToolUsage
+from ..models import Conversation, AITool, AIQuestion, AIAnswer, AIToolUsage
 
 class ConversationSerializer(serializers.ModelSerializer):
     class Meta:

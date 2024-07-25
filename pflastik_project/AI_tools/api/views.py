@@ -1,6 +1,6 @@
 from rest_framework import viewsets, permissions
 from ..models import Conversation, AITool, AIQuestion, AIAnswer, AIToolUsage
-from ..serializers import (
+from .serializers import (
     ConversationSerializer, AIToolSerializer, AIQuestionSerializer,
     AIAnswerSerializer, AIToolUsageSerializer
 )

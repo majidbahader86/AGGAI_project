@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from .models import Conversation, AITool, AIQuestion, AIAnswer, AIToolUsage
-from .serializers import ConversationSerializer, AIToolSerializer, AIQuestionSerializer, AIAnswerSerializer, AIToolUsageSerializer
+from .api.serializers import ConversationSerializer, AIToolSerializer, AIQuestionSerializer, AIAnswerSerializer, AIToolUsageSerializer
 
 # For Conversations
 @require_http_methods(["GET"])
