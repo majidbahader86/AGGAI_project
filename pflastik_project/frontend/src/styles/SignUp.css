@@ -1,0 +1,70 @@
+.signup-container {
+    width: 1330px;
+    height: 560px;
+    margin: -40px auto 40px auto;
+    background: linear-gradient(180deg, rgba(242,240,71, 0.3), rgba(30,217,79, 0.3));
+    padding-top: 30px; /* Adjust padding for positioning */
+    position: relative; /* Ensure relative positioning for absolute elements */
+}
+
+.signup-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Center the SignUp text */
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px; /* 30px gap from the top */
+}
+
+.user-type-select-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px; /* 75px gap from SignUp text */
+}
+
+.user-type-select {
+    width: 400px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.signup-form {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 107px; /* Padding for positioning left and right fields */
+}
+
+.signup-form input {
+    width: 300px;
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 130px; /* Vertical spacing between Name/Email and Username/Password */
+    border: 1px solid #ccc;
+}
+
+.signup-form .left-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.signup-form .right-field {
+    position: absolute;
+    left: 900px;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.signup-form .middle-field {
+    position: absolute;
+    left: 514px;
+    top: 90px; /* Adjust based on the overall height and position */
+    width: 300px;
+    height: 40px;
+}

@@ -1,0 +1,21 @@
+.plants-text-container {
+    margin: 200px 295px;
+    height: 400px;
+    text-align: center;
+}
+
+.plants-title {
+    font-family: 'Calibri', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.plants-description {
+    font-family: 'Calibri', sans-serif;
+    font-size: 12px;
+    font-weight: light;
+    color: white;
+    line-height: 1.6;
+}

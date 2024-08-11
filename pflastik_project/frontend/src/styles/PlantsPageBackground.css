@@ -1,0 +1,32 @@
+.plants-page-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.wheet-graph {
+    background-image: url(../assets/BACKGROUND/WHEET_GRAPH.png);
+    opacity: 0.859;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1920px;
+    height: 1080px;
+    z-index: 1;
+    /* Adjust positioning as needed */
+}
+
+.bush-graph {
+    background-image: url(../assets/BACKGROUND/BUSH_GRAPH.png);
+    opacity: 0.859;
+    position: absolute;
+    right: -200px;
+    bottom: -50px;
+    width: 100%;
+    height: 100%px;
+    z-index: 2;
+    /* Adjust positioning as needed */
+}

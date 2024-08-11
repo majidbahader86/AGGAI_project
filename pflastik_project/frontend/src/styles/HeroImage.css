@@ -1,0 +1,39 @@
+.hero-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .aggai {
+    font-size: 440px;
+    font-family: "Bauhaus 93";
+    -webkit-text-stroke: 5px white;
+    color: transparent;
+    line-height: 1.2;
+    transform: matrix(0.50006528950048, 0, 0, 0.50006528950048, 0, 0);
+    position: absolute;
+    left: 770px;
+    top: 575px;
+    z-index: 77;
+  }
+  
+  .data-graph-mesh {
+    background-size: cover;
+    position: absolute;
+    left: 369px;
+    top: 253px;
+    width: 608px;
+    height: 599px;
+    z-index: 76;
+  }
+  
+  .young-plant {
+    background-size: cover;
+    position: absolute;
+    left: 285px;
+    top: -16px;
+    width: 1350px;
+    height: 930px;
+    z-index: 75;
+  }
+  

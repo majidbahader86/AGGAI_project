@@ -1,0 +1,51 @@
+.body-text {
+    padding: 0 20px;
+    color: white;
+    width: 1350px;
+    margin-left: 285px;
+  }
+  
+  .section {
+    margin-bottom: 40px;
+  }
+  
+  .what-is-aggai {
+    margin-top: 200px;
+    width: 100%;
+  }
+  
+  .rotating-earth-placeholder {
+    height: 900px; /* Double the height for the RotatingEarth component */
+    margin-bottom: 40px;
+    position: relative;
+    left: 50px;
+  }
+  
+  .four-columns {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .blockchain {
+    margin-top: 400px;
+  }
+  
+  .section p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  .section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .highlight {
+    text-decoration: underline;
+    color: yellow;
+    cursor: pointer;
+  }
+  
+ 
+  

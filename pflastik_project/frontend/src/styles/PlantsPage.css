@@ -1,0 +1,8 @@
+.plants-page {
+    width: 1920px;
+    height: 1080px;
+    margin: 0 auto;
+    position: relative;
+    background: linear-gradient(0deg, rgba(48, 58, 69, 1) 0%, rgba(65, 77, 90, 1) 100%);
+    overflow: scroll;
+}

@@ -1,0 +1,25 @@
+.body-image-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-bottom: 40px;
+  }
+  
+  .crops {
+    background-image: url(../assets/BODY_IMAGE/cROPS.png);
+    width: 795px;
+    height: 375px;
+    z-index: 10;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .robo-pill {
+    background-image: url(../assets/BODY_IMAGE/robo_pill.png);
+    width: 771px;
+    height: 466px;
+    z-index: 9;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  

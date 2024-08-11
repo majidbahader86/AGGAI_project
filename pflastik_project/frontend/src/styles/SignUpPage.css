@@ -1,0 +1,40 @@
+.signup-page {
+    width: 1920px;
+    height: 1080px;
+    margin: 0 auto;
+    position: relative;
+    background: linear-gradient(0deg, rgba(48, 58, 69, 1) 0%, rgba(65, 77, 90, 1) 100%);
+    overflow: hidden;
+  }
+  
+  .background-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    opacity: 0.1;
+    font-family: 'Bauhaus93', sans-serif;
+    font-size: 100px;
+    font-weight: bold;
+    color: white;
+    z-index: 0; /* Behind other components */
+  }
+  
+  .background-text span {
+    transform: rotate(-45deg);
+    white-space: nowrap;
+    margin: 0;
+  }
+  
+  .background-text span:nth-child(even) {
+    margin-left: 160px;
+  }
+  
+  .signup-container, .login-container {
+    position: relative;
+    z-index: 1; /* Above the background text */
+  }
+  

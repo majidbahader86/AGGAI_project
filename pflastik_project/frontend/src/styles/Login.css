@@ -1,0 +1,30 @@
+.login-container {
+    width: 1330px;
+    height: 300px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, rgba(250,209,39, 0.3), rgba(255,87,78, 0.3));
+    padding-top: 30px;
+    position: relative; /* Ensure relative positioning */
+}
+
+.login-header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 90px; /* 30px gap from the top */
+}
+
+.login-form {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 120px; /* Padding for positioning left and right fields */
+}
+
+.login-form input {
+    width: 500px;
+    height: 40px;
+    padding: 0px;
+    margin-bottom: 80px; /* Vertical spacing between Username and Password */
+    border: 1px solid #ccc;
+}
