@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'scientists/css/ai_framework.css' %}">
+<link rel="stylesheet" href="{% static 'scientists/css/Agents.css' %}">
+{% endblock %}
+
+{% block title %}AGGAI Agents Framework{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <div class="ai-framework-container">
+        <h1>AGGAI Agents Framework</h1>
+        
+        {% with agents=agents %}
+        {% for agent in agents %}
+        <div class="ai-model-card" {% if agent.is_main %}style="margin-bottom: 30px; background-image: url('{{ agent.background_image }}'); background-size: cover; background-position: center; color: white;"{% endif %}>
+            <div class="agent-logo" style="background-color: {{ agent.color }};">{{ agent.logo }}</div>
+            <div>
+                <h2 {% if agent.is_main %}style="color: #ffffff;"{% endif %}>{{ agent.title }}</h2>
+                <p {% if agent.is_main %}style="color: #f0f0f0;"{% endif %}>{{ agent.description }}</p>
+                <div class="model-stats">
+                    {% for stat in agent.stats %}
+                    <div class="stat">
+                        <div class="stat-value" {% if agent.is_main %}style="color: #ffffff;"{% endif %}>{{ stat.value }}</div>
+                        <div class="stat-label" {% if agent.is_main %}style="color: #e0e0e0;"{% endif %}>{{ stat.label }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="action-buttons">
+                    <button id="{{ agent.id }}-button" class="action-button deploy-button" {% if agent.is_main %}style="background-color: rgba(46, 204, 113, 0.8); color: white; border: 2px solid white;"{% endif %}>{{ agent.button_text }}</button>
+                </div>
+            </div>
+        </div>
+        {% if agent.is_main %}
+        </div><div class="ai-model-grid">
+        {% endif %}
+        {% endfor %}
+        </div>
+        {% endwith %}
+    </div>
+</div>
+
+<script>
+document.getElementById("chain-agent-button").onclick = function() {
+    window.location.href = "{% url 'chain_agent' %}";
+};
+document.getElementById("disease-identifier-button").onclick = function() {
+    window.location.href = "{% url 'disease_identifier' %}";
+};
+
+document.getElementById("swarm-agents-button").onclick = function() {
+    window.location.href = "{% url 'swarm_agents' %}";
+};
+
+document.getElementById("search-web-agents-button").onclick = function() {
+    window.location.href = "{% url 'search_agent' %}";
+};
+</script>
+<script src="{% static 'scientists/js/Agents.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ expert.name }}{% endblock %}
+
+{% block content %}
+<h2>{{ expert.name }}</h2>
+<p><strong>Field of Expertise:</strong> {{ expert.field_of_expertise }}</p>
+<p><strong>Bio:</strong> {{ expert.bio }}</p>
+<p><strong>Contact Info:</strong> {{ expert.contact_info }}</p>
+{% if expert.photo %}
+    <img src="{{ expert.photo.url }}" alt="{{ expert.name }}" width="200">
+{% endif %}
+<a href="{% url 'expert_update' expert.pk %}">Edit</a>
+<form method="post" action="{% url 'expert_delete' expert.pk %}">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+{% endblock %}

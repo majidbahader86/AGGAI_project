@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'scientists/css/Agents.css' %}">
+<link rel="stylesheet" href="{% static 'scientists/css/ai_framework.css' %}">
+
+
+{% endblock %}
+
+{% block title %}AI Framework{% endblock %}
+
+{% block content %}
+
+<div class="main-container">
+    <header>
+        <h1>PlantDoc: Your AI Plant Disease Diagnosis Expert</h1>
+        <h2>Powered by the Disease Identifier Agent</h2>
+    </header>
+    <div class="ai-model-card"
+            style="margin-bottom: 30px; background-image: url('https://exxn.es/wp-content/uploads/2022/12/tendencias-de-sostenibilidad-en-los-centros-de-datos.jpg'); background-size: cover; background-position: center; color: white;">
+            <div class="agent-logo" style="background-color: rgba(46, 204, 113, 0.8);">DI</div>
+            <div>
+                <h2 style="color: #ffffff;">Disease Identifier Agent</h2>
+                <p style="color: #f0f0f0;">Advanced AI agent for managing and optimizing the entire PlantChain
+                    ecosystem.</p>
+                <div class="model-stats">
+                    <div class="stat">
+                        <div class="stat-value" style="color: #ffffff;">99.1%</div>
+                        <div class="stat-label" style="color: #e0e0e0;">Efficiency</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" style="color: #ffffff;">0.01s</div>
+                        <div class="stat-label" style="color: #e0e0e0;">Response Time</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value" style="color: #ffffff;">100GB</div>
+                        <div class="stat-label" style="color: #e0e0e0;">Model Size</div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="action-button deploy-button"
+                        style="background-color: rgba(46, 204, 113, 0.8); color: white; border: 2px solid white;">
+                        Agent API</button>
+                </div>
+            </div>
+        </div>
+    <div class="main-content">
+        <div class="plant-info-card">
+            <h2>Plant Information</h2>
+            <p>Welcome to PlantDoc! Here you can find information about various plant diseases and their treatments. Our advanced Disease Identifier Agent uses cutting-edge AI technology to analyze plant images and provide accurate diagnoses.</p>
+            <ul>
+                <li>Instant diagnosis with photo upload</li>
+                <li>Comprehensive database of plant diseases</li>
+                <li>Tailored treatment recommendations</li>
+                <li>Regularly updated with the latest plant health research</li>
+            </ul>
+        </div>
+        <div id="diagnosis-area">
+            <h2>Upload a photo for instant diagnosis</h2>
+            <form method="post" enctype="multipart/form-data" action="{% url 'upload_image' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Upload and Diagnose</button>
+            </form>
+        </div>
+        <div class="agent-info">
+            <h3>About the Disease Identifier Agent</h3>
+            <p>Our Disease Identifier Agent is a state-of-the-art AI system trained on millions of plant images. It can identify over 500 different plant diseases across 50 plant species with an accuracy rate of 95%.</p>
+        </div>
+        <div class="latest-diseases">
+    <h2>Latest Plant Diseases</h2>
+    <div class="disease-cards">
+    <div class="disease-card">
+        <img src="https://img.pikbest.com/origin/10/10/96/45VpIkbEsTKUY.jpg!w700wp" alt="Stylized plant with disease symptoms" width="200" height="150">
+        <h3>Late Blight</h3>
+        <p>A devastating disease affecting tomatoes and potatoes, caused by the oomycete Phytophthora infestans. Symptoms include dark lesions on leaves and stems, and can lead to rapid plant death.</p>
+    </div>
+    <div class="disease-card">
+        <img src="https://img.pikbest.com/origin/10/10/96/45VpIkbEsTKUY.jpg!w700wp" alt="Stylized plant with disease symptoms" width="200" height="150">
+        <h3>Powdery Mildew</h3>
+        <p>A common fungal disease affecting various plants, characterized by a white powdery coating on leaves. It can reduce plant vigor and yield if left untreated.</p>
+    </div>
+    <div class="disease-card">
+        <img src="https://img.pikbest.com/origin/10/10/96/45VpIkbEsTKUY.jpg!w700wp" alt="Stylized plant with disease symptoms" width="200" height="150">
+        <h3>Fire Blight</h3>
+        <p>A bacterial disease affecting apple and pear trees. Infected branches appear as if scorched by fire. It can cause significant damage to orchards if not managed properly.</p>
+    </div>
+    <div class="disease-card">
+        <img src="https://img.pikbest.com/origin/10/10/96/45VpIkbEsTKUY.jpg!w700wp" alt="Stylized plant with disease symptoms" width="200" height="150">
+        <h3>Leaf Spot</h3>
+        <p>A group of diseases caused by various fungi and bacteria, characterized by spots on leaves. While often cosmetic, severe cases can lead to defoliation and plant stress.</p>
+    </div>
+</div>
+
+<div class="main-container">
+    <!-- <div class="main-content">
+        <button id="toggle-door" class="door-toggle">☰</button>
+        <div class="door"> -->
+<!-- 
+</div> -->
+
+
+{% endblock %}
+
+{% block extra_js %}
+
+
+<script src="{% static 'scientists/js/Agents.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'scientists/css/ai_framework.css' %}">
+<link rel="stylesheet" href="{% static 'scientists/css/Agents.css' %}">
+{% endblock %}
+
+{% block title %}AGGAI Agents Framework{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="main-content">
+        <div class="swarm-agents-container">
+            <h1>Swarm Agents for Fields</h1>
+            
+            <div class="swarm-info">
+                <div class="swarm-logo">SA</div>
+                <div style="flex-grow: 1; margin-left: 30px;">
+                    <h2>Swarm Agents (LLama3.1 405B)</h2>
+                    <p style="color: #34495e; font-size: 16px; margin-bottom: 20px;">Coordinated AI agents for monitoring and managing large agricultural areas.</p>
+                    <div class="swarm-stats" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <p style="margin: 5px 0; font-size: 14px;"><strong>Fields Monitored:</strong> {{ fields_monitored }}</p>
+                        <p style="margin: 5px 0; font-size: 14px;"><strong>Active Drones:</strong> {{ active_drones }}</p>
+                        <p style="margin: 5px 0; font-size: 14px;"><strong>Total Flight Hours:</strong> {{ total_flight_hours }}</p>
+                        <p style="margin: 5px 0; font-size: 14px;"><strong>Data Collected:</strong> {{ data_collected }}</p>
+                    </div>
+                </div>
+                <button class="action-button">Deploy Swarm</button>
+            </div>
+
+            <div class="field-preview-container">
+                <h2>Field Overview</h2>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div class="field-preview-window" style="width: 48%; height: 400px; margin-right: 2%;">
+                        <svg width="100%" height="100%" viewBox="0 0 800 600">
+                            <!-- Field background -->
+                            <rect x="0" y="0" width="800" height="600" fill="#90EE90"></rect>
+                            
+                            <!-- Crop rows -->
+                            <g stroke="#228B22" stroke-width="2">
+                                {% for i in crop_rows %}
+                                <line x1="0" y1="{{ i }}" x2="800" y2="{{ i }}"></line>
+                                {% endfor %}
+                            </g>
+                            
+                            <!-- Drone markers -->
+                            <circle class="drone-marker" cx="100" cy="150" r="5" fill="#FF0000"></circle>
+                            <circle class="drone-marker" cx="300" cy="400" r="5" fill="#FF0000"></circle>
+                            <circle class="drone-marker" cx="600" cy="200" r="5" fill="#FF0000"></circle>
+                            
+                            <!-- Legend -->
+                            <rect x="10" y="10" width="120" height="60" fill="rgba(255,255,255,0.7)" rx="5"></rect>
+                            <text x="20" y="30" font-family="Arial" font-size="12" fill="#333">Legend:</text>
+                            <circle cx="25" cy="45" r="5" fill="#FF0000"></circle>
+                            <text x="35" y="50" font-family="Arial" font-size="12" fill="#333">Drone</text>
+                            <line x1="20" y1="60" x2="50" y2="60" stroke="#228B22" stroke-width="2"></line>
+                            <text x="55" y="65" font-family="Arial" font-size="12" fill="#333">Crop Row</text>
+                        </svg>
+                    </div>
+                    <div style="width: 48%; height: 400px; background: #f6f9fc; border-radius: 10px; padding: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); overflow-y: auto;">
+                        <img src="{{ drone_image_url }}" alt="AgEagle eBee X Lightweight Regulatory Compliant Mapping Drone" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+                        <h3>AgEagle eBee X</h3>
+                        <p style="color: #34495e; font-size: 14px; margin-bottom: 10px;">Lightweight Regulatory Compliant Mapping Drone</p>
+                        <ul style="color: #34495e; font-size: 14px; padding-left: 20px;">
+                            <li>Number of units: {{ drone_specs.number_of_units }}</li>
+                            <li>Flight time: {{ drone_specs.flight_time }}</li>
+                            <li>Weight: {{ drone_specs.weight }}</li>
+                            <li>Max coverage: {{ drone_specs.max_coverage }}</li>
+                            <li>Sensors: {{ drone_specs.sensors|join:", " }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="drone-activities">
+                <h2>Drone Activities</h2>
+                <ul id="drone-activity-list" style="list-style-type: none; padding: 0;">
+                    <!-- Drone activity list items -->
+                </ul>
+            </div>
+
+            <!-- New Field Data Section -->
+            <div class="field-data-container" style="margin-top: 40px; background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);">
+                <h2>Comprehensive Field Data</h2>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                    <div class="field-card" style="background: #f6f9fc; border-radius: 10px; padding: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);">
+                        <h3>Soil Health</h3>
+                        <ul style="padding-left: 20px;">
+                            <li>pH: {{ soil_health.pH }}</li>
+                            <li>Organic Matter: {{ soil_health.organic_matter }}</li>
+                            <li>Nitrogen (N): {{ soil_health.nitrogen }}</li>
+                            <li>Phosphorus (P): {{ soil_health.phosphorus }}</li>
+                            <li>Potassium (K): {{ soil_health.potassium }}</li>
+                        </ul>
+                    </div>
+                    <div class="field-card" style="background: #f6f9fc; border-radius: 10px; padding: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);">
+                        <h3>Crop Health</h3>
+                        <ul style="padding-left: 20px;">
+                            <li>NDVI: {{ crop_health.NDVI }}</li>
+                            <li>Leaf Area Index: {{ crop_health.leaf_area_index }}</li>
+                            <li>Chlorophyll Content: {{ crop_health.chlorophyll_content }}</li>
+                            <li>Crop Water Stress Index: {{ crop_health.crop_water_stress_index }}</li>
+                        </ul>
+                    </div>
+                    <div class="field-card" style="background: #f6f9fc; border-radius: 10px; padding: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);">
+                        <h3>Pest and Disease</h3>
+                        <ul style="padding-left: 20px;">
+                            <li>Detected: {{ pest_and_disease.detected|join:", " }}</li>
+                            <li>Detection Rate: {{ pest_and_disease.detection_rate }}</li>
+                            <li>Treatment Recommended: {{ pest_and_disease.treatment_recommended }}</li>
+                        </ul>
+                    </div>
+                    <div class="field-card" style="background: #f6f9fc; border-radius: 10px; padding: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);">
+                        <h3>Weather Data</h3>
+                        <ul style="padding-left: 20px;">
+                            <li>Temperature: 22°C (72°F)</li>
+                            <li>Humidity: 65%</li>
+                            <li>Wind Speed: 8 km/h</li>
+                            <li>Precipitation (Last 7 days): 25mm</li>
+                        </ul>
+                    </div>
+                    <div class="field-card" style="background: #f6f9fc; border-radius: 10px; padding: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);">
+                        <h3>Irrigation</h3>
+                        <ul style="padding-left: 20px;">
+                            <li>Soil Moisture: 28% (Adequate)</li>
+                            <li>Evapotranspiration Rate: 5.2 mm/day</li>
+                            <li>Next Scheduled Irrigation: In 2 days</li>
+                            <li>Water Use Efficiency: 85%</li>
+                        </ul>
+                    </div>
+                    <div class="field-card" style="background: #f6f9fc; border-radius: 10px; padding: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);">
+                        <h3>Yield Prediction</h3>
+                        <ul style="padding-left: 20px;">
+                            <li>Current Estimate: 4.8 tons/acre</li>
+                            <li>Historical Average: 4.5 tons/acre</li>
+                            <li>Potential Yield: 5.2 tons/acre</li>
+                            <li>Limiting Factors: Minor N deficiency</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Recommendations Section -->
+            <div class="recommendations-container" style="margin-top: 40px; background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);">
+                <h2>AI-Powered Recommendations</h2>
+                <ol style="padding-left: 20px;">
+                    <li>Apply 20 kg/ha of nitrogen fertilizer to address the minor deficiency and optimize yield potential.</li>
+                    <li>Implement integrated pest management for aphids using ladybugs as natural predators.</li>
+                    <li>Conduct spot treatment for weed control in the northwestern quadrant of the field.</li>
+                    <li>Adjust irrigation schedule to apply 15mm of water in 3 days, considering the forecasted dry spell.</li>
+                    <li>Scout for early signs of Fusarium in the lower canopy, particularly in areas with higher soil moisture.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'scientists/js/Agents.js' %}"></script>
+{% endblock %}

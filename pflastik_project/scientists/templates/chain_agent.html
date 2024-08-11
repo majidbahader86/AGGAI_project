@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'scientists/css/chain_agent.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="main-content">
+        <button id="toggle-door" class="door-toggle">☰</button>
+        <div class="door">
+            <div class="dashboard-grid">
+                <div class="dashboard-card pulse">
+                    <div class="card-content">
+                        <div class="agent-logo">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path d="{{ agent.icon_path }}"></path>
+                            </svg>
+                        </div>
+                        <div class="agent-info">
+                            <h3>{{ agent.title }}</h3>
+                            <p>Status: {{ agent.status }}</p>
+                        </div>
+                        <div class="chain-info">
+                            {% for chain in chains %}
+                            <div class="chain-item">
+                                <div class="chain-status">
+                                    <div class="status-light {{ chain.status_class }}"></div>
+                                    <p>{{ chain.name }}: {{ chain.status }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="model-stats">
+                            {% for stat in stats %}
+                            <div>
+                                <p>{{ stat.label }}</p>
+                                <p id="{{ stat.id }}">{{ stat.value }}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <button class="button">{{ agent.button_text }}</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blockchain-tables">
+                {% for table in tables %}
+                <div class="table-container">
+                    <h3>{{ table.title }}</h3>
+                    <table id="{{ table.id }}">
+                        <thead>
+                            <tr>
+                                {% for header in table.headers %}
+                                <th>{{ header }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody id="{{ table.body_id }}"></tbody>
+                    </table>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="behind-door">
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-button red"></div>
+                    <div class="terminal-button yellow"></div>
+                    <div class="terminal-button green"></div>
+                </div>
+                <div class="terminal-content">
+                    <p id="terminal-text" class="typing-effect"></p>
+                    <span class="cursor"></span>
+                </div>
+                <input type="text" class="command-input" placeholder="Enter command..." id="command-input">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'scientists/js/chain_agent.js' %}"></script>
+{% endblock %}

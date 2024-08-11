@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'scientists/css/Agents.css' %}">
+{% endblock %}
+
+{% block content %}
+  <h1>{{ publication.title|default:"New Publication" }}</h1>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+
+  {% if publication %}
+    <form method="post" action="{% url 'publication_combined' publication.pk 'delete' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+  {% endif %}
+
+  <h2>Publications List</h2>
+  <ul>
+    {% for pub in publications %}
+      <li>
+        <a href="{% url 'publication_combined' pub.pk %}">{{ pub.title }}</a>
+        <form method="post" action="{% url 'publication_combined' pub.pk 'delete' %}" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

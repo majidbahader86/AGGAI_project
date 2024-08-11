@@ -1,0 +1,197 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8f0;
+}
+
+/* Sidebar common styles */
+.sidebar {
+    width: 250px;
+    background: linear-gradient(135deg, #2c5f2d, #1e401f);
+    color: #e0f2e1;
+    padding: 30px;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #4caf50 #1e401f;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Sidebar collapsed state */
+.sidebar.collapsed {
+    width: 70px;
+    padding: 30px 10px;
+}
+
+/* Scrollbar styles */
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #1e401f;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #4caf50;
+    border-radius: 4px;
+}
+
+/* User info styles */
+.user-info {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.user-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: -2px;
+    border: 3px solid #0a45b3;
+    transition: all 0.3s ease;
+}
+
+.user-info img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+}
+
+.user-info span {
+    font-size: 18px;
+    font-weight: 600;
+   
+    margin-left: 15px;
+}
+
+/* Navigation links */
+.nav-links {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.nav-links li {
+    margin-bottom: 10px;
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: #e0f2e1;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+/* Active and hover states for navigation links */
+.nav-links a:hover,
+.nav-links a.active {
+    background-color: rgba(76, 175, 80, 0.2);
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links a i {
+    margin-right: 15px;
+    font-size: 20px;
+    width: 24px;
+    text-align: center;
+}
+
+.sidebar.collapsed .nav-links a span {
+    display: none;
+}
+
+/* Quick stats and footer */
+.quick-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #4caf50;
+}
+
+.stat span {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.sidebar-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.sidebar-footer a {
+    color: #e0f2e1;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.sidebar-footer a:hover {
+    color: #4caf50;
+    transform: translateY(-2px);
+}
+
+.sidebar.collapsed .quick-stats,
+.sidebar.collapsed .sidebar-footer {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.toggle-btn {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    background: none;
+    border: none;
+    color: #e0f2e1;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+    color: #4caf50;
+}
+
+.sidebar.collapsed .toggle-btn {
+    transform: rotate(180deg);
+}

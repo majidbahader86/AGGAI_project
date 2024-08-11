@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'scientists/css/dashboard.css' %}">
+<style>
+    body {
+        display: flex;
+        min-height: 100vh;
+    }
+    .sidebar {
+        width: 250px;
+        flex-shrink: 0;
+    }
+    .main-container {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        margin-left: 280px; /* Ensure the main content is after the sidebar */
+    }
+    .main-content {
+        flex-grow: 1;
+        padding: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="main-content">
+        <div class="scientist-dashboard">
+            <h1>Dr. Green's Dashboard</h1>
+            <div class="dashboard-grid">
+                <div class="dashboard-row">
+                    <div class="dashboard-card">
+                        <div class="card-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h2>Current Research</h2>
+                        <p>{{ current_research.title }}</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: {{ current_research.progress }}%;"></div>
+                        </div>
+                        <span class="progress-text">{{ current_research.progress }}% Complete</span>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h2>Publications</h2>
+                        <ul>
+                            {% for publication in publications %}
+                            <li>{{ publication.title }} ({{ publication.year }})</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h2>Funding Status</h2>
+                        <p>{{ funding_status.title }}</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: {{ funding_status.utilization }}%;"></div>
+                        </div>
+                        <span class="progress-text">{{ funding_status.utilization }}% Utilized</span>
+                    </div>
+                </div>
+                <div class="dashboard-row">
+                    <div class="dashboard-card">
+                        <div class="card-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h2>Project Pipeline</h2>
+                        <ul>
+                            {% for project in project_pipeline %}
+                            <li>{{ project.name }} ({{ project.priority }} Priority)</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h2>Lab Equipment Status</h2>
+                        <p>{{ lab_equipment.name }}</p>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: {{ lab_equipment.functional_status }}%;"></div>
+                        </div>
+                        <span class="progress-text">{{ lab_equipment.functional_status }}% Functional</span>
+                        <p class="status {{ lab_equipment.status_class }}">{{ lab_equipment.status_text }}</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <div class="card-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <h2>Team Collaboration</h2>
+                        <p>Weekly Stand-up Meetings</p>
+                        <ul>
+                            {% for meeting in team_meetings %}
+                            <li>{{ meeting.name }}: {{ meeting.date }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="blockchain-info">
+            <h2>Blockchain Integration in Research</h2>
+            <div class="blockchain-grid">
+                <div class="blockchain-card">
+                    <div class="card-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Research Data Key</h3>
+                    <div class="key-section">
+                        <h4>Public Key:</h4>
+                        <div class="key-display">
+                            <input type="text" class="key-input" value="{{ blockchain_info.public_key }}">
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+                    <div class="key-section">
+                        <h4>Private Key:</h4>
+                        <div class="key-display">
+                            <input type="text" class="key-input" value="{{ blockchain_info.private_key }}">
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="blockchain-card">
+                    <div class="card-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Encryption Status</h3>
+                    <p>{{ blockchain_info.encryption_status }}</p>
+                    <p>Last encryption check: {{ blockchain_info.last_check }}</p>
+                    <p class="status high">High Security</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

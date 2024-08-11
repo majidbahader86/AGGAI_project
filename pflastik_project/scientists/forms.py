@@ -1,7 +1,32 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
-from .models import Publication, ForumPost, ForumComment, Expert, DiagnosticSession, Tutorial
+from .models import Publication, ForumPost, ForumComment, Expert, DiagnosticSession, Tutorial, DiseaseReport, SciencePaper, PlantsDataset,  Image, AgentResponse
+
+class AgentRequestForm(forms.ModelForm):
+    class Meta:
+        model = AgentResponse
+        fields = ['block_index', 'search_term', 'api_key']
+        widgets = {
+            'api_key': forms.PasswordInput(), 
+        }
+
+class ImageUploadForm(forms.ModelForm):
+    class Meta:
+        model = Image
+        fields = ['image']
+        widgets = {
+            'image': forms.FileInput(attrs={'accept': 'image/*'}),
+        }
+
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        if image:
+            if image.size > 100 * 1024 * 1024:
+                raise forms.ValidationError("Image file too large ( > 100mb )")
+            return image
+        else:
+            raise forms.ValidationError("Couldn't read uploaded image")
 
 class PublicationForm(forms.ModelForm):
     class Meta:
@@ -45,3 +70,31 @@ class ScientistSignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+class DiseaseReportForm(forms.ModelForm):
+    class Meta:
+        model = DiseaseReport
+        fields = '__all__'
+        widgets = {
+            'environmental_conditions': forms.Textarea(attrs={'placeholder': 'Environmental Conditions (JSON format)'})
+        }
+
+class SciencePaperForm(forms.ModelForm):
+    class Meta:
+        model = SciencePaper
+        fields = '__all__'
+        widgets = {
+            'authors': forms.TextInput(attrs={'placeholder': 'Author Names (comma-separated)'}),
+            'keywords': forms.Textarea(attrs={'placeholder': 'Keywords (comma-separated)'})
+        }
+
+class DatasetForm(forms.ModelForm):
+    class Meta:
+        model = PlantsDataset
+        fields = '__all__'
+        widgets = {
+            'data_fields': forms.Textarea(attrs={'placeholder': 'Data Fields (comma-separated)'})
+        }
+
+class SearchForm(forms.Form):
+    query = forms.CharField(label='Enter your plant-related search query', max_length=255)

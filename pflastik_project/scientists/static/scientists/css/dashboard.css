@@ -1,0 +1,262 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8f0;
+    display: flex;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Existing styles... */
+
+.main-container {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    margin-left: 280px; 
+    flex-grow: 1;
+}
+
+.main-content {
+    background-color: #f5f7fa;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scientist-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.blockchain-info {
+    background-color: #f0f8ff;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem; /* Add some space between dashboard and blockchain info */
+    position: relative;
+}
+
+.blockchain-info h2 {
+    color: #2c3e50;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.blockchain-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns, each taking up half the width */
+    gap: 2rem; /* Gap between the grid items */
+}
+
+.blockchain-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blockchain-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    color: #3498db;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.blockchain-card h3 {
+    color: #2c3e50;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.5rem;
+}
+
+.key-section {
+    margin-bottom: 1rem;
+}
+
+.key-section h4 {
+    color: #34495e;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.key-display {
+    display: flex;
+    align-items: center;
+}
+
+.key-input {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: 1px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #34495e;
+    background-color: #ecf0f1;
+}
+
+.copy-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.copy-btn:hover {
+    background-color: #2980b9;
+}
+
+@media (max-width: 768px) {
+    .blockchain-grid {
+        grid-template-columns: 1fr; /* Stack the columns on smaller screens */
+    }
+}
+
+.main-content {
+    background-color: #f5f7fa;
+    padding: 2rem;
+}
+
+.scientist-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.scientist-dashboard h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.dashboard-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.dashboard-card {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1;
+    width: calc(33.33% - 0.67rem);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-icon {
+    font-size: 2rem;
+    color: #3498db;
+    margin-bottom: 0.75rem;
+    text-align: center;
+}
+
+.dashboard-card h2 {
+    font-size: 1.25rem;
+    color: #2c3e50;
+    margin-bottom: 0.75rem;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.5rem;
+}
+
+.dashboard-card p,
+.dashboard-card li {
+    color: #34495e;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.dashboard-card ul {
+    padding-left: 1rem;
+}
+
+.progress-bar {
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    height: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.progress {
+    background-color: #2ecc71;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.progress-text {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+}
+
+.status {
+    font-weight: bold;
+}
+
+.status.available {
+    color: #2ecc71;
+}
+
+.status.partial {
+    color: #f39c12;
+}
+
+.status.high {
+    color: #e74c3c;
+}
+
+@media (max-width: 992px) {
+    .dashboard-row {
+        flex-wrap: wrap;
+    }
+
+    .dashboard-card {
+        width: calc(50% - 0.5rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-row {
+        flex-direction: column;
+    }
+
+    .dashboard-card {
+        width: 100%;
+    }
+}

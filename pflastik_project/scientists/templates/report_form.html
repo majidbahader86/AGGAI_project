@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'scientists/css/ai_framework.css' %}">
+<link rel="stylesheet" href="{% static 'scientists/css/entries.css' %}">
+{% endblock %}
+
+{% block title %}AGGAI Chain Entries And DNA Manipulation{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <h1>AGGAI Chain Entries And DNA Manipulation</h1>
+    
+    <!-- Buttons to toggle forms -->
+    <button class="btn" onclick="toggleForm('plantDiseaseForm')">Add Plant Disease Information</button>
+    <button class="btn" onclick="toggleForm('paperForm')">Sign Paper to Chain</button>
+    <button class="btn" onclick="toggleForm('datasetForm')">Sign Dataset to Chain</button>
+
+    <!-- Plant Disease Form -->
+    <div id="plantDiseaseForm" class="card" style="display: none;">
+        <h2>Add Plant Disease Information</h2>
+        <form id="diseaseForm" method="post">
+            {% csrf_token %}
+            {{ disease_form.as_p }}
+            <button type="button" class="btn" onclick="submitDiseaseForm()">Submit Plant Disease Info</button>
+        </form>
+    </div>
+
+    <!-- Paper Form -->
+    <div id="paperForm" class="card" style="display: none;">
+        <h2>Sign Paper to Chain</h2>
+        <form id="paperForm" method="post">
+            {% csrf_token %}
+            {{ paper_form.as_p }}
+            <button type="button" class="btn" onclick="submitPaperForm()">Sign Paper to Chain</button>
+        </form>
+    </div>
+
+    <!-- Dataset Form -->
+    <div id="datasetForm" class="card" style="display: none;">
+        <h2>Sign Dataset to Chain</h2>
+        <form id="datasetForm" method="post">
+            {% csrf_token %}
+            {{ dataset_form.as_p }}
+            <button type="button" class="btn" onclick="submitDatasetForm()">Sign Dataset to Chain</button>
+        </form>
+    </div>
+
+    <!-- Additional Content -->
+    <div>
+        <button id="openCardBtn" class="btn pulse">Add Your Data To Plant</button>
+        <div id="magicCard" class="card hidden">
+            <h2>Raw Data To Plants</h2>
+            <div class="card" id="bitcoin-plant-card">
+                <h2>Files-Plants Integration</h2>
+                <div class="card-content">
+                    <p>Merge your Bitcoin data into your favorite plant for innovative care and funding.</p>
+                    <div id="bitcoin-plant-info">Select your favorite plant to add data to it :</div>
+                    <select id="plant-name">
+                        <option value="">Select a plant</option>
+                        <option value="rose">Rose</option>
+                        <option value="sunflower">Sunflower</option>
+                        <option value="cactus">Cactus</option>
+                        <option value="orchid">Orchid</option>
+                        <option value="ficus">Ficus</option>
+                    </select>
+                    <button class="btn" onclick="linkBitcoinToPlant()">UPLOAD A FILE</button>
+                    here the user will be able to upload the fule and then we will translte the file to binary and trthen make it dna . 
+                    <button class="btn" onclick="linkBitcoinToPlant()">Link Data to Plant</button>
+                </div>
+            </div>
+            <p>the DNAfile will be downloaded after finishing non-coding seq integration!</p>
+        </div>
+        <div class="card" id="bitcoin-plant-card">
+            <h2>Bitcoin-Plant Integration</h2>
+            <div class="card-content">
+                <p>Merge your Bitcoin data into your favorite plant for innovative care and funding.</p>
+                <div id="bitcoin-plant-info">Select your favorite plant and enter your Bitcoin address below:</div>
+                <select id="plant-name">
+                    <option value="">Select a plant</option>
+                    <option value="rose">Rose</option>
+                    <option value="sunflower">Sunflower</option>
+                    <option value="cactus">Cactus</option>
+                    <option value="orchid">Orchid</option>
+                    <option value="ficus">Ficus</option>
+                </select>
+                <input type="text" id="bitcoin-address" placeholder="Bitcoin Address">
+                <button class="btn" onclick="linkBitcoinToPlant()">Link Bitcoin to Plant</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'scientists/js/entries.js' %}"></script>
+<script>
+    function toggleForm(formId) {
+        var forms = ['plantDiseaseForm', 'paperForm', 'datasetForm'];
+        forms.forEach(function(id) {
+            document.getElementById(id).style.display = id === formId ? 'block' : 'none';
+        });
+    }
+
+    function submitDiseaseForm() {
+        var form = document.getElementById('diseaseForm');
+        var formData = new FormData(form);
+        fetch('{% url "submit_disease_info" %}', {
+            method: 'POST',
+            body: JSON.stringify(Object.fromEntries(formData)),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    function submitPaperForm() {
+        var form = document.getElementById('paperForm');
+        var formData = new FormData(form);
+        fetch('{% url "submit_paper_info" %}', {
+            method: 'POST',
+            body: JSON.stringify(Object.fromEntries(formData)),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    function submitDatasetForm() {
+        var form = document.getElementById('datasetForm');
+        var formData = new FormData(form);
+        fetch('{% url "submit_dataset_info" %}', {
+            method: 'POST',
+            body: JSON.stringify(Object.fromEntries(formData)),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>
+{% endblock %}

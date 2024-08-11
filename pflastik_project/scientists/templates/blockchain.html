@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'scientists/css/blockchain.css' %}">
+{% endblock %}
+
+{% block title %}Blockchain Dashboard - Plant Chain &amp; Genetic Chain{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="main-content">
+        <div class="scientist-dashboard">
+            <h1>Blockchain Dashboard: Plant Science Analytics</h1>
+            <div class="dashboard-grid">
+                {% for card in cards %}
+                <div class="dashboard-card {{ card.gradient_class }}">
+                    <div class="card-icon large-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em">
+                            <path d="{{ card.icon_path }}"></path>
+                        </svg>
+                    </div>
+                    <h3>{{ card.title }}</h3>
+                    <p>{{ card.subtitle1 }}: <span class="stat-value">{{ card.value1 }}</span></p>
+                    <p>{{ card.subtitle2 }}: <span style="font-style: italic;">{{ card.value2 }}</span></p>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: { card.progress };"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="charts-section">
+            {% for chart in charts %}
+            <div class="card-wrapper">
+                <div class="card-row">
+                    <div class="dashboard-card ai-model-card {{ chart.gradient_class }}">
+                        <div class="card-content">
+                            <div class="agent-logo">{{ chart.agent_logo }}</div>
+                            <div class="agent-info">
+                                <h3>{{ chart.agent_title }}</h3>
+                                <p>{{ chart.agent_description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="{{ chart.chart_id }}"></canvas>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'scientists/js/blockchain.js' %}"></script>
+{% endblock %}

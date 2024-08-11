@@ -1,0 +1,157 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'scientists/css/Agents.css' %}">
+<link rel="stylesheet" href="{% static 'scientists/css/ai_framework.css' %}">
+<link rel="stylesheet" href="{% static 'scientists/css/image_details.css' %}">
+
+
+{% endblock %}
+
+{% block title %}Image details{% endblock %}
+
+{% block content %}
+
+<div class="main-container">
+    <div class="container">
+        <h1>{{ page_title }}</h1>
+        
+        <div class="image-section">
+            <h2>Image</h2>
+            <img src="{{ image.image.url }}" alt="Uploaded Image" class="analyzed-image">
+        </div>
+        
+        <div class="analysis-section">
+            <h2>Analysis Report</h2>
+            {% if user_role == 'anonymous' %}
+                <h3>Disease Name: {{ analysis.identification_report.disease_name }}</h3>
+                <p><strong>Plant Name:</strong> {{ analysis.identification_report.plant_name }}</p>
+                <p><strong>Description:</strong> {{ analysis.identification_report.description }}</p>
+                <p><strong>Diagnosis:</strong> {{ analysis.identification_report.diagnosis }}</p>
+                
+                <h4>Symptoms</h4>
+                <ul>
+                    {% for symptom in analysis.identification_report.symptoms %}
+                        <li>{{ symptom }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <h4>Management Tips</h4>
+                <ul>
+                    {% for tip in analysis.identification_report.management_tips %}
+                        <li>{{ tip }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <p><strong>Additional Notes:</strong> {{ analysis.identification_report.notes }}</p>
+                
+            {% elif user_role == 'farmer' %}
+                <h3>Disease Name: {{ analysis.PlantDiseaseAnalysis.DiseaseName.CommonName }}</h3>
+                <p><strong>Scientific Name:</strong> {{ analysis.PlantDiseaseAnalysis.DiseaseName.ScientificName }}</p>
+                <p><strong>Affected Plant:</strong> {{ analysis.PlantDiseaseAnalysis.AffectedPlant }}</p>
+                <p><strong>Description:</strong> {{ analysis.PlantDiseaseAnalysis.Description }}</p>
+
+                <h4>Diagnosis Method</h4>
+                <ul>
+                    {% for step, method in analysis.PlantDiseaseAnalysis.DiagnosisMethod.items %}
+                        <li><strong>{{ step }}:</strong> {{ method }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <h4>Symptoms</h4>
+                <ul>
+                    {% for key, symptom in analysis.PlantDiseaseAnalysis.Symptoms.items %}
+                        <li><strong>{{ key }}:</strong> {{ symptom }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <h4>Management Tips</h4>
+                <ul>
+                    {% for key, tip in analysis.PlantDiseaseAnalysis.ManagementTips.items %}
+                        <li><strong>{{ key }}:</strong> {{ tip }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h4>Soil and Field Conditions</h4>
+                <p><strong>Soil Type:</strong> {{ analysis.SoilAndFieldConditions.SoilType }}</p>
+                <p><strong>Soil Health Indicators:</strong> {{ analysis.SoilAndFieldConditions.SoilHealth }}</p>
+                <p><strong>Moisture Levels:</strong> {{ analysis.SoilAndFieldConditions.MoistureLevels }}</p>
+                <p><strong>Soil pH:</strong> {{ analysis.SoilAndFieldConditions.SoilpH }}</p>
+                <p><strong>Nutrient Status:</strong> {{ analysis.SoilAndFieldConditions.NutrientStatus }}</p>
+                <p><strong>Field Conditions:</strong> {{ analysis.SoilAndFieldConditions.FieldConditions }}</p>
+
+                <h4>Reference Image</h4>
+                <img src="{{ analysis.PlantDiseaseAnalysis.ReferenceImage }}" alt="Reference Image" class="reference-image">
+                
+            {% elif user_role == 'scientist' %}
+                <h3>Disease Name: {{ analysis.PlantDiseaseAnalysis.DiseaseName.CommonName }}</h3>
+                <p><strong>Scientific Name:</strong> {{ analysis.PlantDiseaseAnalysis.DiseaseName.ScientificName }}</p>
+                <p><strong>Affected Plant:</strong> {{ analysis.PlantDiseaseAnalysis.AffectedPlant.CommonName }} ({{ analysis.PlantDiseaseAnalysis.AffectedPlant.Species }})</p>
+                <p><strong>Pathogen Information:</strong> {{ analysis.PlantDiseaseAnalysis.PathogenInformation.PathogenType }}</p>
+
+                <h4>Description</h4>
+                <p><strong>Etiology:</strong> {{ analysis.PlantDiseaseAnalysis.Description.Etiology }}</p>
+                <p><strong>Epidemiology:</strong> {{ analysis.PlantDiseaseAnalysis.Description.Epidemiology }}</p>
+                
+                <h4>Diagnosis Method</h4>
+                <ul>
+                    {% for key, method in analysis.PlantDiseaseAnalysis.DiagnosisMethod.items %}
+                        <li><strong>{{ key }}:</strong> {{ method }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <h4>Symptoms</h4>
+                <ul>
+                    {% for key, indicator in analysis.PlantDiseaseAnalysis.Symptoms.items %}
+                        <li><strong>{{ key }}:</strong> {{ indicator }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <h4>Management Strategies</h4>
+                <ul>
+                    {% for key, strategy in analysis.PlantDiseaseAnalysis.ManagementStrategies.items %}
+                        <li><strong>{{ key }}:</strong> {{ strategy }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <h4>Soil and Field Conditions</h4>
+                <p><strong>Soil Type:</strong> {{ analysis.SoilAndFieldConditions.SoilType.Description }}</p>
+                <p><strong>Soil Health Indicators:</strong> {{ analysis.SoilAndFieldConditions.SoilHealthIndicators }}</p>
+                <p><strong>Moisture Levels:</strong> {{ analysis.SoilAndFieldConditions.MoistureLevels.Assessment }}</p>
+                <p><strong>Soil pH:</strong> {{ analysis.SoilAndFieldConditions.SoilpH.Estimation }}</p>
+                <p><strong>Nutrient Status:</strong> {{ analysis.SoilAndFieldConditions.NutrientStatus.Observations }}</p>
+                <p><strong>Field Conditions:</strong> {{ analysis.SoilAndFieldConditions.FieldConditions }}</p>
+
+                <h4>Recommendations for Improvement</h4>
+                <ul>
+                    {% for key, recommendation in analysis.SoilAndFieldConditions.RecommendationsForImprovement.items %}
+                        <li><strong>{{ key }}:</strong> {{ recommendation }}</li>
+                    {% endfor %}
+                </ul>
+                
+                <h4>Research Insights</h4>
+                <p><strong>Recent Studies:</strong> {{ analysis.SoilAndFieldConditions.ResearchInsights.RecentStudies }}</p>
+                <p><strong>Innovative Solutions:</strong> {{ analysis.SoilAndFieldConditions.ResearchInsights.InnovativeSolutions }}</p>
+                
+            {% else %}
+                <p>No analysis available.</p>
+            {% endif %}
+        </div>
+        
+        <a href="{% url 'upload_image' %}" class="btn">Upload Another Image</a>
+    </div>
+    
+</div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script src="{% static 'scientists/js/Agents.js' %}"></script>
+
+{% endblock %}

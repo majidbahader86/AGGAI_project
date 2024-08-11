@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'scientists/css/Agents.css' %}">
+{% endblock %}
+
+{% block title %}Image upload{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="main-content">
+        <h1><i class="fas fa-seedling"></i> Upload Plant Image</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="upload-cards">
+                <div class="upload-card">
+                    <h2><i class="fas fa-file-upload"></i> Upload from Device</h2>
+                    <input type="file" id="device-upload" name="image" accept="image/*">
+                    <label for="device-upload"><i class="fas fa-folder-open"></i> Choose File</label>
+                </div>
+                <div class="upload-card">
+                    <h2><i class="fas fa-camera"></i> Take Photo</h2>
+                    <input type="file" id="camera-upload" name="image" accept="image/*" capture="camera">
+                    <label for="camera-upload"><i class="fas fa-camera-retro"></i> Open Camera</label>
+                </div>
+            </div>
+            <button type="submit" id="upload-btn"><i class="fas fa-cloud-upload-alt"></i> Upload Image</button>
+        </form>
+    </div>
+</div>
+
+</html> 
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'scientists/js/Agents.js' %}"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deviceUpload = document.getElementById('device-upload');
+        const cameraUpload = document.getElementById('camera-upload');
+        const uploadBtn = document.getElementById('upload-btn');
+
+        function updateLabel(input) {
+            const label = input.nextElementSibling;
+            if (input.files && input.files[0]) {
+                label.innerHTML = `<i class="fas fa-check"></i> ${input.files[0].name}`;
+            } else {
+                label.innerHTML = input.id === 'device-upload' ? '<i class="fas fa-folder-open"></i> Choose File' : '<i class="fas fa-camera-retro"></i> Open Camera';
+            }
+        }
+
+        deviceUpload.addEventListener('change', function() {
+            updateLabel(this);
+        });
+
+        cameraUpload.addEventListener('change', function() {
+            updateLabel(this);
+        });
+
+        uploadBtn.addEventListener('click', function() {
+            const selectedFile = deviceUpload.files[0] || cameraUpload.files[0];
+            if (selectedFile) {
+                // Here you would typically send the file to your server
+                console.log('Uploading file:', selectedFile.name);
+                // For demonstration, we'll just show an alert
+                alert(`File "${selectedFile.name}" selected for upload. In a real application, this would be sent to the server.`);
+            } else {
+                alert('Please select a file to upload.');
+            }
+        });
+    });
+    </script>
+
+
+
+<script src="{% static 'scientists/js/Agents.js' %}"></script>
+
+{% endblock %}
