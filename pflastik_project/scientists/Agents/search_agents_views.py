@@ -7,6 +7,9 @@ from bs4 import BeautifulSoup
 from googlesearch import search
 from together import Together
 from typing import List, Dict, Optional
+from django.urls import reverse
+
+# test it export TOGETHER_API_KEY="56ebf1cf19d9c7a2ee45c091ac4c4109d5fb53cb58700c93b57d3a3e36f77a88"
 
 # Constants for token limits . increase it if you find the model can't understnad from this chunk . 
 MAX_TOKENS = 8192 
@@ -98,7 +101,7 @@ def search_view(request):
             api_key = os.environ.get('TOGETHER_API_KEY')
             if not api_key:
                 print("Error: TOGETHER_API_KEY not found in environment variables.")
-                return redirect('search_agents')  # Redirect to the search form if API key is missing
+                return redirect(reverse('search_agents')) # Redirect to the search form if API key is missing
 
             client = initialize_client(api_key)
 

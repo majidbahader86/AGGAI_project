@@ -56,7 +56,7 @@ urlpatterns = [
     path('submit-disease-info/', submit_disease_info, name='submit_disease_info'),
     path('submit-paper-info/', submit_paper_info, name='submit_paper_info'),
     path('submit-dataset-info/', submit_dataset_info, name='submit_dataset_info'),
-    path('search_agents/',search_agents_views.search_view, name='search_agent'),
+    path('search_agents/', search_agents_views.search_view, name='search_agents'),
     path('results/<int:query_id>/', search_agents_views.results_view, name='search_results'),
 ]
 from django.conf import settings

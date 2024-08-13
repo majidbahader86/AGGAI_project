@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     dataset = Dataset(
         dataset_id="DS001",
-        name="COVID-19 Dataset",
+        name="COVID-in-plants Dataset",
         description="Dataset containing COVID-19 statistics worldwide.",
         creation_date="2020-03-01",
         url="https://example.com/ds001",
