@@ -4,6 +4,9 @@ from typing import List, Dict, Any
 from BLOCK import Block , GenChainBlock
 from BLOCKCHAIN import Blockchain, GenChain
 from DATAENTERY import DiseaseReport, Dataset, SciencePaper , DataEntry
+from crypto_utils import generate_key_pair, serialize_private_key, serialize_public_key, sign_data, verify_signature
+from cryptography.hazmat.primitives.serialization import load_pem_private_key, load_pem_public_key
+from cryptography.hazmat.backends import default_backend
 
 
 # Example usage
@@ -42,7 +45,7 @@ if __name__ == "__main__":
 
     dataset = Dataset(
         dataset_id="DS001",
-        name="COVID-in-plants Dataset",
+        name="COVID-19 Dataset",
         description="Dataset containing COVID-19 statistics worldwide.",
         creation_date="2020-03-01",
         url="https://example.com/ds001",
@@ -109,6 +112,33 @@ if __name__ == "__main__":
         dna_sequence="ATCGATCGATCG",
         hash_value="examplehashvalue"
     )
+    private_key, public_key = generate_key_pair()
+    private_key_pem = serialize_private_key(private_key)
+    public_key_pem = serialize_public_key(public_key)
+    print("Private Key:")
+    print(private_key_pem)
+    print("\nPublic Key:")
+    print(public_key_pem)
+    # 3. Sign some data
+    data = "ELNAMAKI-DS-0x1999"
+    signature = sign_data(private_key, data)
+    print("\nSignature:")
+    print(signature)
+
+    # 4. Verify the signature
+    is_valid = verify_signature(public_key, data, signature)
+    print("\nIs the signature valid?")
+    print(is_valid)
+
+    # Deserialization example (optional):
+    # Load the private and public key from the PEM formatted strings
+    private_key = load_pem_private_key(private_key_pem.encode('utf-8'), password=None, backend=default_backend())
+    public_key = load_pem_public_key(public_key_pem.encode('utf-8'), backend=default_backend())
+
+    # Verify again after deserialization
+    is_valid_after_deserialization = verify_signature(public_key, data, signature)
+    print("\nIs the signature valid after deserialization?")
+    print(is_valid_after_deserialization)
 
     # Print the block's dictionary representation
     print("GenChainBlock:")
@@ -119,8 +149,8 @@ if __name__ == "__main__":
     print(json.dumps(blockchain.gen_chain.list_blocks(), indent=2))
 
     # Stop the blockchain threads
-    blockchain.stop_block_generation()
-    if blockchain.gen_chain:
-        blockchain.gen_chain.running = False
-        if blockchain.thread_gen_chain:
-            blockchain.thread_gen_chain.join()
+    # blockchain.stop_block_generation()
+    # if blockchain.gen_chain:
+    #     blockchain.gen_chain.running = False
+    #     if blockchain.thread_gen_chain:
+    #         blockchain.thread_gen_chain.join()
